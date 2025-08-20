@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Onest } from "next/font/google";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+import "@/styles/theme/theme.scss";
+import styles from "@/app/styles/main-layout.module.scss";
+import "@/styles/layout/common-layout.scss";
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const onest = Onest({
+  variable: "--font-onest",
   subsets: ["latin"],
 });
 
@@ -52,12 +51,13 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log(styles);
   return (
     <html lang="es">
       <head>
         <meta name="apple-mobile-web-app-title" content="GonzaloPlazaRueda" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={`${onest.className} ${styles["main-layout"]}`}>
         {children}
       </body>
     </html>
