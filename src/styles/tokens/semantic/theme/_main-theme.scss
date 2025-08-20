@@ -10,7 +10,12 @@ $semantic-colors: (
   'text': (
     'primary': theme.$main-theme-color-light-0,
     'secondary': theme.$main-theme-color-surface-40,
-    'tertiary': theme.$main-theme-color-surface-30
+    'tertiary': theme.$main-theme-color-surface-30,
+  ),
+  'text-highlight': (
+      'primary': theme.$main-theme-color-primary-30,
+      'secondary': theme.$main-theme-color-primary-40,
+      'tertiary': theme.$main-theme-color-primary-50
   ),
   'interactive': (
     'primary': theme.$main-theme-color-primary-0,
