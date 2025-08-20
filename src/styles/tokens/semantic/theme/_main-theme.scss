@@ -1,0 +1,29 @@
+@use '@/styles/tokens/primitives/theme/all.scss' as theme;
+
+// Semantic color mappings using SASS variables
+$semantic-colors: (
+  'background': (
+    'base': theme.$main-theme-color-surface-0,
+    'elevated': theme.$main-theme-color-surface-10,
+    'higher': theme.$main-theme-color-surface-20
+  ),
+  'text': (
+    'primary': theme.$main-theme-color-light-0,
+    'secondary': theme.$main-theme-color-surface-40,
+    'tertiary': theme.$main-theme-color-surface-30
+  ),
+  'interactive': (
+    'primary': theme.$main-theme-color-primary-0,
+    'primary-hover': theme.$main-theme-color-primary-10,
+    'primary-active': theme.$main-theme-color-primary-20
+  ),
+  'border': (
+    'subtle': theme.$main-theme-color-surface-20,
+    'strong': theme.$main-theme-color-surface-30
+  ),
+  'surface': (
+    'card': theme.$main-theme-color-surface-tonal-10,
+    'modal': theme.$main-theme-color-surface-tonal-0,
+    'popup': theme.$main-theme-color-surface-10
+  )
+);

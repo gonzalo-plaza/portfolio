@@ -1,0 +1,10 @@
+@use '@/styles/tokens/semantic/all' as themeTokens;
+
+// Export only semantic colors to CSS custom properties
+:root {
+  @each $category, $variants in themeTokens.$main-theme-semantic-colors {
+    @each $name, $value in $variants {
+      --#{$category}-#{$name}: #{$value};
+    }
+  }
+}
