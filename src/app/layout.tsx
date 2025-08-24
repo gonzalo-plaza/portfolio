@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 
 import "@/styles/theme/theme.scss";
-import styles from "@/app/styles/main-layout.module.scss";
+import "@/styles/reset.scss";
+import "@/styles/typography/default-typography.scss";
+import styles from "@/styles/components/main-layout/main-layout.module.scss";
 import "@/styles/layout/common-layout.scss";
 
 const onest = Onest({
