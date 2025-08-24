@@ -1,34 +1,51 @@
-@use '@/styles/tokens/primitives/theme/all.scss' as theme;
+@use "@/styles/tokens/primitives/theme/all.scss" as theme;
 
 // Semantic color mappings using SASS variables
 $semantic-colors: (
-  'background': (
-    'base': theme.$main-theme-color-surface-0,
-    'elevated': theme.$main-theme-color-surface-10,
-    'higher': theme.$main-theme-color-surface-20
+  "background": (
+    "base": theme.$main-theme-color-surface-0,
+    "elevated": theme.$main-theme-color-surface-10,
+    "higher": theme.$main-theme-color-surface-20,
+    "accent": theme.$main-theme-color-primary-50,
+    "subtle": theme.$main-theme-color-surface-30,
   ),
-  'text': (
-    'primary': theme.$main-theme-color-light-0,
-    'secondary': theme.$main-theme-color-surface-40,
-    'tertiary': theme.$main-theme-color-surface-30,
+  "text": (
+    "primary": theme.$main-theme-color-light-0,
+    "secondary": theme.$main-theme-color-surface-40,
+    "tertiary": theme.$main-theme-color-surface-30,
   ),
-  'text-highlight': (
-      'primary': theme.$main-theme-color-primary-30,
-      'secondary': theme.$main-theme-color-primary-40,
-      'tertiary': theme.$main-theme-color-primary-50
+  "text-highlight": (
+    "primary": theme.$main-theme-color-primary-30,
+    "secondary": theme.$main-theme-color-primary-40,
+    "tertiary": theme.$main-theme-color-primary-50,
   ),
-  'interactive': (
-    'primary': theme.$main-theme-color-primary-0,
-    'primary-hover': theme.$main-theme-color-primary-10,
-    'primary-active': theme.$main-theme-color-primary-20
+  "interactive": (
+    "primary": theme.$main-theme-color-primary-0,
+    "primary-hover": theme.$main-theme-color-primary-10,
+    "primary-active": theme.$main-theme-color-primary-20,
   ),
-  'border': (
-    'subtle': theme.$main-theme-color-surface-20,
-    'strong': theme.$main-theme-color-surface-30
+  "border": (
+    "subtle": theme.$main-theme-color-surface-20,
+    "strong": theme.$main-theme-color-surface-30,
+    "accent": theme.$main-theme-color-primary-30,
   ),
-  'surface': (
-    'card': theme.$main-theme-color-surface-tonal-10,
-    'modal': theme.$main-theme-color-surface-tonal-0,
-    'popup': theme.$main-theme-color-surface-10
-  )
+  "surface": (
+    "card": theme.$main-theme-color-surface-tonal-10,
+    "modal": theme.$main-theme-color-surface-tonal-0,
+    "popup": theme.$main-theme-color-surface-10,
+    "image": theme.$main-theme-color-surface-image-0,
+    "image-contrast": theme.$main-theme-color-surface-image-20,
+  ),
+  "badge": (
+    "default-bg": theme.$main-theme-color-surface-10,
+    "default-text": theme.$main-theme-color-primary-30,
+    "success-bg": #1f7a4d,
+    "success-text": #3fe18d,
+    "warning-bg": #8b6c00,
+    "warning-text": #ffd666,
+    "error-bg": #a30000,
+    "error-text": #ff6b6b,
+    "info-bg": theme.$main-theme-color-primary-10,
+    "info-text": theme.$main-theme-color-primary-50,
+  ),
 );
