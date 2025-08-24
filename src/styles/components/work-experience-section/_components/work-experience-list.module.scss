@@ -1,0 +1,122 @@
+@use "@/styles/utils/breakpoints" as *;
+
+.workExperienceList {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.workExperienceSection {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.workExperienceListItem {
+  &.isListItemActive {
+    & .workExperienceArticle {
+      &__title {
+        color: var(--text-highlight-primary);
+      }
+      &__headerImage {
+        box-shadow: 0 0 20px 14px #3541cf40, 0 30px 60px -30px #0000004d;
+      }
+    }
+
+    & .workExperienceListItem__separatorActive {
+      border-color: var(--text-highlight-primary);
+    }
+  }
+}
+
+.workExperienceArticle {
+  display: grid;
+  grid-template-areas:
+    "image header"
+    "description description";
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 16px;
+
+  @include breakpoint-up("sm") {
+    grid-template-areas:
+      "image header"
+      "image description";
+    grid-template-columns: auto 1fr;
+    gap: 24px;
+  }
+
+  &__headerImage {
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+    background-color: #dfdfff;
+    grid-area: image;
+
+    @include breakpoint-up("sm") {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  &__headerImageContainer {
+    padding: 8px;
+    display: grid;
+    place-content: center;
+  }
+
+  &__description {
+    grid-area: description;
+  }
+
+  &__separator {
+    border: 0.1px solid var(--border-strong);
+    border-radius: 50%;
+  }
+
+  &__technologiesList {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__technologyItem {
+    @include breakpoint-up("sm") {
+      width: 25;
+      height: 25;
+    }
+  }
+
+  &__badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 9999px;
+    padding-inline: 6px;
+    padding-block: 4px;
+
+    color: var(--text-highlight-primary);
+    background-color: var(--background-elevated);
+    z-index: 0;
+    border: 2px solid transparent;
+    background-origin: border-box;
+    background-image: linear-gradient(
+        var(--background-elevated),
+        var(--background-elevated)
+      ),
+      conic-gradient(
+        from 0deg,
+        var(--border-accent),
+        var(--border-strong),
+        var(--border-accent)
+      );
+    background-clip: padding-box, border-box;
+    animation: rotate-conic 3s linear infinite;
+  }
+}
