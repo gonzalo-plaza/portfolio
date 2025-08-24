@@ -1,0 +1,10 @@
+export { default as ConfluenceIcon } from "@/components/icons/technologyIcons/_components/ConfluenceIcon";
+export { default as GitIcon } from "@/components/icons/technologyIcons/_components/GitIcon";
+export { default as GrafanaIcon } from "@/components/icons/technologyIcons/_components/GrafanaIcon";
+export { default as HTMLIcon } from "@/components/icons/technologyIcons/_components/HTMLIcon";
+export { default as JavaScriptIcon } from "@/components/icons/technologyIcons/_components/JavaScriptIcon";
+export { default as JiraIcon } from "@/components/icons/technologyIcons/_components/JiraIcon";
+export { default as JQueryIcon } from "@/components/icons/technologyIcons/_components/JQueryIcon";
+export { default as ReactIcon } from "@/components/icons/technologyIcons/_components/ReactIcon";
+export { default as SassIcon } from "@/components/icons/technologyIcons/_components/SassIcon";
+export { default as TypeScriptIcon } from "@/components/icons/technologyIcons/_components/TypeScriptIcon";
