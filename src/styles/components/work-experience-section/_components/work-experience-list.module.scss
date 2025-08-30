@@ -76,20 +76,6 @@
     border-radius: 50%;
   }
 
-  &__technologiesList {
-    display: flex;
-    gap: 8px;
-    margin-top: 16px;
-    flex-wrap: wrap;
-  }
-
-  &__technologyItem {
-    @include breakpoint-up("sm") {
-      width: 25;
-      height: 25;
-    }
-  }
-
   &__badge {
     position: relative;
     display: inline-flex;
