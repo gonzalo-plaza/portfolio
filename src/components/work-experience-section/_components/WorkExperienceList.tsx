@@ -67,30 +67,77 @@ const workExperiences = [
   },
 ];
 
+const isItemDisapearFromCenter = (
+  item: HTMLLIElement,
+  viewportCenter: number
+) => {
+  const itemRect = item.getBoundingClientRect();
+  const itemBottomDistance = itemRect.bottom - viewportCenter;
+  const itemIsDisapearFromCenter = itemBottomDistance < 0;
+
+  return itemIsDisapearFromCenter;
+};
+
+const isItemEnteringFromBotton = (
+  item: HTMLLIElement,
+  viewportCenter: number
+) => {
+  const itemRect = item.getBoundingClientRect();
+  const itemTopDistance = itemRect.top - viewportCenter;
+  const firstItemIsEnteringFromBottom =
+    itemTopDistance > 0 && itemTopDistance > 50;
+
+  return firstItemIsEnteringFromBottom;
+};
+
 export default function WorkExperienceList() {
   const listRef = useRef<HTMLLIElement[]>([]);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   useEffect(() => {
+    let requestAnimationFrameId: number | null = null;
     const handleScroll = () => {
-      const viewportCenter = window.innerHeight / 2;
+      if (requestAnimationFrameId)
+        cancelAnimationFrame(requestAnimationFrameId);
 
-      let closestIndex: number | null = null;
-      let closestDistance = Infinity;
+      requestAnimationFrameId = requestAnimationFrame(() => {
+        const viewportCenter = window.innerHeight / 2;
 
-      listRef.current.forEach((el, index) => {
-        if (!el) return;
-        const rect = el.getBoundingClientRect();
-        const elementCenter = rect.top + rect.height / 2;
-        const distance = Math.abs(viewportCenter - elementCenter);
+        let closestIndex: number | null = null;
+        let closestDistance = Infinity;
 
-        if (distance < closestDistance) {
-          closestDistance = distance;
-          closestIndex = index;
+        for (const el of listRef.current) {
+          if (!el) return;
+
+          const index = listRef.current.indexOf(el);
+
+          if (index === 0 && isItemEnteringFromBotton(el, viewportCenter)) {
+            setActiveIndex(null);
+            break;
+          }
+
+          const lastIndex = listRef.current.length - 1;
+
+          if (
+            index === lastIndex &&
+            isItemDisapearFromCenter(el, viewportCenter)
+          ) {
+            setActiveIndex(null);
+            break;
+          }
+
+          const rect = el.getBoundingClientRect();
+          const elementCenter = rect.top + rect.bottom / 2;
+          const distance = Math.abs(viewportCenter - elementCenter);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
         }
-      });
 
-      setActiveIndex(closestIndex);
+        setActiveIndex(closestIndex);
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -98,6 +145,8 @@ export default function WorkExperienceList() {
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      if (requestAnimationFrameId)
+        cancelAnimationFrame(requestAnimationFrameId);
     };
   }, []);
 
@@ -106,7 +155,7 @@ export default function WorkExperienceList() {
       {workExperiences.map((experience, index) => (
         <li
           key={index}
-          ref={(el) => {
+          ref={(el: HTMLLIElement) => {
             listRef.current[index] = el;
           }}
           data-index={index}
