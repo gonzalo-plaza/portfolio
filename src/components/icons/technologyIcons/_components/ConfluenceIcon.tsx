@@ -17,9 +17,9 @@ export default function ConflueceIcon(iconProps: SVGProps<SVGSVGElement>) {
           y2="19.855"
           gradientTransform="scale(4)"
         >
-          <stop offset="0" stop-color="#0052cc" />
-          <stop offset=".918" stop-color="#2380fb" />
-          <stop offset="1" stop-color="#2684ff" />
+          <stop offset="0" stopColor="#0052cc" />
+          <stop offset=".918" stopColor="#2380fb" />
+          <stop offset="1" stopColor="#2684ff" />
         </linearGradient>
         <linearGradient
           id="confluence-original-b"
@@ -30,9 +30,9 @@ export default function ConflueceIcon(iconProps: SVGProps<SVGSVGElement>) {
           y2="11.136"
           gradientTransform="scale(4)"
         >
-          <stop offset="0" stop-color="#0052cc" />
-          <stop offset=".918" stop-color="#2380fb" />
-          <stop offset="1" stop-color="#2684ff" />
+          <stop offset="0" stopColor="#0052cc" />
+          <stop offset=".918" stopColor="#2380fb" />
+          <stop offset="1" stopColor="#2684ff" />
         </linearGradient>
       </defs>
       <path
