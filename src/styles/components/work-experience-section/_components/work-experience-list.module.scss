@@ -40,6 +40,10 @@
   grid-template-rows: auto 1fr;
   gap: 16px;
 
+  &__title {
+    transition: color 0.2s ease;
+  }
+
   @include breakpoint-up("sm") {
     grid-template-areas:
       "image header"
@@ -54,6 +58,7 @@
     border-radius: 50%;
     background-color: #dfdfff;
     grid-area: image;
+    transition: box-shadow 0.2s ease;
 
     @include breakpoint-up("sm") {
       width: 150px;
