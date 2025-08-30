@@ -26,3 +26,11 @@
     );
   background-clip: padding-box, border-box;
 }
+
+.workExperienceDateTime {
+  font-size: 0.875rem;
+
+  &__experienceTime {
+    white-space: nowrap;
+  }
+}

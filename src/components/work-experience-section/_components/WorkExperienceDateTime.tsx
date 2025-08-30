@@ -32,15 +32,21 @@ const WorkExperienceDateTime = ({
     });
   };
   return (
-    <p>
-      <time dateTime={startTimeString}>{startTimeString}</time>
-      {" - "}
+    <p className={styles.workExperienceDateTime}>
+      <time dateTime={startTimeString}>
+        {startTimeString}
+        {" - "}
+      </time>
+
       {endTimeString ? (
         <time dateTime={endTimeString}>{endTimeString}</time>
       ) : (
         <span className={styles.workExperienceDateTimeBadge}>Actualmente</span>
       )}
-      {" | "} <span>{experienceTime()}</span>
+      <span className={styles.workExperienceDateTime__experienceTime}>
+        {" | "}
+        {experienceTime()}
+      </span>
     </p>
   );
 };
