@@ -1,27 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-const isItemDisapearFromCenter = (item: Element, viewportCenter: number) => {
-  const itemRect = item.getBoundingClientRect();
-  const itemBottomDistance = itemRect.bottom - viewportCenter;
-  const itemIsDisapearFromCenter = itemBottomDistance < 0;
-
-  return itemIsDisapearFromCenter;
-};
-
-const isItemEnteringFromBotton = (item: Element, viewportCenter: number) => {
-  const itemRect = item.getBoundingClientRect();
-  const itemTopDistance = itemRect.top - viewportCenter;
-  const firstItemIsEnteringFromBottom =
-    itemTopDistance > 0 && itemTopDistance > 50;
-
-  return firstItemIsEnteringFromBottom;
-};
+import {
+  hasItemDisappearedFromCenter,
+  isItemEnteringFromBottom,
+} from "@/utils/workExperienceUtils";
+import { useEffect } from "react";
 
 interface WorkExperieceActiveAnimationProps {
   itemActiveClass: string;
 }
+
+// TODO: Pending refactoring to find another approach and avoid using querySelector, and try to follow React's recommendations.
 
 const WorkExperienceActiveAnimation = ({
   itemActiveClass,
@@ -48,7 +37,7 @@ const WorkExperienceActiveAnimation = ({
 
           if (
             index === 0 &&
-            isItemEnteringFromBotton(element, viewportCenter)
+            isItemEnteringFromBottom(element, viewportCenter)
           ) {
             activeIndex = null;
             break;
@@ -58,7 +47,7 @@ const WorkExperienceActiveAnimation = ({
 
           if (
             index === lastIndex &&
-            isItemDisapearFromCenter(element, viewportCenter)
+            hasItemDisappearedFromCenter(element, viewportCenter)
           ) {
             activeIndex = null;
             break;
@@ -90,7 +79,7 @@ const WorkExperienceActiveAnimation = ({
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll(); // ejecutar al cargar
+    handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
