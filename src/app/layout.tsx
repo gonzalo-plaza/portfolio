@@ -14,7 +14,7 @@ const onest = Onest({
 
 export const metadata: Metadata = {
   title: "Gonzalo Plaza Rueda",
-  description: "Portfolio de Gonzalo Plaza Rueda, desarrollador web",
+  description: "Portfolio de Gonzalo Plaza Rueda, Software Engineer",
   icons: {
     icon: [
       { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
@@ -31,13 +31,13 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
   },
   openGraph: {
-    title: "Gonzalo Plaza Rueda - Frontend Developer",
-    description: "Portfolio de Gonzalo Plaza Rueda, desarrollador web",
+    title: "Gonzalo Plaza Rueda - Software Engineer",
+    description: "Portfolio de Gonzalo Plaza Rueda, Software Engineer",
     url: "https://gonzaloplazarueda.com",
     siteName: "Gonzalo Plaza Rueda",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Gonzalo Plaza Rueda - Frontend Developer",
