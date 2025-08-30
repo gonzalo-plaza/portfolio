@@ -1,13 +1,14 @@
+@use "@/styles/utils/breakpoints" as *;
+
 .workExperienceDateTimeBadge {
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 0.625rem;
   font-weight: 700;
   border-radius: 9999px;
   padding-inline: 6px;
-  padding-block: 4px;
 
   color: var(--text-highlight-primary);
   background-color: var(--background-elevated);
@@ -25,6 +26,10 @@
       var(--border-accent)
     );
   background-clip: padding-box, border-box;
+
+  @include breakpoint-up("md") {
+    font-size: 0.75rem;
+  }
 }
 
 .workExperienceDateTime {
