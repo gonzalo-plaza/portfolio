@@ -16,8 +16,8 @@ export default function GrafanaIcon(iconProps: SVGProps<SVGSVGElement>) {
         y2="8.802"
         gradientTransform="translate(-.23 28.462) scale(1.4011)"
       >
-        <stop offset="0" stop-color="#fcee1f" />
-        <stop offset="1" stop-color="#f15b2a" />
+        <stop offset="0" stopColor="#fcee1f" />
+        <stop offset="1" stopColor="#f15b2a" />
       </linearGradient>
       <path
         fill="url(#grafana-original-a)"
