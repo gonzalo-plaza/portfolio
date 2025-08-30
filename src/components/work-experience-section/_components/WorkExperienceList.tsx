@@ -3,6 +3,7 @@ import Image from "next/image";
 import WorkExperienceActiveAnimation from "./WorkExperieceActiveAnimation";
 import { workExperiences } from "@/constants/workExperience/workExperience";
 import WorkExperienceTechnologyList from "./WorkExperienceTechnologyList";
+import WorkExperienceDateTime from "./WorkExperienceDateTime";
 
 export default function WorkExperienceList() {
   return (
@@ -34,21 +35,10 @@ export default function WorkExperienceList() {
                     {experience.subtitle}
                   </p>
                 </hgroup>
-                <div>
-                  <time dateTime={experience.startTime}>
-                    {experience.startTime}
-                  </time>
-                  {" - "}
-                  {experience.endTime ? (
-                    <time dateTime={experience.endTime}>
-                      {experience.endTime}
-                    </time>
-                  ) : (
-                    <span className={styles.workExperienceArticle__badge}>
-                      Actualmente
-                    </span>
-                  )}
-                </div>
+                <WorkExperienceDateTime
+                  startTime={experience.startTime}
+                  endTime={experience.endTime}
+                />
                 {experience.technologyList &&
                   experience?.technologyList?.length > 0 && (
                     <WorkExperienceTechnologyList

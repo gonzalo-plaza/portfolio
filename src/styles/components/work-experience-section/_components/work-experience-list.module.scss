@@ -75,34 +75,4 @@
     border: 0.1px solid var(--border-strong);
     border-radius: 50%;
   }
-
-  &__badge {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    border-radius: 9999px;
-    padding-inline: 6px;
-    padding-block: 4px;
-
-    color: var(--text-highlight-primary);
-    background-color: var(--background-elevated);
-    z-index: 0;
-    border: 2px solid transparent;
-    background-origin: border-box;
-    background-image: linear-gradient(
-        var(--background-elevated),
-        var(--background-elevated)
-      ),
-      conic-gradient(
-        from 0deg,
-        var(--border-accent),
-        var(--border-strong),
-        var(--border-accent)
-      );
-    background-clip: padding-box, border-box;
-    animation: rotate-conic 3s linear infinite;
-  }
 }
