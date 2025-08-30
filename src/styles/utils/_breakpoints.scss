@@ -1,8 +1,9 @@
-@use '../tokens/breakpoints/screens' as *;
+@use "sass:map";
+@use "../tokens/breakpoints/screens" as *;
 
 @function get-breakpoint($breakpoint) {
-  @if map-has-key($screens, $breakpoint) {
-    @return map-get($screens, $breakpoint);
+  @if map.has-key($screens, $breakpoint) {
+    @return map.get($screens, $breakpoint);
   }
   @error 'Invalid breakpoint: #{$breakpoint}. Available breakpoints are: #{map-keys($screens)}';
 }
@@ -23,7 +24,7 @@
 @mixin breakpoint-between($lower, $upper) {
   $min: get-breakpoint($lower);
   $max: get-breakpoint($upper);
-  
+
   // subtract -1px in max-width to avoid conflicts with min-width breakpoints
   @media (min-width: $min) and (max-width: ($max - 1px)) {
     @content;
