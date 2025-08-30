@@ -53,7 +53,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log(styles);
   return (
     <html lang="es">
       <head>
