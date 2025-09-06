@@ -2,6 +2,7 @@ import { WorkExperience } from "@/models/workExperience/workExperience";
 import { getDifferenceTimeString } from "@/utils/dateUtils/dateUtils";
 
 import styles from "@/styles/components/work-experience-section/_components/work-experience-date-time.module.scss";
+import Badge from "@/components/molecules/Badge";
 
 interface WorkExperienceDateTimeProps {
   startTime: WorkExperience["startTime"];
@@ -41,7 +42,7 @@ const WorkExperienceDateTime = ({
       {endTimeString ? (
         <time dateTime={endTimeString}>{endTimeString}</time>
       ) : (
-        <span className={styles.workExperienceDateTimeBadge}>Actualmente</span>
+        <Badge variant="primary">Actualmente</Badge>
       )}
       <span className={styles.workExperienceDateTime__experienceTime}>
         {" | "}

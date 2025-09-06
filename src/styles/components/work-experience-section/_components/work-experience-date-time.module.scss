@@ -1,37 +1,5 @@
 @use "@/styles/utils/breakpoints" as *;
 
-.workExperienceDateTimeBadge {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.625rem;
-  font-weight: 700;
-  border-radius: 9999px;
-  padding-inline: 6px;
-
-  color: var(--text-highlight-primary);
-  background-color: var(--background-elevated);
-  z-index: 0;
-  border: 2px solid transparent;
-  background-origin: border-box;
-  background-image: linear-gradient(
-      var(--background-elevated),
-      var(--background-elevated)
-    ),
-    conic-gradient(
-      from 0deg,
-      var(--border-accent),
-      var(--border-strong),
-      var(--border-accent)
-    );
-  background-clip: padding-box, border-box;
-
-  @include breakpoint-up("md") {
-    font-size: 0.75rem;
-  }
-}
-
 .workExperienceDateTime {
   font-size: 0.875rem;
 
