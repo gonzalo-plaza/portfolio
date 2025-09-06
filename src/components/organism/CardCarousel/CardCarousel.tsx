@@ -1,0 +1,65 @@
+"use client";
+
+import styles from "@/styles/components/organism/card-carousel/card-carousel.module.scss";
+import React, { isValidElement, ReactElement, ReactNode } from "react";
+import CardCarouselNavButton from "./_components/CardCarouselNavButton";
+import { useCardCarousel } from "@/hooks/components/organism/CardCarousel";
+
+interface CardCarouselProps {
+  children: ReactNode;
+}
+
+const CardCarousel = ({ children }: CardCarouselProps) => {
+  const {
+    containerRef,
+    firstElementRef,
+    lastElementRef,
+    carouselNavButtonLeftActive,
+    carouselNavButtonRightActive,
+    childrenArray,
+    handleContainerLeftScroll,
+    handleContainerRightScroll,
+  } = useCardCarousel(children);
+  return (
+    <div className={styles.cardCarouselWrapper}>
+      <CardCarouselNavButton
+        position="left"
+        onClick={handleContainerLeftScroll}
+        showArrow={carouselNavButtonLeftActive}
+      />
+
+      <ul className={styles.cardCarousel} ref={containerRef}>
+        {childrenArray.map((child, index) => {
+          const isFirst = index === 0;
+          const isLast = index === childrenArray.length - 1;
+
+          if (!isValidElement(child)) return;
+
+          if (isFirst) {
+            return React.cloneElement(child as ReactElement<any>, {
+              key: index,
+              ref: firstElementRef,
+            });
+          }
+
+          if (isLast) {
+            return React.cloneElement(child as ReactElement<any>, {
+              key: index,
+              ref: lastElementRef,
+            });
+          }
+
+          return child;
+        })}
+      </ul>
+
+      <CardCarouselNavButton
+        position="right"
+        onClick={handleContainerRightScroll}
+        showArrow={carouselNavButtonRightActive}
+      />
+    </div>
+  );
+};
+
+export default CardCarousel;
