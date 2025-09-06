@@ -40,6 +40,7 @@ const WorkExperienceActiveAnimation = ({
             isItemEnteringFromBottom(element, viewportCenter)
           ) {
             activeIndex = null;
+            closestIndex = null;
             break;
           }
 
@@ -50,6 +51,7 @@ const WorkExperienceActiveAnimation = ({
             hasItemDisappearedFromCenter(element, viewportCenter)
           ) {
             activeIndex = null;
+            closestIndex = null;
             break;
           }
 
