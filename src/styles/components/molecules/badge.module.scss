@@ -1,0 +1,28 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.75rem;
+  border-radius: 9999px;
+  padding-inline: 6px;
+  line-height: 1.7;
+
+  &.isPrimary {
+    color: var(--text-highlight-primary);
+    font-weight: 700;
+    background-color: var(--background-elevated);
+    border: 2px solid transparent;
+    background-origin: border-box;
+    background-image: linear-gradient(
+        var(--background-elevated),
+        var(--background-elevated)
+      ),
+      conic-gradient(
+        from 0deg,
+        var(--border-accent),
+        var(--border-strong),
+        var(--border-accent)
+      );
+    background-clip: padding-box, border-box;
+  }
+}
