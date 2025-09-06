@@ -1,0 +1,23 @@
+.projectCard {
+  max-width: 500px;
+  background-color: var(--surface-card);
+  border-radius: 20px;
+  box-shadow: 0 0 10px 3px #3541cf40;
+  &__header {
+    padding-inline: 16px;
+  }
+
+  &__title {
+    margin-top: 16px;
+  }
+
+  &__content {
+    padding-inline: 16px;
+  }
+
+  &__image {
+    width: 100%;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+  }
+}
