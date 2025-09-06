@@ -2,7 +2,7 @@
 
 .cardCarouselNavButton {
   position: absolute;
-  right: -30px;
+  right: -20px;
   top: calc(50% - 24px);
   z-index: 2;
   display: none;
@@ -10,15 +10,15 @@
   width: 40px;
 
   &.isRight {
-    right: -30px;
+    right: -10px;
   }
 
   &.isLeft {
     right: inherit;
-    left: -30px;
+    left: -10px;
   }
 
-  @include breakpoint-up("sm") {
+  @include breakpoint-up("md") {
     &.showArrow {
       display: grid;
       place-content: center;

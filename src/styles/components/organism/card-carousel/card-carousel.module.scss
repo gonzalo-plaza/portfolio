@@ -6,37 +6,49 @@
 
   --fade: 10%;
 
-  &::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    left: -18px;
-    pointer-events: none;
-    background: linear-gradient(
-      to right,
-      var(--background-base),
-      transparent var(--fade)
-    );
-    background-repeat: no-repeat;
-    width: 100px;
-    z-index: 1;
+  @include breakpoint-up("sm") {
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      left: -17px;
+      pointer-events: none;
+      background: linear-gradient(
+        to right,
+        var(--background-base),
+        transparent var(--fade)
+      );
+      background-repeat: no-repeat;
+      width: 100px;
+      z-index: 1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: -17px;
+      pointer-events: none;
+      background: linear-gradient(
+        to left,
+        var(--background-base),
+        transparent var(--fade)
+      );
+      background-repeat: no-repeat;
+      width: 100px;
+      z-index: 1;
+    }
   }
 
-  &::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: -18px;
-    pointer-events: none;
-    background: linear-gradient(
-      to left,
-      var(--background-base),
-      transparent var(--fade)
-    );
-    background-repeat: no-repeat;
-    width: 100px;
-    z-index: 1;
+  @include breakpoint-up("md") {
+    &::before {
+      left: 0;
+    }
+
+    &::after {
+      right: 0;
+    }
   }
 }
 
@@ -58,12 +70,18 @@
   overflow: auto hidden;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  scrollbar-width: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-highlight-primary) var(--background-base);
   -ms-overflow-style: none;
-  user-select: none;
 
-  &::-webkit-scrollbar {
-    display: none;
+  @include breakpoint-up("md") {
+    margin-inline: inherit;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    user-select: none;
   }
 
   @include breakpoint-up("sm") {
@@ -73,40 +91,5 @@
 
   @include breakpoint-up("lg") {
     grid-auto-columns: get-grid-column-width(3, 50);
-  }
-}
-
-.buttonArrow {
-  position: absolute;
-  right: -30px;
-  top: calc(50% - 24px);
-  z-index: 2;
-  display: none;
-  height: 40px;
-  width: 40px;
-
-  @include breakpoint-up("sm") {
-    display: grid;
-    place-content: center;
-  }
-
-  border: 1px solid var(--text-highlight-primary);
-  background-color: var(--background-base);
-  border-radius: 50%;
-  padding: 2px;
-  color: var(--text-highlight-primary);
-  transition: all 200ms ease;
-
-  &:hover {
-    border: 1px solid var(--text-highlight-tertiary);
-    color: var(--text-highlight-tertiary);
-    box-shadow: 0 0 6px 7px #3541cf40;
-    transform: scale(1.1);
-  }
-
-  &:active {
-    border: 1px solid var(--text-highlight-primary);
-    box-shadow: none;
-    transform: scale(1);
   }
 }
