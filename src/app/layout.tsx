@@ -54,7 +54,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" className="custom-scrollbar">
       <head>
         <meta name="apple-mobile-web-app-title" content="GonzaloPlazaRueda" />
       </head>
