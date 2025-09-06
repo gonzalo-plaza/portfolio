@@ -20,3 +20,9 @@
     max-width: 1200px;
   }
 }
+
+.custom-scrollbar {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-highlight-primary) var(--background-base);
+}
