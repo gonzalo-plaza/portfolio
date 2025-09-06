@@ -1,13 +1,10 @@
-"use client";
-
 import styles from "@/styles/components/projects-section/projects-section-view.module.scss";
-import { useEffect } from "react";
-import CardCarousel from "../organism/CardCarousel";
-import Image from "next/image";
+import CardCarousel from "../organism/CardCarousel/CardCarousel";
 import ProjectCard from "../organism/ProjectCard";
 
 const projects = [
   {
+    id: 1,
     imageUrl: "/images/garaje-plus-preview.jpg",
     imageAlt: "GarajePlus",
     title: "GarajePlus",
@@ -15,6 +12,7 @@ const projects = [
       "GarajePlus es un proyecto orientado a facilitar el registro de mantenimiento de vehículos. El objetivo es poder tener registrado todo el historial de mantenimientos, reparaciones y revisiones de cualquier vehiculo.",
   },
   {
+    id: 2,
     imageUrl: "/images/garaje-plus-preview.jpg",
     imageAlt: "GarajePlus",
     title: "GarajePlus",
@@ -22,6 +20,7 @@ const projects = [
       "GarajePlus es un proyecto orientado a facilitar el registro de mantenimiento de vehículos. El objetivo es poder tener registrado todo el historial de mantenimientos, reparaciones y revisiones de cualquier vehiculo.",
   },
   {
+    id: 3,
     imageUrl: "/images/garaje-plus-preview.jpg",
     imageAlt: "GarajePlus",
     title: "GarajePlus",
@@ -29,6 +28,7 @@ const projects = [
       "GarajePlus es un proyecto orientado a facilitar el registro de mantenimiento de vehículos. El objetivo es poder tener registrado todo el historial de mantenimientos, reparaciones y revisiones de cualquier vehiculo.",
   },
   {
+    id: 4,
     imageUrl: "/images/garaje-plus-preview.jpg",
     imageAlt: "GarajePlus",
     title: "GarajePlus",
@@ -36,6 +36,7 @@ const projects = [
       "GarajePlus es un proyecto orientado a facilitar el registro de mantenimiento de vehículos. El objetivo es poder tener registrado todo el historial de mantenimientos, reparaciones y revisiones de cualquier vehiculo.",
   },
   {
+    id: 5,
     imageUrl: "/images/garaje-plus-preview.jpg",
     imageAlt: "GarajePlus",
     title: "GarajePlus",
@@ -45,19 +46,6 @@ const projects = [
 ];
 
 const ProjectsSectionView = () => {
-  useEffect(() => {
-    const container = document.querySelector(".js-carousel-container");
-    const firstItem = document.querySelector(".js-first-item");
-
-    if (!firstItem || !container) return;
-
-    container.addEventListener("scroll", () => {
-      const leftRelative =
-        firstItem.getBoundingClientRect().left -
-        container.getBoundingClientRect().left;
-      console.log(leftRelative);
-    });
-  });
   return (
     <section
       className={`${styles.projectsSectionView} container`}
@@ -77,6 +65,7 @@ const ProjectsSectionView = () => {
             {projects.map((project) => {
               return (
                 <ProjectCard
+                  key={project.id}
                   imageUrl={project.imageUrl}
                   imageAlt={project.imageAlt}
                   title={project.title}
