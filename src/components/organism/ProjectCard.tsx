@@ -1,12 +1,14 @@
 import Image from "next/image";
 
 import styles from "@/styles/components/organism/project-card.module.scss";
+import clsx from "clsx";
 
 interface ProjectCardProps {
   imageUrl: string;
   imageAlt: string;
   title: string;
   description: string;
+  extraClass?: string;
 }
 
 const ProjectCard = ({
@@ -14,9 +16,10 @@ const ProjectCard = ({
   imageAlt,
   title,
   description,
+  extraClass,
 }: ProjectCardProps) => {
   return (
-    <article className={styles.projectCard}>
+    <article className={clsx(styles.projectCard, extraClass)}>
       <Image
         src={imageUrl}
         alt={imageAlt}
