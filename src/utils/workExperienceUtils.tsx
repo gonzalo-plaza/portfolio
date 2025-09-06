@@ -12,7 +12,7 @@ export const hasItemDisappearedFromCenter = (
   const itemRect = item.getBoundingClientRect();
   const itemBottomDistance = itemRect.bottom - viewportCenter;
 
-  return itemBottomDistance < 0;
+  return itemBottomDistance < -75;
 };
 
 /**
