@@ -2,7 +2,7 @@ import { WorkExperience } from "@/models/workExperience/workExperience";
 import { getDifferenceTimeString } from "@/utils/dateUtils/dateUtils";
 
 import styles from "@/styles/components/work-experience-section/_components/work-experience-date-time.module.scss";
-import Badge from "@/components/molecules/Badge";
+import Badge from "@/components/atoms/Badge";
 
 interface WorkExperienceDateTimeProps {
   startTime: WorkExperience["startTime"];
