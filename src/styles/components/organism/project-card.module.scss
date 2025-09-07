@@ -1,3 +1,5 @@
+@use "@/styles/utils/breakpoints" as *;
+
 .projectCard {
   background-color: var(--surface-card);
   border-radius: 20px;
@@ -29,5 +31,21 @@
     height: auto;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+  }
+}
+
+.projectCardFooter {
+  padding-inline: 16px;
+  display: flex;
+  gap: 8px;
+  padding-bottom: 16px;
+  flex-wrap: wrap;
+
+  &__button {
+    flex-grow: 1;
+
+    @include breakpoint-up("xs") {
+      flex-grow: inherit;
+    }
   }
 }

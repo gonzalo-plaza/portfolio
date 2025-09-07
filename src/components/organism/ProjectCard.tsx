@@ -4,6 +4,10 @@ import styles from "@/styles/components/organism/project-card.module.scss";
 import clsx from "clsx";
 import Badge from "../atoms/Badge";
 import { Project, ProjectTechonology } from "@/models/project/project";
+import Button from "../atoms/Button";
+import Link from "next/link";
+import AnchorIcon from "../icons/AnchorIcon";
+import GithubIcon from "../icons/GithubIcon";
 
 interface ProjectCardProps {
   project: Project;
@@ -30,15 +34,15 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
             return (
               <li key={index}>
                 <Badge
-                  Icon={projectTechnologyBadgeIcon.Component}
+                  Icon={projectTechnologyBadgeIcon?.Component}
                   variant="custom"
                   backgroundColor={projectTechnolyBadge.backgroundColor}
-                  {...(projectTechnologyBadgeIcon.width
+                  {...(projectTechnologyBadgeIcon?.width
                     ? {
                         iconWidth: projectTechnologyBadgeIcon.width,
                       }
                     : {})}
-                  {...(projectTechnologyBadgeIcon.height
+                  {...(projectTechnologyBadgeIcon?.height
                     ? {
                         iconHeight: projectTechnologyBadgeIcon.height,
                       }
@@ -52,6 +56,40 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
         )}
       </ul>
       <p className={styles.projectCard__content}>{project.description}</p>
+      <footer className={styles.projectCardFooter}>
+        {project.previewLink && (
+          <Button
+            asChild
+            disabled={project.previewLink.disabled}
+            className={styles.projectCardFooter__button}
+          >
+            <Link
+              href={project.previewLink.url}
+              title={project.previewLink.title}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <AnchorIcon width={16} height={16} /> Visitar
+            </Link>
+          </Button>
+        )}
+        {project.gitHubLink && (
+          <Button
+            asChild
+            disabled={project.gitHubLink.disabled}
+            className={styles.projectCardFooter__button}
+          >
+            <Link
+              href={project.gitHubLink.url}
+              title={project.gitHubLink.title}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <GithubIcon width={20} height={20} /> Repositorio
+            </Link>
+          </Button>
+        )}
+      </footer>
     </article>
   );
 };
