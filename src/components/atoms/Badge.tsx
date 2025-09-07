@@ -1,4 +1,4 @@
-import styles from "@/styles/components/molecules/badge.module.scss";
+import styles from "@/styles/components/atoms/badge.module.scss";
 import clsx from "clsx";
 import React from "react";
 
