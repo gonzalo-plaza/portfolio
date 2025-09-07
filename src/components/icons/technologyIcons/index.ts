@@ -8,3 +8,5 @@ export { default as JQueryIcon } from "@/components/icons/technologyIcons/_compo
 export { default as ReactIcon } from "@/components/icons/technologyIcons/_components/ReactIcon";
 export { default as SassIcon } from "@/components/icons/technologyIcons/_components/SassIcon";
 export { default as TypeScriptIcon } from "@/components/icons/technologyIcons/_components/TypeScriptIcon";
+export { default as BootstrapIcon } from "@/components/icons/technologyIcons/_components/BootstrapIcon";
+export { default as CSSIcon } from "@/components/icons/technologyIcons/_components/CSSIcon";
