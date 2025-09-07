@@ -2,35 +2,56 @@ import Image from "next/image";
 
 import styles from "@/styles/components/organism/project-card.module.scss";
 import clsx from "clsx";
+import Badge from "../atoms/Badge";
+import { Project, ProjectTechonology } from "@/models/project/project";
 
 interface ProjectCardProps {
-  imageUrl: string;
-  imageAlt: string;
-  title: string;
-  description: string;
+  project: Project;
   extraClass?: string;
 }
 
-const ProjectCard = ({
-  imageUrl,
-  imageAlt,
-  title,
-  description,
-  extraClass,
-}: ProjectCardProps) => {
+const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
   return (
     <article className={clsx(styles.projectCard, extraClass)}>
       <Image
-        src={imageUrl}
-        alt={imageAlt}
-        width={512}
+        src={project.imageUrl}
+        alt={project.imageAlt}
+        width={330}
         height={292}
         className={styles.projectCard__image}
       />
       <header className={styles.projectCard__header}>
-        <h3 className={styles.projectCard__title}>{title}</h3>
+        <h3 className={styles.projectCard__title}>{project.title}</h3>
       </header>
-      <p className={styles.projectCard__content}>{description}</p>
+      <ul className={styles.projectCard__technologyList}>
+        {project.projectTechnologyBadgeList.map(
+          (projectTechnolyBadge: ProjectTechonology, index) => {
+            const projectTechnologyBadgeIcon = projectTechnolyBadge.icon;
+            return (
+              <li key={index}>
+                <Badge
+                  Icon={projectTechnologyBadgeIcon.Component}
+                  variant="custom"
+                  backgroundColor={projectTechnolyBadge.backgroundColor}
+                  {...(projectTechnologyBadgeIcon.width
+                    ? {
+                        iconWidth: projectTechnologyBadgeIcon.width,
+                      }
+                    : {})}
+                  {...(projectTechnologyBadgeIcon.height
+                    ? {
+                        iconHeight: projectTechnologyBadgeIcon.height,
+                      }
+                    : {})}
+                >
+                  {projectTechnolyBadge.text}
+                </Badge>
+              </li>
+            );
+          }
+        )}
+      </ul>
+      <p className={styles.projectCard__content}>{project.description}</p>
     </article>
   );
 };
