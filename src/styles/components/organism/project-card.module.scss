@@ -1,5 +1,4 @@
 .projectCard {
-  max-width: 500px;
   background-color: var(--surface-card);
   border-radius: 20px;
   box-shadow: 0 0 10px 3px #3541cf40;
@@ -9,14 +8,25 @@
 
   &__title {
     margin-top: 16px;
+    font-size: 1.5rem;
+  }
+
+  &__technologyList {
+    display: flex;
+    padding-inline: 16px;
+    margin-block: 8px;
+    gap: 8px;
+    flex-wrap: wrap;
   }
 
   &__content {
     padding-inline: 16px;
+    color: var(--text-secondary);
   }
 
   &__image {
     width: 100%;
+    height: auto;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
   }
