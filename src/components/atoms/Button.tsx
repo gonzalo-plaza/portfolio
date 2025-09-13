@@ -9,12 +9,14 @@ type ButtonProps = AsChildProps<
 > & {
   style?: React.CSSProperties;
   className?: string;
+  buttonDisabledWrapperClassName?: string;
   disabled?: boolean;
 };
 
 const Button = ({
   asChild,
   className,
+  buttonDisabledWrapperClassName,
   disabled,
   ...nativeProps
 }: ButtonProps) => {
@@ -23,7 +25,12 @@ const Button = ({
   return (
     <>
       {disabled ? (
-        <span className={styles.disabled}>
+        <span
+          className={clsx(
+            styles.disabled,
+            buttonDisabledWrapperClassName ?? null
+          )}
+        >
           <Comp
             className={clsx(
               styles.button,

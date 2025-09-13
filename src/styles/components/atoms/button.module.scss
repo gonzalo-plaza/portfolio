@@ -16,6 +16,7 @@
 
   &.isDisabled {
     pointer-events: none;
+    width: 100%; // When the button is disabled contains a wrapper, so the wrapper must decide the width of the element.
   }
 
   @include breakpoint-down("lg") {
