@@ -26,7 +26,7 @@ const WorkExperienceDateTime = ({
   const startTimeString = `${startTimeMonth}/${startTimeYear}`;
   const endTimeString = endTime ? `${endTimeMonth}/${endTimeYear}` : null;
 
-  let experienceTime = () => {
+  const experienceTime = () => {
     const endTimeToCheck = endTime ?? new Date();
     return getDifferenceTimeString(endTimeToCheck, startTime, {
       hideDays: true,
