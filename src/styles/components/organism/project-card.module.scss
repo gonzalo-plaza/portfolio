@@ -4,8 +4,22 @@
   background-color: var(--surface-card);
   border-radius: 20px;
   box-shadow: 0 0 10px 3px #3541cf40;
+  padding-inline: 16px;
+  padding-bottom: 16px;
+
+  display: grid;
+  gap: 0;
+  grid-row: span 5;
+  grid-template-rows: subgrid;
+  grid-template-areas:
+    "image"
+    "header"
+    "technologyList"
+    "content"
+    "footer";
+
   &__header {
-    padding-inline: 16px;
+    grid-area: header;
   }
 
   &__title {
@@ -15,33 +29,37 @@
 
   &__technologyList {
     display: flex;
-    padding-inline: 16px;
     margin-block: 8px;
+    align-items: center;
     gap: 8px;
     flex-wrap: wrap;
+    grid-area: technologyList;
   }
 
   &__content {
-    padding-inline: 16px;
     color: var(--text-secondary);
+    grid-area: content;
   }
 
   &__image {
-    width: 100%;
+    width: calc(100% + 32px);
     height: auto;
+    margin-inline: -16px;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
+    grid-area: image;
   }
 }
 
 .projectCardFooter {
-  padding-inline: 16px;
   display: flex;
+  align-items: end;
   gap: 8px;
-  padding-bottom: 16px;
   flex-wrap: wrap;
+  grid-area: footer;
 
-  &__button {
+  &__button,
+  &__buttonDisabledWrapper {
     flex-grow: 1;
 
     @include breakpoint-up("xs") {

@@ -62,6 +62,9 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
             asChild
             disabled={project.previewLink.disabled}
             className={styles.projectCardFooter__button}
+            buttonDisabledWrapperClassName={
+              styles.projectCardFooter__buttonDisabledWrapper
+            }
           >
             <Link
               href={project.previewLink.url}
@@ -78,6 +81,9 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
             asChild
             disabled={project.gitHubLink.disabled}
             className={styles.projectCardFooter__button}
+            buttonDisabledWrapperClassName={
+              styles.projectCardFooter__buttonDisabledWrapper
+            }
           >
             <Link
               href={project.gitHubLink.url}
