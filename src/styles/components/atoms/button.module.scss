@@ -15,8 +15,7 @@
   line-height: 1.5;
 
   &.isDisabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+    pointer-events: none;
   }
 
   @include breakpoint-down("lg") {
@@ -44,4 +43,9 @@
       }
     }
   }
+}
+
+.disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
