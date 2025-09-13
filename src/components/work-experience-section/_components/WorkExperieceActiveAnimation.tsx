@@ -88,7 +88,7 @@ const WorkExperienceActiveAnimation = ({
       if (requestAnimationFrameId)
         cancelAnimationFrame(requestAnimationFrameId);
     };
-  }, []);
+  }, [itemActiveClass]);
 
   return <></>;
 };
