@@ -15,7 +15,7 @@ function isValidElement<T extends React.ElementType>(
   return React.isValidElement(child);
 }
 
-export const Slot = React.forwardRef(
+const Slot = React.forwardRef(
   <T extends React.ElementType = "div">(
     { children, ...props }: SlotProps<T>,
     ref: React.Ref<Element>
@@ -40,3 +40,7 @@ export const Slot = React.forwardRef(
     return null;
   }
 );
+
+Slot.displayName = "Slot";
+
+export { Slot };
