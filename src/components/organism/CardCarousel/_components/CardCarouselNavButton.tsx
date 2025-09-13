@@ -32,4 +32,6 @@ const CardCarouselNavButton = forwardRef<
   );
 });
 
+CardCarouselNavButton.displayName = "CardCarouselnavButton";
+
 export default CardCarouselNavButton;
