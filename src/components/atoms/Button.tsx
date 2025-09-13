@@ -21,14 +21,29 @@ const Button = ({
   const Comp = asChild ? Slot : "button";
 
   return (
-    <Comp
-      className={clsx(
-        styles.button,
-        { [styles.isDisabled]: disabled },
-        className
+    <>
+      {disabled ? (
+        <span className={styles.disabled}>
+          <Comp
+            className={clsx(
+              styles.button,
+              { [styles.isDisabled]: disabled },
+              className
+            )}
+            {...nativeProps}
+          />
+        </span>
+      ) : (
+        <Comp
+          className={clsx(
+            styles.button,
+            { [styles.isDisabled]: disabled },
+            className
+          )}
+          {...nativeProps}
+        />
       )}
-      {...nativeProps}
-    />
+    </>
   );
 };
 
