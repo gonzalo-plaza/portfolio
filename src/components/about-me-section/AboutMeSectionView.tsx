@@ -22,15 +22,12 @@ const AboutMeSectionView = () => {
             <strong className={styles.aboutMeArticleDescription__highlight}>
               Gonzalo Plaza
             </strong>
-            , un apasionado del{" "}
+            , Software Engineer con pasión por crear aplicaciones web y explorar
+            nuevas tecnologías.{" "}
             <strong className={styles.aboutMeArticleDescription__highlight}>
-              desarrollo de software
+              Me enfoco en aportar valor a través de mis proyectos, con
+              mentalidad curiosa y aprendizaje constante.
             </strong>{" "}
-            con una mentalidad curiosa y en constante aprendizaje. Disfruto
-            explorando nuevas tecnologías y buscando la forma de{" "}
-            <strong className={styles.aboutMeArticleDescription__highlight}>
-              aportar valor a través de mis proyectos.
-            </strong>
           </p>
           <p className={styles.aboutMeArticleDescription}>
             Aunque{" "}

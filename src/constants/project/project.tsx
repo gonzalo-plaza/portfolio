@@ -13,10 +13,10 @@ import { Project } from "@/models/project/project";
 export const garajePlusProject: Project = {
   id: 1,
   imageUrl: "/images/garaje-plus-preview.jpg",
-  imageAlt: "GarajePlus",
+  imageAlt: "Interfaz de GarajePlus, registro de mantenimiento de vehículos",
   title: "GarajePlus",
   description:
-    "GarajePlus es un proyecto orientado a facilitar el registro de mantenimiento de vehículos. El objetivo es poder tener registrado todo el historial de mantenimientos, reparaciones y revisiones de cualquier vehiculo.",
+    "Proyecto orientado a facilitar el registro de mantenimiento de vehículos. El objetivo es poder tener registrado todo el historial de mantenimientos, reparaciones y revisiones de cualquier vehiculo.",
   projectTechnologyBadgeList: [
     {
       text: "Next.js",
@@ -51,10 +51,11 @@ export const garajePlusProject: Project = {
 export const colorQueryProject: Project = {
   id: 2,
   imageUrl: "/images/color-query-preview.jpg",
-  imageAlt: "ColorQuery",
+  imageAlt:
+    "Interfaz de ColorQuery mostrando selección y nombres de colores a partir de valores hexadecimales",
   title: "ColorQuery",
   description:
-    "GarajePlus es un proyecto orientado a facilitar el registro de mantenimiento de vehículos. El objetivo es poder tener registrado todo el historial de mantenimientos, reparaciones y revisiones de cualquier vehiculo.",
+    "Herramienta web para identificar el nombre de un color a partir de su valor hexadecimal. Ofrece también el color más cercano si no existe un nombre definido, facilitando la selección y referencia de colores en diseño web y gráfico.",
   projectTechnologyBadgeList: [
     {
       text: "React",
@@ -76,22 +77,23 @@ export const colorQueryProject: Project = {
     },
   ],
   previewLink: {
-    url: "https://garajeplus.com/",
-    title: "Ir a la web de GarajePlus",
+    url: "https://gonzalo-plaza.github.io/color-query/",
+    title: "Ir a la herramienta ColorQuery",
   },
   gitHubLink: {
-    url: "https://github.com/gonzalo-plaza/dentalclinic-practise",
-    title: "Ir al repositorio de MedacDent",
+    url: "https://github.com/gonzalo-plaza/color-query",
+    title: "Ir al repositorio de ColorQuery",
   },
 };
 
 export const medacDentProject: Project = {
   id: 3,
   imageUrl: "/images/medac-dent-preview.jpg",
-  imageAlt: "MedacDent",
+  imageAlt:
+    "Interfaz de MedacDent mostrando un formulario de gestión de citas en clínica dental",
   title: "MedacDent",
   description:
-    "GarajePlus es un proyecto orientado a facilitar el registro de mantenimiento de vehículos. El objetivo es poder tener registrado todo el historial de mantenimientos, reparaciones y revisiones de cualquier vehiculo.",
+    "Aplicación web para la gestión de citas en una clínica dental. Proyecto de práctica enfocado en el desarrollo con JavaScript puro y SASS, optimizando la experiencia de usuario y la organización de datos.",
   projectTechnologyBadgeList: [
     {
       text: "Javascript",
@@ -120,22 +122,22 @@ export const medacDentProject: Project = {
     },
   ],
   previewLink: {
-    url: "https://garajeplus.com/",
-    title: "Ir a la web de GarajePlus",
+    url: "https://gonzalo-plaza.github.io/dentalclinic-practise/",
+    title: "Ir a la herramienta MedacDent",
   },
   gitHubLink: {
     url: "https://github.com/gonzalo-plaza/dentalclinic-practise",
-    title: "Ir al repositorio de MedacDent",
+    title: "Ir al repositorio de Dental Clinic Practise",
   },
 };
 
 export const workInProgressProject: Project = {
   id: 3,
   imageUrl: "/images/project-in-progress.webp",
-  imageAlt: "Work in Progress",
+  imageAlt: "Ilustración de trabajo en progreso",
   title: "Work in Progress",
   description:
-    "GarajePlus es un proyecto orientado a facilitar el registro de mantenimiento de vehículos. El objetivo es poder tener registrado todo el historial de mantenimientos, reparaciones y revisiones de cualquier vehiculo.",
+    "Work In Progress 🚀. Más proyectos e ideas están por venir, con el objetivo de seguir aprendiendo nuevas tecnologías, afianzando conocimientos y creando soluciones que realmente ayuden a las personas.",
   projectTechnologyBadgeList: [
     {
       text: "To Be Defined",
@@ -144,13 +146,13 @@ export const workInProgressProject: Project = {
   ],
   previewLink: {
     disabled: true,
-    url: "https://garajeplus.com/",
-    title: "Ir a la web de GarajePlus",
+    url: "#",
+    title: "Destino por definir",
   },
   gitHubLink: {
     disabled: true,
-    url: "https://github.com/gonzalo-plaza/dentalclinic-practise",
-    title: "Ir al repositorio de MedacDent",
+    url: "#",
+    title: "Repositorio por definir",
   },
 };
 

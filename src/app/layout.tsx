@@ -13,7 +13,7 @@ const onest = Onest({
 });
 
 export const metadata: Metadata = {
-  title: "Gonzalo Plaza Rueda",
+  title: "Gonzalo Plaza Rueda | Software Engineer",
   description: "Portfolio de Gonzalo Plaza Rueda, Software Engineer",
   icons: {
     icon: [

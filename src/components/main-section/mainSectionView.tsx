@@ -13,7 +13,7 @@ export default function MainSectionView() {
           src="/images/gonzalo_plaza_rueda_software_engineer.webp"
           width={250}
           height={250}
-          alt="Gonzalo Plaza Rueda - Software Engineer"
+          alt="Retrato de Gonzalo Plaza Rueda, Software Engineer en Málaga, España"
           priority
           quality={100}
         />
@@ -27,12 +27,18 @@ export default function MainSectionView() {
             data-text="Gonzalo Plaza Rueda"
           >
             Gonzalo Plaza Rueda
+          </span>{" "}
+          <span
+            className={`${styles.mainSectionDescription__title} ${styles.isDetail}`}
+          >
+            | Software Engineer
           </span>
         </h1>
         <p className={styles.mainSectionDescription__text}>
-          Sofware Engineer con +3 años de experiencia en Málaga, España. He
-          desarrollado distintos proyectos de frontend de diversos tipos, dónde
-          los más destacables han sido implementados en Ecommerce
+          Soy Software Engineer con más de 3 años de experiencia especializado
+          en desarrollo frontend en Málaga, España. He trabajado en proyectos de
+          Ecommerce y aplicaciones web, enfocándome en crear interfaces rápidas,
+          accesibles y escalables.
         </p>
       </div>
     </section>

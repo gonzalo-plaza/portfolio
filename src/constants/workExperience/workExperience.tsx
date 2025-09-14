@@ -18,7 +18,7 @@ const iskaypetWorkExperience: WorkExperience = {
   logoUrl: "/images/iskaypet-logo.webp",
   startTime: new Date("2022-05-23"),
   description:
-    "Software Engineer especializado en desarrollo frontend (con algo de backend 🤭). En Iskaypet participo en el desarrollo de iniciativas orientadas a mejorar los KPI del negocio, optimizando la experiencia digital de los usuarios y contribuyendo a proyectos clave para las marcas del grupo.",
+    "Software Engineer especializado en desarrollo frontend (con algo de backend 🤭). En Iskaypet participo en proyectos de aplicaciones web y ecommerce, orientados a mejorar los KPI del negocio, optimizando la experiencia digital y contribuyendo en iniciativas clave para las marcas del grupo",
   technologyList: [
     HTMLIcon,
     SassIcon,
@@ -40,7 +40,7 @@ const lolaDiazBebesWorkExperience: WorkExperience = {
   startTime: new Date("2021-11-03"),
   endTime: new Date("2022-05-23"),
   description:
-    "Implementé parte del ecommerce de la marca, optimizando rendimiento y usabilidad. También formé parte del despliegue a producción de la primera versión, trabajando codo a codo con el equipo de marketing para mejorar la conversión.",
+    "Desarrollo del ecommerce de la marca con foco en rendimiento y usabilidad. Despliegue a producción de la primera versión y definición de pautas de buenas prácticas para el mantenimiento y evolución del proyecto.",
   technologyList: [HTMLIcon, SassIcon, JavaScriptIcon],
 };
 
@@ -51,7 +51,7 @@ const hermanosBravoWorkExperience: WorkExperience = {
   startTime: new Date("2018-08-11"),
   endTime: new Date("2021-09-26"),
   description:
-    "Trabajé como técnico informático y empleado de ventas en tienda. Me encargaba de reparaciones y soporte, además de la venta de productos como televisores, electrodomésticos y dispositivos electrónicos.",
+    "Reparaciones y soporte técnico de dispositivos electrónicos y ordenadores. Aumento de ventas mediante asesoramiento especializado y optimización de los procesos de atención al cliente para ofrecer un servicio profesional y personalizado.",
 };
 
 const todoOcioWorkExperience: WorkExperience = {
@@ -61,7 +61,7 @@ const todoOcioWorkExperience: WorkExperience = {
   startTime: new Date("2016-08-01"),
   endTime: new Date("2018-04-30"),
   description:
-    "Desempeñé tareas de técnico informático y atención al cliente, gestionando reparaciones y asesorando en la venta de productos de informática y telefonía.",
+    "Gestión de reparaciones y soporte técnico de ordenadores y dispositivos móviles. Mejora de la satisfacción de clientes y optimización de los procesos de atención y venta para un servicio eficiente y profesional",
 };
 
 export const workExperiences: Array<WorkExperience> = [
