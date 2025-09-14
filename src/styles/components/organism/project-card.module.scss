@@ -62,7 +62,7 @@
   &__buttonDisabledWrapper {
     flex-grow: 1;
 
-    @include breakpoint-up("xs") {
+    @include breakpoint-up("md") {
       flex-grow: inherit;
     }
   }
