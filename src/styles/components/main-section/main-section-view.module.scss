@@ -57,6 +57,10 @@
         opacity: 0.5;
       }
     }
+
+    &.isDetail {
+      white-space: nowrap;
+    }
   }
 
   &__text {
