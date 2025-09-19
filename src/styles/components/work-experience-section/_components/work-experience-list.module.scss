@@ -21,7 +21,7 @@
         color: var(--highlight-primary);
       }
       &__headerImage {
-        box-shadow: 0 0 20px 14px #3541cf40, 0 30px 60px -30px #0000004d;
+        box-shadow: var(--shadow-highlight-sm-elevated);
       }
     }
 

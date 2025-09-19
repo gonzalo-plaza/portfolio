@@ -27,4 +27,16 @@ $semantic-colors: (
   "surface": (
     "card": theme.$main-theme-color-surface-tonal-10,
   ),
+  "shadow": (
+    "soft-sm": theme.$main-theme-shadow-primary-soft-sm,
+    "soft-md": theme.$main-theme-shadow-primary-soft-md,
+    "soft-lg": theme.$main-theme-shadow-primary-soft-lg,
+    "highlight": theme.$main-theme-shadow-primary-glow,
+    "highlight-sm": theme.$main-theme-shadow-primary-glow-sm,
+    "strong": theme.$main-theme-shadow-primary-strong,
+    "elevated": theme.$main-theme-shadow-elevated,
+    "highlight-elevated": #{"#{theme.$main-theme-shadow-primary-glow}, #{theme.$main-theme-shadow-elevated}"},
+    "highlight-sm-elevated": #{"#{theme.$main-theme-shadow-primary-glow-sm}, #{theme.$main-theme-shadow-elevated}"},
+    "strong-elevated": #{"#{theme.$main-theme-shadow-primary-strong}, #{theme.$main-theme-shadow-elevated}"},
+  ),
 );

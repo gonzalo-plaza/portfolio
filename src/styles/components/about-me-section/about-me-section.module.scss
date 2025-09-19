@@ -29,7 +29,7 @@
     border-radius: 9999px;
     padding: 8px;
     background-color: var(--background-elevated);
-    box-shadow: 0 0 20px 3px #3541cf94, 0 30px 60px -30px #0000004d;
+    box-shadow: var(--shadow-strong-elevated);
 
     @include breakpoint-up("md") {
       height: 275px;

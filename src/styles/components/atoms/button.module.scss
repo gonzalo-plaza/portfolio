@@ -33,7 +33,7 @@
       &:hover {
         border: 1px solid var(--highlight-tertiary);
         color: var(--highlight-tertiary);
-        box-shadow: 0 0 6px 5px #3541cf40;
+        box-shadow: var(--shadow-soft-lg);
         transform: scale(1.04);
       }
 

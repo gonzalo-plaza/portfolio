@@ -35,3 +35,19 @@ $color-surface-image-0: #f5f5f8; // Gris muy claro con un sutil toque azulado
 $color-surface-image-10: #ededf0; // Un poco más oscuro
 $color-surface-image-20: #e5e5e8; // Medio
 $color-surface-image-30: #dfdfe2; // Más oscuro
+
+/** Alpha versions */
+$color-primary-0-alpha-25: rgba($color-primary-0, 0.25);
+$color-primary-0-alpha-60: rgba($color-primary-0, 0.58);
+$color-dark-0-alpha-30: rgba($color-dark-0, 0.3);
+
+/** Shadows */
+$shadow-primary-soft-sm: 0 0 6px 5px $color-primary-0-alpha-25;
+$shadow-primary-soft-md: 0 0 10px 3px $color-primary-0-alpha-25;
+$shadow-primary-soft-lg: 0 0 6px 7px $color-primary-0-alpha-25;
+
+$shadow-primary-glow: 0px 0px 35px 20px $color-primary-0-alpha-25;
+$shadow-primary-glow-sm: 0px 0px 20px 14px $color-primary-0-alpha-25;
+$shadow-primary-strong: 0 0 20px 3px $color-primary-0-alpha-60;
+
+$shadow-elevated: 0 30px 60px -30px $color-dark-0-alpha-30;
