@@ -5,12 +5,12 @@
   align-items: center;
   justify-content: center;
   gap: 4px;
-  color: var(--text-highlight-primary);
+  color: var(--highlight-primary);
   background-color: var(--background-base);
   padding-inline: 12px;
   padding-block: 8px;
   border-radius: 12px;
-  border: 1px solid var(--text-highlight-primary);
+  border: 1px solid var(--highlight-primary);
   transition: all 100ms ease;
   line-height: 1.5;
 
@@ -22,7 +22,7 @@
   @include breakpoint-down("lg") {
     &:active {
       &:not(.isDisabled) {
-        background-color: var(--text-highlight-primary);
+        background-color: var(--highlight-primary);
         color: var(--background-base);
       }
     }
@@ -31,14 +31,14 @@
   @include breakpoint-up("lg") {
     &:not(.isDisabled) {
       &:hover {
-        border: 1px solid var(--text-highlight-tertiary);
-        color: var(--text-highlight-tertiary);
+        border: 1px solid var(--highlight-tertiary);
+        color: var(--highlight-tertiary);
         box-shadow: 0 0 6px 5px #3541cf40;
         transform: scale(1.04);
       }
 
       &:active {
-        border: 1px solid var(--text-highlight-primary);
+        border: 1px solid var(--highlight-primary);
         box-shadow: none;
         transform: scale(1);
       }

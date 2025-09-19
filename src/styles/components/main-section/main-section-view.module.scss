@@ -20,7 +20,7 @@
   position: relative;
   line-height: 1.5;
   &.isHighlight {
-    color: var(--text-highlight-primary);
+    color: var(--highlight-primary);
     display: inline-block;
     position: relative;
     white-space: nowrap;
@@ -31,7 +31,7 @@
       left: 0;
       right: 0;
       white-space: nowrap;
-      color: var(--text-highlight-primary);
+      color: var(--highlight-primary);
       opacity: 0.5;
     }
   }
@@ -42,7 +42,7 @@
 
   &__title {
     &.isHighlight {
-      color: var(--text-highlight-primary);
+      color: var(--highlight-primary);
       display: inline-block;
       position: relative;
       white-space: nowrap;
@@ -53,7 +53,7 @@
         left: 0;
         right: 0;
         white-space: nowrap;
-        color: var(--text-highlight-primary);
+        color: var(--highlight-primary);
         opacity: 0.5;
       }
     }
@@ -70,7 +70,7 @@
 
 .mainSectionImage {
   border-radius: 50%;
-  background-color: var(--text-highlight-primary);
+  background-color: var(--highlight-primary);
   box-shadow: 0px 0px 35px 20px #3541cf40, 0 30px 60px -30px #0000004d;
 
   @include breakpoint-down("md") {

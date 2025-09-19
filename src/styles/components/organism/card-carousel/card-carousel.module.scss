@@ -70,7 +70,7 @@
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   scrollbar-width: thin;
-  scrollbar-color: var(--text-highlight-primary) var(--background-base);
+  scrollbar-color: var(--highlight-primary) var(--background-base);
   -ms-overflow-style: none;
 
   @include breakpoint-up("md") {
