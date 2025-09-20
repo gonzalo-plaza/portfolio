@@ -6,6 +6,7 @@ import { projectList } from "@/constants/project/project";
 const ProjectsSectionView = () => {
   return (
     <section
+      id="projects"
       className={`${styles.projectsSectionView} container`}
       aria-labelledby="projects-section-title"
     >

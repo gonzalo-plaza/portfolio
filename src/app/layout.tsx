@@ -6,6 +6,7 @@ import "@/styles/reset.scss";
 import "@/styles/typography/default-typography.scss";
 import styles from "@/styles/components/main-layout/main-layout.module.scss";
 import "@/styles/layout/common-layout.scss";
+import MainHeader from "@/components/header/MainHeader";
 
 const onest = Onest({
   variable: "--font-onest",
@@ -59,6 +60,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="GonzaloPlazaRueda" />
       </head>
       <body className={`${onest.className} ${styles["main-layout"]}`}>
+        <MainHeader />
         {children}
       </body>
     </html>

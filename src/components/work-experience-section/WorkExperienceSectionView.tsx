@@ -1,13 +1,18 @@
 import styles from "@/styles/components/work-experience-section/work-experience-section-view.module.scss";
 import WorkExperienceList from "./_components/WorkExperienceList";
+import clsx from "clsx";
 
 export default function WorkExperienceSectionView() {
   return (
-    <section className="container" aria-labelledby="work-experience-title">
+    <section
+      id="work-experience"
+      className={clsx("container", styles.workExperienceSection)}
+      aria-labelledby="work-experience-title"
+    >
       <header>
         <h2
           id="work-experience-title"
-          className={styles.workExperienceSectionTitle}
+          className={styles.workExperienceSection__title}
         >
           🚀 Experiencia laboral
         </h2>

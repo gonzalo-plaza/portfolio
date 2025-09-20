@@ -4,7 +4,10 @@ import Image from "next/image";
 
 const AboutMeSectionView = () => {
   return (
-    <section className={clsx(styles.aboutMeSectionView, "container")}>
+    <section
+      id="about-me"
+      className={clsx(styles.aboutMeSectionView, "container")}
+    >
       <header>
         <h2 className={styles.aboutMeSectionView__title}>🧑🏽‍💻 Sobre mí</h2>
       </header>

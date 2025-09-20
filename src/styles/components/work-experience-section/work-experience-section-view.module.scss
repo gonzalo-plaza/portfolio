@@ -1,3 +1,7 @@
-.workExperienceSectionTitle {
-  margin-bottom: 32px;
+.workExperienceSection {
+  scroll-margin-top: 80px;
+
+  &__title {
+    margin-bottom: 32px;
+  }
 }
