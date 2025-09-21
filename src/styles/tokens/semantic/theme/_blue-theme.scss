@@ -1,0 +1,42 @@
+@use "@/styles/tokens/primitives/theme/all.scss" as theme;
+
+$semantic-colors: (
+  "background": (
+    "base": theme.$blue-theme-color-surface-0,
+    "elevated": theme.$blue-theme-color-surface-10,
+    "higher": theme.$blue-theme-color-surface-20,
+    "accent": theme.$blue-theme-color-primary-50,
+    "subtle": theme.$blue-theme-color-surface-30,
+    "image-accent": theme.$blue-theme-color-surface-image-accent,
+  ),
+  "text": (
+    "primary": theme.$blue-theme-color-light-0,
+    "secondary": theme.$blue-theme-color-surface-40,
+    "tertiary": theme.$blue-theme-color-surface-30,
+  ),
+  "highlight": (
+    "primary": theme.$blue-theme-color-primary-30,
+    "secondary": theme.$blue-theme-color-primary-40,
+    "tertiary": theme.$blue-theme-color-primary-50,
+  ),
+  "border": (
+    "subtle": theme.$blue-theme-color-surface-20,
+    "strong": theme.$blue-theme-color-surface-30,
+    "accent": theme.$blue-theme-color-primary-30,
+  ),
+  "surface": (
+    "card": theme.$blue-theme-color-surface-tonal-10,
+  ),
+  "shadow": (
+    "soft-sm": theme.$blue-theme-shadow-primary-soft-sm,
+    "soft-md": theme.$blue-theme-shadow-primary-soft-md,
+    "soft-lg": theme.$blue-theme-shadow-primary-soft-lg,
+    "highlight": theme.$blue-theme-shadow-primary-glow,
+    "highlight-sm": theme.$blue-theme-shadow-primary-glow-sm,
+    "strong": theme.$blue-theme-shadow-primary-strong,
+    "elevated": theme.$blue-theme-shadow-elevated,
+    "highlight-elevated": #{"#{theme.$blue-theme-shadow-primary-glow}, #{theme.$blue-theme-shadow-elevated}"},
+    "highlight-sm-elevated": #{"#{theme.$blue-theme-shadow-primary-glow-sm}, #{theme.$blue-theme-shadow-elevated}"},
+    "strong-elevated": #{"#{theme.$blue-theme-shadow-primary-strong}, #{theme.$blue-theme-shadow-elevated}"},
+  ),
+);

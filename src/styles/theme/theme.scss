@@ -1,10 +1,29 @@
-@use '@/styles/tokens/semantic/theme/all' as themeTokens;
+@use "@/styles/tokens/semantic/theme/all" as themeTokens;
 
-// Export only semantic colors to CSS custom properties
-:root {
-  @each $category, $variants in themeTokens.$main-theme-semantic-colors {
-    @each $name, $value in $variants {
-      --#{$category}-#{$name}: #{$value};
+// Mapa de temas y sus variables semánticas
+$themes: (
+  "main-theme": themeTokens.$main-theme-semantic-colors,
+  "blue": themeTokens.$blue-theme-semantic-colors,
+  "green": themeTokens.$green-theme-semantic-colors,
+  "magenta": themeTokens.$magenta-theme-semantic-colors,
+  "purple": themeTokens.$purple-theme-semantic-colors,
+  "red-pink": themeTokens.$red-pink-theme-semantic-colors,
+);
+
+// Iterar sobre cada tema y generar variables CSS
+@each $theme-name, $semantic-map in $themes {
+  // Root para el main-theme, atributo data-theme para el resto
+  $selector: if(
+    $theme-name == "main-theme",
+    ":root",
+    "[data-theme='#{$theme-name}']"
+  );
+
+  #{$selector} {
+    @each $category, $variants in $semantic-map {
+      @each $name, $value in $variants {
+        --#{$category}-#{$name}: #{$value};
+      }
     }
   }
 }

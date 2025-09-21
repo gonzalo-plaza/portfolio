@@ -1,0 +1,43 @@
+$color-dark-0: #000000;
+$color-light-0: #ffffff;
+
+$color-primary-0: #48fb25;
+$color-primary-10: #63fc45;
+$color-primary-20: #7efc65;
+$color-primary-30: #98fd84;
+$color-primary-40: #b2fda4;
+$color-primary-50: #ccfec4;
+
+$color-surface-0: #121212;
+$color-surface-10: #282828;
+$color-surface-20: #3f3f3f;
+$color-surface-30: #575757;
+$color-surface-40: #bdbdbd;
+$color-surface-50: #8b8b8b;
+
+$color-surface-tonal-0: #172017;
+$color-surface-tonal-10: #2c362c;
+$color-surface-tonal-20: #434c43;
+$color-surface-tonal-30: #5b645b;
+$color-surface-tonal-40: #747c74;
+$color-surface-tonal-50: #8e958e;
+
+$color-surface-image-0: #f5f8f5;
+$color-surface-image-10: #edf0ed;
+$color-surface-image-20: #e5e8e5;
+$color-surface-image-30: #dfe2df;
+$color-surface-image-accent: #dfffe0;
+
+$color-primary-0-alpha-25: rgba($color-primary-0, 0.25);
+$color-primary-0-alpha-60: rgba($color-primary-0, 0.58);
+$color-dark-0-alpha-30: rgba($color-dark-0, 0.3);
+
+$shadow-primary-soft-sm: 0 0 6px 5px $color-primary-0-alpha-25;
+$shadow-primary-soft-md: 0 0 10px 3px $color-primary-0-alpha-25;
+$shadow-primary-soft-lg: 0 0 6px 7px $color-primary-0-alpha-25;
+
+$shadow-primary-glow: 0px 0px 35px 20px $color-primary-0-alpha-25;
+$shadow-primary-glow-sm: 0px 0px 20px 14px $color-primary-0-alpha-25;
+$shadow-primary-strong: 0 0 20px 3px $color-primary-0-alpha-60;
+
+$shadow-elevated: 0 30px 60px -30px $color-dark-0-alpha-30;

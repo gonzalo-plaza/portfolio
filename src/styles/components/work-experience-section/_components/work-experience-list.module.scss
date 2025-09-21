@@ -56,7 +56,7 @@
     width: 100px;
     height: auto;
     border-radius: 50%;
-    background-color: #dfdfff;
+    background-color: var(--background-image-accent);
     grid-area: image;
     transition: box-shadow 0.2s ease;
 

@@ -3,16 +3,14 @@ $color-dark-0: #000000;
 $color-light-0: #ffffff;
 
 /** Theme primary colors */
-/** Best used for primary elements like buttons, links, and other primary elements. */
-$color-primary-0: #3541cf;
-$color-primary-10: #5654d5;
-$color-primary-20: #7068db;
-$color-primary-30: #877ce1;
-$color-primary-40: #9d91e6;
-$color-primary-50: #b1a6ec;
+$color-primary-0: #bc37a5;
+$color-primary-10: #c652b4;
+$color-primary-20: #d06ec2;
+$color-primary-30: #da89cf;
+$color-primary-40: #e4a3db;
+$color-primary-50: #eebce7;
 
 /** Theme surface colors */
-/** Best used for surface elements like cards, backgrounds, and other surface elements. */
 $color-surface-0: #121212;
 $color-surface-10: #282828;
 $color-surface-20: #3f3f3f;
@@ -21,21 +19,19 @@ $color-surface-40: #bdbdbd;
 $color-surface-50: #8b8b8b;
 
 /** Theme tonal surface colors */
-/** A tonal surface variant, best used for surface elements like cards, backgrounds, and other surface elements. */
-$color-surface-tonal-0: #191722;
-$color-surface-tonal-10: #2e2c37;
-$color-surface-tonal-20: #45434d;
-$color-surface-tonal-30: #5d5b64;
-$color-surface-tonal-40: #75747c;
-$color-surface-tonal-50: #8f8e94;
+$color-surface-tonal-0: #1f1720;
+$color-surface-tonal-10: #352c36;
+$color-surface-tonal-20: #4b434c;
+$color-surface-tonal-30: #635b64;
+$color-surface-tonal-40: #7b747c;
+$color-surface-tonal-50: #958e95;
 
 /** Theme image surface colors */
-/** Specific surface colors for image backgrounds, with subtle tints to maintain visual harmony */
-$color-surface-image-0: #f5f5f8;
-$color-surface-image-10: #ededf0;
-$color-surface-image-20: #e5e5e8;
-$color-surface-image-30: #dfdfe2;
-$color-surface-image-accent: #dfdfff;
+$color-surface-image-0: #f8f5f7;
+$color-surface-image-10: #f0edf0;
+$color-surface-image-20: #e8e5e8;
+$color-surface-image-30: #e2dfe2;
+$color-surface-image-accent: #eee0ff;
 
 /** Alpha versions */
 $color-primary-0-alpha-25: rgba($color-primary-0, 0.25);

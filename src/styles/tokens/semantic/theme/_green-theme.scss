@@ -1,0 +1,42 @@
+@use "@/styles/tokens/primitives/theme/all.scss" as theme;
+
+$semantic-colors: (
+  "background": (
+    "base": theme.$green-theme-color-surface-0,
+    "elevated": theme.$green-theme-color-surface-10,
+    "higher": theme.$green-theme-color-surface-20,
+    "accent": theme.$green-theme-color-primary-50,
+    "subtle": theme.$green-theme-color-surface-30,
+    "image-accent": theme.$green-theme-color-surface-image-accent,
+  ),
+  "text": (
+    "primary": theme.$green-theme-color-light-0,
+    "secondary": theme.$green-theme-color-surface-40,
+    "tertiary": theme.$green-theme-color-surface-30,
+  ),
+  "highlight": (
+    "primary": theme.$green-theme-color-primary-30,
+    "secondary": theme.$green-theme-color-primary-40,
+    "tertiary": theme.$green-theme-color-primary-50,
+  ),
+  "border": (
+    "subtle": theme.$green-theme-color-surface-20,
+    "strong": theme.$green-theme-color-surface-30,
+    "accent": theme.$green-theme-color-primary-30,
+  ),
+  "surface": (
+    "card": theme.$green-theme-color-surface-tonal-10,
+  ),
+  "shadow": (
+    "soft-sm": theme.$green-theme-shadow-primary-soft-sm,
+    "soft-md": theme.$green-theme-shadow-primary-soft-md,
+    "soft-lg": theme.$green-theme-shadow-primary-soft-lg,
+    "highlight": theme.$green-theme-shadow-primary-glow,
+    "highlight-sm": theme.$green-theme-shadow-primary-glow-sm,
+    "strong": theme.$green-theme-shadow-primary-strong,
+    "elevated": theme.$green-theme-shadow-elevated,
+    "highlight-elevated": #{"#{theme.$green-theme-shadow-primary-glow}, #{theme.$green-theme-shadow-elevated}"},
+    "highlight-sm-elevated": #{"#{theme.$green-theme-shadow-primary-glow-sm}, #{theme.$green-theme-shadow-elevated}"},
+    "strong-elevated": #{"#{theme.$green-theme-shadow-primary-strong}, #{theme.$green-theme-shadow-elevated}"},
+  ),
+);

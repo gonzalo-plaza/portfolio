@@ -1,0 +1,42 @@
+@use "@/styles/tokens/primitives/theme/all.scss" as theme;
+
+$semantic-colors: (
+  "background": (
+    "base": theme.$purple-theme-color-surface-0,
+    "elevated": theme.$purple-theme-color-surface-10,
+    "higher": theme.$purple-theme-color-surface-20,
+    "accent": theme.$purple-theme-color-primary-50,
+    "subtle": theme.$purple-theme-color-surface-30,
+    "image-accent": theme.$purple-theme-color-surface-image-accent,
+  ),
+  "text": (
+    "primary": theme.$purple-theme-color-light-0,
+    "secondary": theme.$purple-theme-color-surface-40,
+    "tertiary": theme.$purple-theme-color-surface-30,
+  ),
+  "highlight": (
+    "primary": theme.$purple-theme-color-primary-30,
+    "secondary": theme.$purple-theme-color-primary-40,
+    "tertiary": theme.$purple-theme-color-primary-50,
+  ),
+  "border": (
+    "subtle": theme.$purple-theme-color-surface-20,
+    "strong": theme.$purple-theme-color-surface-30,
+    "accent": theme.$purple-theme-color-primary-30,
+  ),
+  "surface": (
+    "card": theme.$purple-theme-color-surface-tonal-10,
+  ),
+  "shadow": (
+    "soft-sm": theme.$purple-theme-shadow-primary-soft-sm,
+    "soft-md": theme.$purple-theme-shadow-primary-soft-md,
+    "soft-lg": theme.$purple-theme-shadow-primary-soft-lg,
+    "highlight": theme.$purple-theme-shadow-primary-glow,
+    "highlight-sm": theme.$purple-theme-shadow-primary-glow-sm,
+    "strong": theme.$purple-theme-shadow-primary-strong,
+    "elevated": theme.$purple-theme-shadow-elevated,
+    "highlight-elevated": #{"#{theme.$purple-theme-shadow-primary-glow}, #{theme.$purple-theme-shadow-elevated}"},
+    "highlight-sm-elevated": #{"#{theme.$purple-theme-shadow-primary-glow-sm}, #{theme.$purple-theme-shadow-elevated}"},
+    "strong-elevated": #{"#{theme.$purple-theme-shadow-primary-strong}, #{theme.$purple-theme-shadow-elevated}"},
+  ),
+);
