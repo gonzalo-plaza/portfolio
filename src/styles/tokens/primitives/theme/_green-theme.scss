@@ -3,12 +3,12 @@ $color-dark-0: #000000;
 $color-light-0: #ffffff;
 
 /** Theme primary colors */
-$color-primary-0: #00a736;
-$color-primary-10: #1bb64c;
-$color-primary-20: #35c663;
-$color-primary-30: #50d67b;
-$color-primary-40: #71e495;
-$color-primary-50: #95f1b1;
+$color-primary-0: #27a148;
+$color-primary-10: #3eb562;
+$color-primary-20: #57c37b;
+$color-primary-30: #70d295;
+$color-primary-40: #8adeb0;
+$color-primary-50: #a5ebc9;
 
 /** Theme surface colors */
 $color-surface-0: #121212;
@@ -19,21 +19,19 @@ $color-surface-40: #bdbdbd;
 $color-surface-50: #8b8b8b;
 
 /** Theme tonal surface colors */
-/** Más apagados para no competir con el primary */
-$color-surface-tonal-0: #181d18;
-$color-surface-tonal-10: #2a302a;
-$color-surface-tonal-20: #3f453f;
-$color-surface-tonal-30: #545a54;
-$color-surface-tonal-40: #6c726c;
-$color-surface-tonal-50: #858b85;
+$color-surface-tonal-0: #1b2119;
+$color-surface-tonal-10: #2f352f;
+$color-surface-tonal-20: #454b45;
+$color-surface-tonal-30: #5c615c;
+$color-surface-tonal-40: #747974;
+$color-surface-tonal-50: #8e948e;
 
 /** Theme image surface colors */
-/** Muy suaves, casi neutros, con un acento más discreto */
-$color-surface-image-0: #f3faf5;
+$color-surface-image-0: #f2faf5;
 $color-surface-image-10: #edf4ee;
-$color-surface-image-20: #e6ede7;
-$color-surface-image-30: #e0e7e1;
-$color-surface-image-accent: #e3f5e7;
+$color-surface-image-20: #e5ede5;
+$color-surface-image-30: #dee7de;
+$color-surface-image-accent: #e0f4e2;
 
 /** Alpha versions */
 $color-primary-0-alpha-25: rgba($color-primary-0, 0.25);
