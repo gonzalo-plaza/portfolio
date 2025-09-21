@@ -5,10 +5,14 @@ $themes: (
   "main-theme": themeTokens.$main-theme-semantic-colors,
   "blue": themeTokens.$blue-theme-semantic-colors,
   "green": themeTokens.$green-theme-semantic-colors,
-  "magenta": themeTokens.$magenta-theme-semantic-colors,
   "purple": themeTokens.$purple-theme-semantic-colors,
-  "red-pink": themeTokens.$red-pink-theme-semantic-colors,
 );
+
+body,
+body * {
+  transition: background-color 0.4s ease, color 0.4s ease,
+    border-color 0.4s ease;
+}
 
 // Iterar sobre cada tema y generar variables CSS
 @each $theme-name, $semantic-map in $themes {
