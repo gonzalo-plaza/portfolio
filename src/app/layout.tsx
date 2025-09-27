@@ -39,12 +39,20 @@ export const metadata: Metadata = {
     description: "Portfolio de Gonzalo Plaza Rueda, Software Engineer",
     url: "https://gonzaloplazarueda.com",
     siteName: "Gonzalo Plaza Rueda",
-    images: {
-      url: "/og-image.jpg",
-      width: 1200,
-      height: 630,
-      alt: "Gonzalo Plaza Rueda - Frontend Developer",
-    },
+    images: [
+      {
+        url: "https://www.gonzaloplazarueda.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Gonzalo Plaza Rueda - Frontend Developer",
+      },
+      {
+        url: "https://www.gonzaloplazarueda.com/og-image-whatsapp.jpg",
+        width: 1200,
+        height: 1200,
+        alt: "Gonzalo Plaza Rueda - Frontend Developer",
+      },
+    ],
     locale: "es_ES",
     type: "website",
   },
