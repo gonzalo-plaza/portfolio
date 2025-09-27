@@ -65,6 +65,7 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
             buttonDisabledWrapperClassName={
               styles.projectCardFooter__buttonDisabledWrapper
             }
+            aria-label={`Visitar ${project.title}`}
           >
             <Link
               href={project.previewLink.url}
@@ -84,6 +85,7 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
             buttonDisabledWrapperClassName={
               styles.projectCardFooter__buttonDisabledWrapper
             }
+            aria-label={`Ver repositorio de ${project.title}`}
           >
             <Link
               href={project.gitHubLink.url}

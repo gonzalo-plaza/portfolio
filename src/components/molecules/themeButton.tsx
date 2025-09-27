@@ -10,7 +10,11 @@ interface ThemeButtonProps {
 const ThemeButton = ({ className }: ThemeButtonProps) => {
   const { updateTheme } = useThemeStore((state) => state);
   return (
-    <button className={className} onClick={updateTheme}>
+    <button
+      className={className}
+      onClick={updateTheme}
+      aria-label="Cambiar tema"
+    >
       <Paintbrush />
     </button>
   );

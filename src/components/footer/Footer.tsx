@@ -17,6 +17,7 @@ const Footer = () => {
           <a
             className={styles.footerSocialList__link}
             href="https://www.linkedin.com/in/gonzalo-p-r"
+            aria-label="Ver el perfil de Likedin de Gonzalo Plaza Rueda"
           >
             <LinkedinIcon width={24} height={24} />
           </a>
@@ -25,6 +26,7 @@ const Footer = () => {
           <a
             className={styles.footerSocialList__link}
             href="mailto:plazaruedag@gmail.com"
+            aria-label="Enviar un mail a Gonzalo Plaza Rueda"
           >
             <Mail />
           </a>
