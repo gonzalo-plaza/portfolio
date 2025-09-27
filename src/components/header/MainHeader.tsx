@@ -1,7 +1,7 @@
 import styles from "@/styles/components/header/main-header.module.scss";
 
-import { Paintbrush } from "lucide-react";
 import Link from "next/link";
+import ThemeButton from "../molecules/themeButton";
 
 const MainHeader = () => {
   return (
@@ -16,9 +16,7 @@ const MainHeader = () => {
         <Link className={styles.mainNav__link} href="#about-me">
           Sobre mí
         </Link>
-        <button className={styles.mainNav__button}>
-          <Paintbrush />
-        </button>
+        <ThemeButton className={styles.mainNav__button} />
       </nav>
     </header>
   );
