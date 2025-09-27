@@ -8,7 +8,10 @@ const Footer = () => {
   return (
     <footer className={clsx(styles.footer, "container")}>
       <p className={styles.footer__paragraph}>
-        © 2025 Gonzalo Plaza Rueda. Casi todos los derechos reservados
+        © 2025 Gonzalo Plaza Rueda.{" "}
+        <span className={styles.footer__span}>
+          Casi todos los derechos reservados
+        </span>
       </p>
       <ul className={styles.footerSocialList}>
         <li className={styles.footerSocialList__item}>

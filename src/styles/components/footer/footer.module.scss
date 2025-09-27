@@ -9,6 +9,10 @@
     color: var(--text-secondary);
     margin-bottom: 0px;
   }
+
+  &__span {
+    white-space: nowrap;
+  }
 }
 
 .footerSocialList {
