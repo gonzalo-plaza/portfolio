@@ -1,7 +1,7 @@
 import React, { ReactNode, useEffect, useRef, useState } from "react";
 
 export const useCardCarousel = (children: ReactNode) => {
-  const containerRef = useRef<HTMLUListElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const firstElementRef = useRef<HTMLElement | null>(null);
   const lastElementRef = useRef<HTMLElement | null>(null);
 
