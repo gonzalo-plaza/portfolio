@@ -1,6 +1,5 @@
 import styles from "@/styles/components/footer/footer.module.scss";
 import clsx from "clsx";
-import GithubIcon from "../icons/GithubIcon";
 import { Mail } from "lucide-react";
 import LinkedinIcon from "../icons/LinkedinIcon";
 

@@ -4,7 +4,7 @@ import { animate, createScope, stagger, text } from "animejs";
 import { useEffect, useRef } from "react";
 
 export default function TitleAnimation() {
-  const scope = useRef<any>(null);
+  const scope = useRef<object | null>(null);
 
   useEffect(() => {
     scope.current = createScope().add(() => {

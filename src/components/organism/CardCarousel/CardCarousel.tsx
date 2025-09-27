@@ -36,6 +36,8 @@ const CardCarousel = ({ children }: CardCarouselProps) => {
           if (!isValidElement(child)) return;
 
           if (isFirst) {
+            // TODO: Fix correct type to refs
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return React.cloneElement(child as ReactElement<any>, {
               key: index,
               ref: firstElementRef,
@@ -43,6 +45,8 @@ const CardCarousel = ({ children }: CardCarouselProps) => {
           }
 
           if (isLast) {
+            // TODO: Fix correct type to refs
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return React.cloneElement(child as ReactElement<any>, {
               key: index,
               ref: lastElementRef,
