@@ -28,7 +28,7 @@ const CardCarousel = ({ children }: CardCarouselProps) => {
         showArrow={carouselNavButtonLeftActive}
       />
 
-      <section className={styles.cardCarousel} ref={containerRef} role="list">
+      <section className={styles.cardCarousel} ref={containerRef}>
         {childrenArray.map((child, index) => {
           const isFirst = index === 0;
           const isLast = index === childrenArray.length - 1;
@@ -41,7 +41,6 @@ const CardCarousel = ({ children }: CardCarouselProps) => {
             return React.cloneElement(child as ReactElement<any>, {
               key: index,
               ref: firstElementRef,
-              role: "listitem",
             });
           }
 
@@ -51,7 +50,6 @@ const CardCarousel = ({ children }: CardCarouselProps) => {
             return React.cloneElement(child as ReactElement<any>, {
               key: index,
               ref: lastElementRef,
-              role: "listitem",
             });
           }
 
@@ -59,7 +57,6 @@ const CardCarousel = ({ children }: CardCarouselProps) => {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           return React.cloneElement(child as ReactElement<any>, {
             key: index,
-            role: "listitem",
           });
         })}
       </section>
