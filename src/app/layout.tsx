@@ -56,9 +56,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="custom-scrollbar">
-      <head>
-        <meta name="apple-mobile-web-app-title" content="GonzaloPlazaRueda" />
-      </head>
       <ThemeStoreProvider>
         <UpdateThemeUtil>
           <body className={`${onest.className} ${styles["main-layout"]}`}>
