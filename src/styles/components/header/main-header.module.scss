@@ -76,7 +76,8 @@
       }
     }
 
-    &:hover {
+    &:hover,
+    &:active {
       color: var(--highlight-secondary);
     }
 
