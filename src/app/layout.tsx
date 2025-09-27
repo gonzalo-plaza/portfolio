@@ -24,15 +24,6 @@ export const metadata: Metadata = {
       { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
       { url: "/favicon.svg", type: "image/svg+xml" },
     ],
-    apple: [
-      { url: "/apple-touch-icon.png", type: "image/png", sizes: "180x180" },
-    ],
-  },
-  manifest: "/site.webmanifest",
-  appleWebApp: {
-    title: "Gonzalo Plaza Rueda",
-    capable: true,
-    statusBarStyle: "black-translucent",
   },
   openGraph: {
     title: "Gonzalo Plaza Rueda - Software Engineer",
