@@ -14,7 +14,7 @@ const Footer = () => {
         <li className={styles.footerSocialList__item}>
           <a
             className={styles.footerSocialList__link}
-            href="https://twitter.com/usuario"
+            href="https://www.linkedin.com/in/gonzalo-p-r"
           >
             <LinkedinIcon width={24} height={24} />
           </a>
@@ -22,7 +22,7 @@ const Footer = () => {
         <li className={styles.footerSocialList__item}>
           <a
             className={styles.footerSocialList__link}
-            href="https://linkedin.com/in/usuario"
+            href="mailto:plazaruedag@gmail.com"
           >
             <Mail />
           </a>
