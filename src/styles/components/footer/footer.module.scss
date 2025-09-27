@@ -1,0 +1,26 @@
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-block: 16px;
+  margin-top: 32px;
+  &__paragraph {
+    color: var(--text-secondary);
+    margin-bottom: 0px;
+  }
+}
+
+.footerSocialList {
+  display: flex;
+  gap: 8px;
+
+  &__link {
+    display: flex;
+    color: var(--text-secondary);
+
+    &:hover {
+      color: var(--highlight-primary);
+    }
+  }
+}

@@ -9,6 +9,7 @@ import "@/styles/layout/common-layout.scss";
 import MainHeader from "@/components/header/MainHeader";
 import { ThemeStoreProvider } from "@/providers/theme-store-provider";
 import UpdateThemeUtil from "@/utils/UpdateThemeUtil";
+import Footer from "@/components/footer/Footer";
 
 const onest = Onest({
   variable: "--font-onest",
@@ -66,6 +67,7 @@ export default function RootLayout({
           <body className={`${onest.className} ${styles["main-layout"]}`}>
             <MainHeader />
             {children}
+            <Footer />
           </body>
         </UpdateThemeUtil>
       </ThemeStoreProvider>
