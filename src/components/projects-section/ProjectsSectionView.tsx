@@ -15,7 +15,7 @@ const ProjectsSectionView = () => {
           id="projects-section-title"
           className={styles.projectsSectionView__title}
         >
-          💻 Proyectos
+          💻 Proyectos Personales
         </h2>
       </header>
       {projectList && (

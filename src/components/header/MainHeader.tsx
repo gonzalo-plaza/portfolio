@@ -19,7 +19,7 @@ const MainHeader = () => {
           href="#projects"
           aria-label="Ir a la sección 'Proyectos'"
         >
-          Projectos
+          Proyectos
         </Link>
         <Link
           className={styles.mainNav__link}
