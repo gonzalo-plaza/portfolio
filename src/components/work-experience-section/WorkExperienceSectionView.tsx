@@ -7,14 +7,14 @@ export default function WorkExperienceSectionView() {
     <section
       id="work-experience"
       className={clsx("container", styles.workExperienceSection)}
-      aria-labelledby="work-experience-title-text"
+      aria-label="Sección experiencia laboral"
     >
       <header>
         <h2
           id="work-experience-title"
           className={styles.workExperienceSection__title}
         >
-          🚀 <span id="work-experience-title-text">Experiencia laboral</span>
+          🚀Experiencia laboral
         </h2>
       </header>
       <WorkExperienceList />

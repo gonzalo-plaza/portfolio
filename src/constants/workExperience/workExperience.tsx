@@ -20,17 +20,17 @@ const iskaypetWorkExperience: WorkExperience = {
   description:
     "Software Engineer especializado en desarrollo frontend (con algo de backend 🤭). En Iskaypet participo en proyectos de aplicaciones web y ecommerce, orientados a mejorar los KPI del negocio, optimizando la experiencia digital y contribuyendo en iniciativas clave para las marcas del grupo",
   technologyList: [
-    HTMLIcon,
-    SassIcon,
-    JavaScriptIcon,
-    JQueryIcon,
-    TypeScriptIcon,
-    ReactIcon,
-    GitIcon,
-    GrafanaIcon,
-    JiraIcon,
-    ConflueceIcon,
-  ],
+    { text: "HTML", Component: HTMLIcon },
+    { text: "Sass", Component: SassIcon },
+    { text: "JavaScript", Component: JavaScriptIcon },
+    { text: "jQuery", Component: JQueryIcon },
+    { text: "TypeScript", Component: TypeScriptIcon },
+    { text: "React", Component: ReactIcon },
+    { text: "Git", Component: GitIcon },
+    { text: "Grafana", Component: GrafanaIcon },
+    { text: "Jira", Component: JiraIcon },
+    { text: "Confluence", Component: ConflueceIcon },
+  ]
 };
 
 const lolaDiazBebesWorkExperience: WorkExperience = {
@@ -41,7 +41,11 @@ const lolaDiazBebesWorkExperience: WorkExperience = {
   endTime: new Date("2022-05-23"),
   description:
     "Desarrollo del ecommerce de la marca con foco en rendimiento y usabilidad. Despliegue a producción de la primera versión y definición de pautas de buenas prácticas para el mantenimiento y evolución del proyecto.",
-  technologyList: [HTMLIcon, SassIcon, JavaScriptIcon],
+  technologyList: [   
+    { text: "HTML", Component: HTMLIcon },
+    { text: "Sass", Component: SassIcon },
+    { text: "JavaScript", Component: JavaScriptIcon },
+  ],
 };
 
 const hermanosBravoWorkExperience: WorkExperience = {

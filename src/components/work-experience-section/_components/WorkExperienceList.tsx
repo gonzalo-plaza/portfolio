@@ -17,14 +17,14 @@ export default function WorkExperienceList() {
           <a href="#skip-work-experience">Saltar experiencia laboral</a>
         </Button>
       </div>
-      <ul className={styles.workExperienceList}>
+      <ul className={styles.workExperienceList} aria-label="Experiencia laboral">
         {workExperiences.map((experience, index) => (
           <li
             key={index}
             data-index={index}
             className={`${styles.workExperienceListItem} js-work-experience-item`}
           >
-            <article className={`${styles.workExperienceArticle}`} tabIndex={0}>
+            <article className={`${styles.workExperienceArticle}`}>
               <Image
                 src={experience.logoUrl}
                 alt={experience.title}
