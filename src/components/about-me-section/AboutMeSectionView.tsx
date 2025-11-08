@@ -11,7 +11,7 @@ const AboutMeSectionView = () => {
       <header>
         <h2 className={styles.aboutMeSectionView__title}>🧑🏽‍💻 Sobre mí</h2>
       </header>
-      <article className={styles.aboutMeArticle}>
+      <div className={styles.aboutMeArticle}>
         <Image
           src="/images/gonzalo-plaza--rueda-developer.webp"
           className={styles.aboutMeArticle__image}
@@ -45,7 +45,7 @@ const AboutMeSectionView = () => {
             en la elección de sus dispositivos.
           </p>
         </div>
-      </article>
+      </div>
     </section>
   );
 };
