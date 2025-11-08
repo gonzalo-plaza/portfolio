@@ -4,6 +4,7 @@ import WorkExperienceActiveAnimation from "./WorkExperieceActiveAnimation";
 import { workExperiences } from "@/constants/workExperience/workExperience";
 import WorkExperienceTechnologyList from "./WorkExperienceTechnologyList";
 import WorkExperienceDateTime from "./WorkExperienceDateTime";
+import Button from "@/components/atoms/Button";
 
 export default function WorkExperienceList() {
   return (
@@ -11,6 +12,11 @@ export default function WorkExperienceList() {
       <WorkExperienceActiveAnimation
         itemActiveClass={styles.isListItemActive}
       />
+      <div className={styles.workExperienceSkip}>
+        <Button asChild screenReader>
+          <a href="#skip-work-experience">Saltar experiencia laboral</a>
+        </Button>
+      </div>
       <ul className={styles.workExperienceList}>
         {workExperiences.map((experience, index) => (
           <li
@@ -18,7 +24,7 @@ export default function WorkExperienceList() {
             data-index={index}
             className={`${styles.workExperienceListItem} js-work-experience-item`}
           >
-            <article className={`${styles.workExperienceArticle}`}>
+            <article className={`${styles.workExperienceArticle}`} tabIndex={0}>
               <Image
                 src={experience.logoUrl}
                 alt={experience.title}
@@ -56,6 +62,11 @@ export default function WorkExperienceList() {
           </li>
         ))}
       </ul>
+      <div className={styles.workExperienceSkip}>
+        <span id="skip-work-experience" className="visibly-hidden" tabIndex={-1}>
+          Fin de la experiencia laboral
+        </span>
+      </div>
     </>
   );
 }

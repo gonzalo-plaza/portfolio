@@ -25,6 +25,7 @@ const CardCarouselNavButton = forwardRef<
         [styles.isLeft]: isLeft,
         [styles.showArrow]: showArrow,
       })}
+      tabIndex={-1}
     >
       {isLeft && <ArrowBigLeft />}
       {isRight && <ArrowBigRight />}

@@ -1,5 +1,15 @@
 @use "@/styles/utils/breakpoints" as *;
 
+.workExperienceSkip {
+  position: relative;
+
+  &__target {
+    position: absolute;
+    left: 0;
+    z-index: 1000;
+  }
+}
+
 .workExperienceList {
   display: flex;
   flex-direction: column;
@@ -20,6 +30,7 @@
       &__title {
         color: var(--highlight-primary);
       }
+
       &__headerImage {
         box-shadow: var(--shadow-highlight-sm-elevated);
       }
