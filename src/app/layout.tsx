@@ -13,6 +13,9 @@ const onest = Onest({
   subsets: ["latin"],
   display: "swap",
   preload: true,
+  fallback: ["system-ui", "arial"],
+  adjustFontFallback: true,
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
