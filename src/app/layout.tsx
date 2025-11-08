@@ -3,18 +3,14 @@ import { Onest } from "next/font/google";
 
 import "@/styles/global.scss";
 import styles from "@/styles/components/main-layout/main-layout.module.scss";
-import MainHeader from "@/components/header/MainHeader";
 import { ThemeStoreProvider } from "@/providers/theme-store-provider";
 import UpdateThemeUtil from "@/utils/UpdateThemeUtil";
-import dynamic from "next/dynamic";
 
 const onest = Onest({
   variable: "--font-onest",
   subsets: ["latin"],
   display: "swap",
   preload: true,
-  fallback: ["system-ui", "arial"],
-  adjustFontFallback: true,
   weight: ["400", "500", "600", "700"],
 });
 
@@ -51,8 +47,6 @@ export const metadata: Metadata = {
   },
 };
 
-const Footer = dynamic(() => import("@/components/footer/Footer"), { ssr: true });
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -63,12 +57,9 @@ export default function RootLayout({
       <ThemeStoreProvider>
         <UpdateThemeUtil>
           <body className={`${onest.className} ${styles["main-layout"]}`}>
-            <MainHeader />
             {children}
-            <Footer />
           </body>
         </UpdateThemeUtil>
       </ThemeStoreProvider>
-    </html>
-  );
+    </html>);
 }
