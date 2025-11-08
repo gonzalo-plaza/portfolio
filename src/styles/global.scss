@@ -1,0 +1,6 @@
+// Import all global styles in a single file to avoid FOUC
+@use "./reset.scss";
+@use "./common.scss";
+@use "./theme/theme.scss";
+@use "./typography/default-typography.scss";
+@use "./layout/common-layout.scss";

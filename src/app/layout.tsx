@@ -1,12 +1,8 @@
 import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 
-import "@/styles/theme/theme.scss";
-import "@/styles/reset.scss";
-import "@/styles/common.scss";
-import "@/styles/typography/default-typography.scss";
+import "@/styles/global.scss";
 import styles from "@/styles/components/main-layout/main-layout.module.scss";
-import "@/styles/layout/common-layout.scss";
 import MainHeader from "@/components/header/MainHeader";
 import { ThemeStoreProvider } from "@/providers/theme-store-provider";
 import UpdateThemeUtil from "@/utils/UpdateThemeUtil";
@@ -15,6 +11,8 @@ import Footer from "@/components/footer/Footer";
 const onest = Onest({
   variable: "--font-onest",
   subsets: ["latin"],
+  display: "swap",
+  preload: true,
 });
 
 export const metadata: Metadata = {
