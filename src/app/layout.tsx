@@ -3,6 +3,7 @@ import { Onest } from "next/font/google";
 
 import "@/styles/theme/theme.scss";
 import "@/styles/reset.scss";
+import "@/styles/common.scss";
 import "@/styles/typography/default-typography.scss";
 import styles from "@/styles/components/main-layout/main-layout.module.scss";
 import "@/styles/layout/common-layout.scss";
