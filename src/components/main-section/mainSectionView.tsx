@@ -16,6 +16,7 @@ export default function MainSectionView() {
           alt="Retrato de Gonzalo Plaza Rueda, Software Engineer en Málaga, España"
           priority
           quality={100}
+          fetchPriority="high"
         />
       </div>
       <div className={styles.mainSectionDescription}>
