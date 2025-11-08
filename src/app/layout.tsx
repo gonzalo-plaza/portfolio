@@ -17,6 +17,9 @@ const onest = Onest({
 export const metadata: Metadata = {
   title: "Gonzalo Plaza Rueda | Software Engineer",
   description: "Portfolio de Gonzalo Plaza Rueda, Software Engineer",
+  alternates: {
+    canonical: "https://gonzaloplazarueda.com",
+  },
   icons: {
     icon: [
       { url: "/favicon-96x96.png", type: "image/png", sizes: "96x96" },
