@@ -6,7 +6,8 @@ import WorkExperienceSectionView from "@/components/work-experience-section/Work
 import Footer from "@/components/footer/Footer";
 
 export default function Home() {
-  return (<>
+  return (
+  <>
     <MainHeader />
     <main>
       <MainSectionView />
@@ -14,7 +15,7 @@ export default function Home() {
       <ProjectsSectionView />
       <AboutMeSectionView />
     </main>
-      <Footer />
+    <Footer />
   </>
   );
 }
