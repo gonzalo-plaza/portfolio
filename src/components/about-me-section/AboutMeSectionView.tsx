@@ -17,7 +17,7 @@ const AboutMeSectionView = () => {
           className={styles.aboutMeArticle__image}
           height={300}
           width={300}
-          alt="Gonzalo Plaza"
+          alt="Imagen de Gonzalo Plaza Rueda, Software Engineer en Málaga, España"
         />
         <div>
           <p className={styles.aboutMeArticleDescription}>

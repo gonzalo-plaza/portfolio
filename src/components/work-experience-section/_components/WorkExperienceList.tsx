@@ -27,7 +27,7 @@ export default function WorkExperienceList() {
             <article className={`${styles.workExperienceArticle}`}>
               <Image
                 src={experience.logoUrl}
-                alt={experience.title}
+                alt={`Logo de ${experience.title}`}
                 className={styles.workExperienceArticle__headerImage}
                 width={150}
                 height={150}
