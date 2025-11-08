@@ -19,7 +19,7 @@ const ProjectsSectionView = () => {
         </h2>
       </header>
       {projectList && (
-        <CardCarousel>
+        <CardCarousel carouselId="personal-projects" carouselName="proyectos personales">
           <>
             {projectList.map((project) => {
               return <ProjectCard key={project.id} project={project} />;

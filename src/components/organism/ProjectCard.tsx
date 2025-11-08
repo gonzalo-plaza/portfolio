@@ -23,10 +23,9 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
         width={330}
         height={292}
         className={styles.projectCard__image}
-        tabIndex={0}
       />
       <header className={styles.projectCard__header}>
-        <h3 className={styles.projectCard__title} tabIndex={0}>{project.title}</h3>
+        <h3 className={styles.projectCard__title}>{project.title}</h3>
       </header>
       <ul className={styles.projectCard__technologyList}>
         {project.projectTechnologyBadgeList.map(
@@ -56,7 +55,7 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
           }
         )}
       </ul>
-      <p className={styles.projectCard__content} tabIndex={0}>{project.description}</p>
+      <p className={styles.projectCard__content}>{project.description}</p>
       <footer className={styles.projectCardFooter}>
         {project.previewLink && (
           <Button

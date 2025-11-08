@@ -10,12 +10,13 @@ const WorkExperienceTechnologyList = ({
   technologyList,
 }: WorkExperienceTechnologyListProps) => {
   return (
-    <ul className={styles.workExperienceTechnologyList}>
+    <ul className={styles.workExperienceTechnologyList} aria-label="Tecnologías utilizadas">
       {technologyList?.map((Technology, index) => {
         return (
           <li key={index}>
-            <Technology
+            <Technology.Component
               className={styles.workExperienceTechnologyList__item}
+              aria-label={Technology.text}
               width={20}
               height={20}
             />

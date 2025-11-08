@@ -6,6 +6,11 @@ export interface WorkExperience {
   endTime?: Date;
   description: string;
   technologyList?: Array<
-    (iconProps: React.SVGProps<SVGSVGElement>) => React.JSX.Element
+    WorkExperienceTechnology
   >;
+}
+
+export interface WorkExperienceTechnology {
+  text: string,
+  Component: (iconProps: React.SVGProps<SVGSVGElement>) => React.JSX.Element
 }
