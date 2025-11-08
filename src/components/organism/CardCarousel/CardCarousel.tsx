@@ -4,12 +4,15 @@ import styles from "@/styles/components/organism/card-carousel/card-carousel.mod
 import React, { isValidElement, ReactElement, ReactNode } from "react";
 import CardCarouselNavButton from "./_components/CardCarouselNavButton";
 import { useCardCarousel } from "@/hooks/components/organism/CardCarousel";
+import Button from "@/components/atoms/Button";
 
 interface CardCarouselProps {
   children: ReactNode;
+  carouselName: string;
+  carouselId: string;
 }
 
-const CardCarousel = ({ children }: CardCarouselProps) => {
+const CardCarousel = ({ children, carouselName, carouselId }: CardCarouselProps) => {
   const {
     containerRef,
     firstElementRef,
@@ -22,6 +25,9 @@ const CardCarousel = ({ children }: CardCarouselProps) => {
   } = useCardCarousel(children);
   return (
     <div className={styles.cardCarouselWrapper}>
+      <Button asChild screenReader>
+        <a href={`#skip-${carouselId}-section`}>Saltar {carouselName || "sección"}</a>
+      </Button>
       <CardCarouselNavButton
         position="left"
         onClick={handleContainerLeftScroll}
@@ -66,6 +72,7 @@ const CardCarousel = ({ children }: CardCarouselProps) => {
         onClick={handleContainerRightScroll}
         showArrow={carouselNavButtonRightActive}
       />
+      <span id={`skip-${carouselId}-section`} className="visibly-hidden" tabIndex={-1}>Fin de {carouselName || 'sección'}</span>
     </div>
   );
 };
