@@ -121,6 +121,7 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
-textarea:focus-visible {
+textarea:focus-visible,
+article:focus-visible {
   outline: 2px dashed var(--highlight-tertiary);
 }
