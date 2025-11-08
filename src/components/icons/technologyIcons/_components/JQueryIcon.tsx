@@ -1,10 +1,11 @@
 import { SVGProps } from "react";
 
-export default function GitIcon(iconProps: SVGProps<SVGSVGElement>) {
+export default function JQueryIcon(iconProps: SVGProps<SVGSVGElement>) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 128 128"
+      role="img"
       {...iconProps}
     >
       <path

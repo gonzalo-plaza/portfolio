@@ -1,6 +1,6 @@
 import { SVGProps } from "react";
 const ShadcnIcon = (iconProps: SVGProps<SVGSVGElement>) => (
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" {...iconProps}>
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" {...iconProps}>
     <path fill="none" d="M0 0h256v256H0z" />
     <path
       fill="none"

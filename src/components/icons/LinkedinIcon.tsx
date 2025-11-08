@@ -12,6 +12,7 @@ const LinkedinIcon = (iconProps: SVGProps<SVGSVGElement>) => {
       fill="none"
       strokeLinecap="round"
       strokeLinejoin="round"
+      role="img"
       {...iconProps}
     >
       <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>

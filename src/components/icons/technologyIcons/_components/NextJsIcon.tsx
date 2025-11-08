@@ -6,6 +6,7 @@ export default function NextJsIcon(iconProps: SVGProps<SVGSVGElement>) {
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="xMidYMid"
       viewBox="0 0 256 256"
+      role="img"
       {...iconProps}
     >
       {" "}
