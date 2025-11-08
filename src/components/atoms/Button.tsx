@@ -11,6 +11,7 @@ type ButtonProps = AsChildProps<
   className?: string;
   buttonDisabledWrapperClassName?: string;
   disabled?: boolean;
+  screenReader?: boolean;
 };
 
 const Button = ({
@@ -18,6 +19,7 @@ const Button = ({
   className,
   buttonDisabledWrapperClassName,
   disabled,
+  screenReader,
   ...nativeProps
 }: ButtonProps) => {
   const Comp = asChild ? Slot : "button";
@@ -44,7 +46,7 @@ const Button = ({
         <Comp
           className={clsx(
             styles.button,
-            { [styles.isDisabled]: disabled },
+            { [styles.isDisabled]: disabled, [styles.isScreenReader]: screenReader },
             className
           )}
           {...nativeProps}

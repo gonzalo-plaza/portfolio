@@ -14,6 +14,29 @@
   transition: all 100ms ease;
   line-height: 1.5;
 
+  &.isScreenReader {
+    left: 0;
+    position: absolute;
+    z-index: 1000;
+
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+
+    &:focus {
+      clip: initial;
+      clip-path: initial;
+      height: initial;
+      overflow: initial;
+      white-space: initial;
+      width: initial;
+    }
+  }
+
   &.isDisabled {
     pointer-events: none;
     width: 100%; // When the button is disabled contains a wrapper, so the wrapper must decide the width of the element.
