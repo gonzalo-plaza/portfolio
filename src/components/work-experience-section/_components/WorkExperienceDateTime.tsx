@@ -24,8 +24,9 @@ const WorkExperienceDateTime = ({
   ];
 
   const startTimeString = `${startTimeMonth}-${startTimeYear}`;
+  const startTimeAttribute = `${startTimeYear}-${startTimeMonth}`;
   const endTimeString = endTime ? `${endTimeMonth}-${endTimeYear}` : null;
-
+  const endTimeAttribute = endTime ? `${endTimeYear}-${endTimeMonth}` : null;
   const experienceTime = () => {
     const endTimeToCheck = endTime ?? new Date();
     return getDifferenceTimeString(endTimeToCheck, startTime, {
@@ -34,13 +35,13 @@ const WorkExperienceDateTime = ({
   };
   return (
     <p className={styles.workExperienceDateTime}>
-      <time dateTime={startTimeString}>
+      <time dateTime={startTimeAttribute}>
         {startTimeString}
         {" / "}
       </time>
 
       {endTimeString ? (
-        <time dateTime={endTimeString}>{endTimeString}</time>
+        <time dateTime={endTimeAttribute ?? undefined}>{endTimeString}</time>
       ) : (
         <Badge variant="primary">Actualmente</Badge>
       )}
