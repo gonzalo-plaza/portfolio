@@ -14,12 +14,12 @@ const WorkExperienceDateTime = ({
   endTime,
 }: WorkExperienceDateTimeProps) => {
   const [startTimeMonth, startTimeYear] = [
-    startTime.getMonth() + 1,
+    String(startTime.getMonth() + 1).padStart(2, '0'),
     startTime.getFullYear(),
   ];
 
   const [endTimeMonth, endTimeYear] = [
-    endTime ? endTime?.getMonth() + 1 : null,
+    endTime ? String(endTime?.getMonth() + 1).padStart(2, '0') : null,
     endTime?.getFullYear(),
   ];
 
