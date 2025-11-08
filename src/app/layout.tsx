@@ -9,9 +9,10 @@ import UpdateThemeUtil from "@/utils/UpdateThemeUtil";
 const onest = Onest({
   variable: "--font-onest",
   subsets: ["latin"],
-  display: "swap",
-  preload: true,
+  preload: false,
   weight: ["400", "500", "600", "700"],
+  display: "optional",
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata = {
