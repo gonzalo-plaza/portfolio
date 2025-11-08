@@ -23,8 +23,8 @@ const WorkExperienceDateTime = ({
     endTime?.getFullYear(),
   ];
 
-  const startTimeString = `${startTimeMonth}/${startTimeYear}`;
-  const endTimeString = endTime ? `${endTimeMonth}/${endTimeYear}` : null;
+  const startTimeString = `${startTimeMonth}-${startTimeYear}`;
+  const endTimeString = endTime ? `${endTimeMonth}-${endTimeYear}` : null;
 
   const experienceTime = () => {
     const endTimeToCheck = endTime ?? new Date();
@@ -36,7 +36,7 @@ const WorkExperienceDateTime = ({
     <p className={styles.workExperienceDateTime}>
       <time dateTime={startTimeString}>
         {startTimeString}
-        {" - "}
+        {" / "}
       </time>
 
       {endTimeString ? (

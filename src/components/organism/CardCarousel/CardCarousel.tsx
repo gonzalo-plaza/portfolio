@@ -34,7 +34,7 @@ const CardCarousel = ({ children, carouselName, carouselId }: CardCarouselProps)
         showArrow={carouselNavButtonLeftActive}
       />
 
-      <section className={styles.cardCarousel} ref={containerRef}>
+      <div className={styles.cardCarousel} ref={containerRef}>
         {childrenArray.map((child, index) => {
           const isFirst = index === 0;
           const isLast = index === childrenArray.length - 1;
@@ -65,7 +65,7 @@ const CardCarousel = ({ children, carouselName, carouselId }: CardCarouselProps)
             key: index,
           });
         })}
-      </section>
+      </div>
 
       <CardCarouselNavButton
         position="right"
