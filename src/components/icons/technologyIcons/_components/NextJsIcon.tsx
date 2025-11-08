@@ -9,6 +9,7 @@ export default function NextJsIcon(iconProps: SVGProps<SVGSVGElement>) {
       role="img"
       {...iconProps}
     >
+      <title>Next.js</title>
       {" "}
       <defs>
         {" "}

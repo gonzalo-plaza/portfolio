@@ -8,6 +8,7 @@ export default function CSSIcon(iconProps: SVGProps<SVGSVGElement>) {
       role="img"
       {...iconProps}
     >
+      <title>CSS</title>
       <path
         fill="#264de4"
         d="M71.357 460.819 30.272 0h451.456l-41.129 460.746L255.724 512z"

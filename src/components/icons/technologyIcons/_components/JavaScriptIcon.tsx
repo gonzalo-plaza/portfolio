@@ -8,6 +8,7 @@ export default function JavaScriptIcon(iconProps: SVGProps<SVGSVGElement>) {
       role="img"
       {...iconProps}
     >
+      <title>JavaScript</title>
       <path fill="#F0DB4F" d="M1.408 1.408h125.184v125.185H1.408z" />
       <path
         fill="#323330"

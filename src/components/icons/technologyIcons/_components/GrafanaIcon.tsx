@@ -8,6 +8,7 @@ export default function GrafanaIcon(iconProps: SVGProps<SVGSVGElement>) {
       role="img"
       {...iconProps}
     >
+      <title>Grafana</title>
       <linearGradient
         id="grafana-original-a"
         gradientUnits="userSpaceOnUse"

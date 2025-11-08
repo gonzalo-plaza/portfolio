@@ -8,6 +8,7 @@ export default function SassIcon(iconProps: SVGProps<SVGSVGElement>) {
       role="img"
       {...iconProps}
     >
+      <title>Sass</title>
       <path
         fillRule="evenodd"
         clipRule="evenodd"

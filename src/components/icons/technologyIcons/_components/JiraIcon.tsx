@@ -8,6 +8,7 @@ export default function JiraIcon(iconProps: SVGProps<SVGSVGElement>) {
       role="img"
       {...iconProps}
     >
+      <title>Jira</title>
       <defs>
         <linearGradient
           id="jira-original-a"

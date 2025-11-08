@@ -8,6 +8,7 @@ export default function TypeScriptIcon(iconProps: SVGProps<SVGSVGElement>) {
       role="img"
       {...iconProps}
     >
+      <title>TypeScript</title>
       <path fill="#fff" d="M22.67 47h99.67v73.67H22.67z" />
       <path
         data-name="original"

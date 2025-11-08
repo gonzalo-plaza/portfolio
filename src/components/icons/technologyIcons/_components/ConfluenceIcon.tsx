@@ -8,6 +8,7 @@ export default function ConflueceIcon(iconProps: SVGProps<SVGSVGElement>) {
       role="img"
       {...iconProps}
     >
+      <title>Confluence</title>
       <defs>
         <linearGradient
           id="confluence-original-a"

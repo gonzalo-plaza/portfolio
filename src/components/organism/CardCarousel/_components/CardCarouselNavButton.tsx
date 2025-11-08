@@ -26,6 +26,7 @@ const CardCarouselNavButton = forwardRef<
         [styles.showArrow]: showArrow,
       })}
       tabIndex={-1}
+      aria-hidden
     >
       {isLeft && <ArrowBigLeft />}
       {isRight && <ArrowBigRight />}

@@ -8,6 +8,7 @@ export default function HTMLIcon(iconProps: SVGProps<SVGSVGElement>) {
       role="img"
       {...iconProps}
     >
+      <title>HTML</title>
       <path
         fill="#E44D26"
         d="M19.037 113.876L9.032 1.661h109.936l-10.016 112.198-45.019 12.48z"
