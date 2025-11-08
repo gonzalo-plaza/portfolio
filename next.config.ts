@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   /* config options here */
   experimental: {
     optimizeCss: true,
+    optimizePackageImports: ['@/styles'],
   },
   compress: true,
 };
