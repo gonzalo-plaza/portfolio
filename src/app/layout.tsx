@@ -6,7 +6,7 @@ import styles from "@/styles/components/main-layout/main-layout.module.scss";
 import MainHeader from "@/components/header/MainHeader";
 import { ThemeStoreProvider } from "@/providers/theme-store-provider";
 import UpdateThemeUtil from "@/utils/UpdateThemeUtil";
-import Footer from "@/components/footer/Footer";
+import dynamic from "next/dynamic";
 
 const onest = Onest({
   variable: "--font-onest",
@@ -47,6 +47,8 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+const Footer = dynamic(() => import("@/components/footer/Footer"), { ssr: true });
 
 export default function RootLayout({
   children,
