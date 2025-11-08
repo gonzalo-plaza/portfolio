@@ -29,8 +29,9 @@ export default function WorkExperienceList() {
                 src={experience.logoUrl}
                 alt={experience.title}
                 className={styles.workExperienceArticle__headerImage}
-                width={180}
-                height={180}
+                width={150}
+                height={150}
+                sizes="(max-width: 640px) 100px, 150px"
               />
               <header className={styles.workExperienceArticle__header}>
                 <hgroup>
