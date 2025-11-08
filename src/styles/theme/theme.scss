@@ -1,6 +1,5 @@
 @use "@/styles/tokens/semantic/theme/all" as themeTokens;
 
-// Map of themes and their semantic variables
 $themes: (
   "main-theme": themeTokens.$main-theme-semantic-colors,
   "blue": themeTokens.$blue-theme-semantic-colors,
@@ -8,25 +7,68 @@ $themes: (
   "purple": themeTokens.$purple-theme-semantic-colors,
 );
 
-// Do not add transition to the body, to avoid delays in header transition on iOS
 main,
 main * {
   transition: background-color 0.4s ease, color 0.4s ease,
     border-color 0.4s ease;
 }
 
-// Iterate over each theme and generate CSS variables
 @each $theme-name, $semantic-map in $themes {
-  // Root for the main-theme, data-theme attribute for the rest
   $selector: if($theme-name =="main-theme",
       ":root",
       "[data-theme='#{$theme-name}']"
     );
 
-  #{$selector} {
-    @each $category, $variants in $semantic-map {
-      @each $name, $value in $variants {
-        --#{$category}-#{$name}: #{$value};
+  // Group 1: Background colors
+  @layer theme-background {
+    #{$selector} {
+      @each $name, $value in map-get($semantic-map, "background") {
+        --background-#{$name}: #{$value};
+      }
+    }
+  }
+
+  // Group 2: Text colors
+  @layer theme-text {
+    #{$selector} {
+      @each $name, $value in map-get($semantic-map, "text") {
+        --text-#{$name}: #{$value};
+      }
+    }
+  }
+
+  // Group 3: Highlight colors
+  @layer theme-highlight {
+    #{$selector} {
+      @each $name, $value in map-get($semantic-map, "highlight") {
+        --highlight-#{$name}: #{$value};
+      }
+    }
+  }
+
+  // Group 4: Border colors
+  @layer theme-border {
+    #{$selector} {
+      @each $name, $value in map-get($semantic-map, "border") {
+        --border-#{$name}: #{$value};
+      }
+    }
+  }
+
+  // Group 5: Surface colors
+  @layer theme-surface {
+    #{$selector} {
+      @each $name, $value in map-get($semantic-map, "surface") {
+        --surface-#{$name}: #{$value};
+      }
+    }
+  }
+
+  // Group 6: Shadow colors
+  @layer theme-shadow {
+    #{$selector} {
+      @each $name, $value in map-get($semantic-map, "shadow") {
+        --shadow-#{$name}: #{$value};
       }
     }
   }
