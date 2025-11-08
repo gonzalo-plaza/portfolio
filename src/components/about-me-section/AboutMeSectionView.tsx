@@ -13,7 +13,7 @@ const AboutMeSectionView = () => {
       </header>
       <article className={styles.aboutMeArticle}>
         <Image
-          src="/images/gonzalo-plaza--rueda-developer.jpg"
+          src="/images/gonzalo-plaza--rueda-developer.webp"
           className={styles.aboutMeArticle__image}
           height={300}
           width={300}
