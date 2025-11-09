@@ -1,4 +1,5 @@
 import {
+  ConfluenceIcon,
   GitIcon,
   GrafanaIcon,
   HTMLIcon,
@@ -8,8 +9,7 @@ import {
   ReactIcon,
   SassIcon,
   TypeScriptIcon,
-} from "@/components/ui/atoms/icons/technologyIcons";
-import ConflueceIcon from "@/components/ui/atoms/icons/technologyIcons/_components/ConfluenceIcon";
+} from "@/components/ui/atoms/icons";
 import { WorkExperience } from "@/models/workExperience/workExperience";
 
 const iskaypetWorkExperience: WorkExperience = {
@@ -29,7 +29,7 @@ const iskaypetWorkExperience: WorkExperience = {
     { text: "Git", Component: GitIcon },
     { text: "Grafana", Component: GrafanaIcon },
     { text: "Jira", Component: JiraIcon },
-    { text: "Confluence", Component: ConflueceIcon },
+    { text: "Confluence", Component: ConfluenceIcon },
   ]
 };
 

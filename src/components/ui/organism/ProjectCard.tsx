@@ -6,8 +6,7 @@ import Badge from "../atoms/Badge";
 import { Project, ProjectTechonology } from "@/models/project/project";
 import Button from "../atoms/Button";
 import Link from "next/link";
-import AnchorIcon from "../atoms/icons/AnchorIcon";
-import GithubIcon from "../atoms/icons/GithubIcon";
+import { AnchorIcon, GithubIcon } from "@/components/ui/atoms/icons";
 
 interface ProjectCardProps {
   project: Project;

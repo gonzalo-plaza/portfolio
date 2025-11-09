@@ -1,7 +1,7 @@
 import styles from "@/styles/components/layout/footer/footer.module.scss";
 import clsx from "clsx";
 import { Mail } from "lucide-react";
-import LinkedinIcon from "@/components/ui/atoms/icons/LinkedinIcon";
+import { LinkedinIcon } from "@/components/ui/atoms/icons";
 
 const Footer = () => {
   return (

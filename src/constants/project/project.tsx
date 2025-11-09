@@ -2,12 +2,12 @@ import {
   BootstrapIcon,
   CSSIcon,
   JavaScriptIcon,
+  NextJsIcon,
   ReactIcon,
   SassIcon,
-} from "@/components/ui/atoms/icons/technologyIcons";
-import NextJsIcon from "@/components/ui/atoms/icons/technologyIcons/_components/NextJsIcon";
-import ShadcnIcon from "@/components/ui/atoms/icons/technologyIcons/_components/ShadcnIcon";
-import TailwindIcon from "@/components/ui/atoms/icons/technologyIcons/_components/TailwindIcon";
+  ShadcnIcon,
+  TailwindIcon,
+} from "@/components/ui/atoms/icons";
 import { Project } from "@/models/project/project";
 
 export const garajePlusProject: Project = {
