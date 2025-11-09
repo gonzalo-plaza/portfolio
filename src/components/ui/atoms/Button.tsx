@@ -2,7 +2,7 @@ import clsx from "clsx";
 import React from "react";
 import { AsChildProps, Slot } from "@/components/shared/Slot";
 
-import styles from "@/styles/components/atoms/button.module.scss";
+import styles from "@/styles/components/ui/atoms/button.module.scss";
 
 type ButtonProps = AsChildProps<
   React.ButtonHTMLAttributes<HTMLButtonElement>

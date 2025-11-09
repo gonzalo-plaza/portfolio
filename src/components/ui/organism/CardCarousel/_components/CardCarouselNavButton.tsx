@@ -1,6 +1,6 @@
 import { ArrowBigLeft, ArrowBigRight } from "lucide-react";
 
-import styles from "@/styles/components/organism/card-carousel/_components/card-carousel-nav-button.module.scss";
+import styles from "@/styles/components/ui/organism/card-carousel/_components/card-carousel-nav-button.module.scss";
 import clsx from "clsx";
 import React, { forwardRef } from "react";
 

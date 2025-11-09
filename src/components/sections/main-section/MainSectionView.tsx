@@ -2,7 +2,7 @@ import Image from "next/image";
 
 import TitleAnimation from "@/components/sections/main-section/_components/TitleAnimation";
 
-import styles from "@/styles/components/main-section/main-section-view.module.scss";
+import styles from "@/styles/components/sections/main-section/main-section-view.module.scss";
 
 export default function MainSectionView() {
   return (

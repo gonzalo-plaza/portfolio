@@ -1,6 +1,6 @@
 "use client";
 
-import styles from "@/styles/components/organism/card-carousel/card-carousel.module.scss";
+import styles from "@/styles/components/ui/organism/card-carousel/card-carousel.module.scss";
 import React, { isValidElement, ReactElement, ReactNode } from "react";
 import CardCarouselNavButton from "./_components/CardCarouselNavButton";
 import { useCardCarousel } from "@/hooks/useCardCarousel";

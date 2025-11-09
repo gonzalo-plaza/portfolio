@@ -1,4 +1,4 @@
-import styles from "@/styles/components/work-experience-section/work-experience-section-view.module.scss";
+import styles from "@/styles/components/sections/work-experience-section/work-experience-section-view.module.scss";
 import WorkExperienceList from "./_components/WorkExperienceList";
 import clsx from "clsx";
 

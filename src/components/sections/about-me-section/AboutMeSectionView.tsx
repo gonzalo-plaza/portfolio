@@ -1,4 +1,4 @@
-import styles from "@/styles/components/about-me-section/about-me-section.module.scss";
+import styles from "@/styles/components/sections/about-me-section/about-me-section.module.scss";
 import clsx from "clsx";
 import Image from "next/image";
 

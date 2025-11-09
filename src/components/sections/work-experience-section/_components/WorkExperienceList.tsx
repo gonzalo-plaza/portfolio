@@ -1,4 +1,4 @@
-import styles from "@/styles/components/work-experience-section/_components/work-experience-list.module.scss";
+import styles from "@/styles/components/sections/work-experience-section/_components/work-experience-list.module.scss";
 import Image from "next/image";
 import WorkExperienceActiveAnimation from "./WorkExperieceActiveAnimation";
 import { workExperiences } from "@/constants/workExperience/workExperience";

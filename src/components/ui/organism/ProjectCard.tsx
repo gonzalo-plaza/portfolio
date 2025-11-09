@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import styles from "@/styles/components/organism/project-card.module.scss";
+import styles from "@/styles/components/ui/organism/project-card.module.scss";
 import clsx from "clsx";
 import Badge from "../atoms/Badge";
 import { Project, ProjectTechonology } from "@/models/project/project";
