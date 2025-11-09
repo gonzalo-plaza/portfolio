@@ -8,8 +8,8 @@ import {
   ReactIcon,
   SassIcon,
   TypeScriptIcon,
-} from "@/components/icons/technologyIcons";
-import ConflueceIcon from "@/components/icons/technologyIcons/_components/ConfluenceIcon";
+} from "@/components/ui/atoms/icons/technologyIcons";
+import ConflueceIcon from "@/components/ui/atoms/icons/technologyIcons/_components/ConfluenceIcon";
 import { WorkExperience } from "@/models/workExperience/workExperience";
 
 const iskaypetWorkExperience: WorkExperience = {

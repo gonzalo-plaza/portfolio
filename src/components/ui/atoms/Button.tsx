@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { AsChildProps, Slot } from "../utils/Slot";
+import { AsChildProps, Slot } from "@/components/shared/Slot";
 
 import styles from "@/styles/components/atoms/button.module.scss";
 

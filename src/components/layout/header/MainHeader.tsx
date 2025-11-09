@@ -1,7 +1,7 @@
 import styles from "@/styles/components/header/main-header.module.scss";
 
 import Link from "next/link";
-import ThemeButton from "../molecules/themeButton";
+import ThemeButton from "../../ui/molecules/ThemeButton";
 
 const MainHeader = () => {
   return (

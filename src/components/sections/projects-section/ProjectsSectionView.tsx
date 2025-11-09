@@ -1,6 +1,6 @@
 import styles from "@/styles/components/projects-section/projects-section-view.module.scss";
-import CardCarousel from "../organism/CardCarousel/CardCarousel";
-import ProjectCard from "../organism/ProjectCard";
+import CardCarousel from "../../ui/organism/CardCarousel/CardCarousel";
+import ProjectCard from "../../ui/organism/ProjectCard";
 import { projectList } from "@/constants/project/project";
 
 const ProjectsSectionView = () => {

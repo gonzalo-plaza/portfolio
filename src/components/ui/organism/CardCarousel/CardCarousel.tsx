@@ -3,8 +3,8 @@
 import styles from "@/styles/components/organism/card-carousel/card-carousel.module.scss";
 import React, { isValidElement, ReactElement, ReactNode } from "react";
 import CardCarouselNavButton from "./_components/CardCarouselNavButton";
-import { useCardCarousel } from "@/hooks/components/organism/CardCarousel";
-import Button from "@/components/atoms/Button";
+import { useCardCarousel } from "@/hooks/useCardCarousel";
+import Button from "@/components/ui/atoms/Button";
 
 interface CardCarouselProps {
   children: ReactNode;

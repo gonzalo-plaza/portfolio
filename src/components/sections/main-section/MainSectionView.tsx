@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import TitleAnimation from "@/components/main-section/_components/TitleAnimation";
+import TitleAnimation from "@/components/sections/main-section/_components/TitleAnimation";
 
 import styles from "@/styles/components/main-section/main-section-view.module.scss";
 

@@ -4,7 +4,7 @@ import WorkExperienceActiveAnimation from "./WorkExperieceActiveAnimation";
 import { workExperiences } from "@/constants/workExperience/workExperience";
 import WorkExperienceTechnologyList from "./WorkExperienceTechnologyList";
 import WorkExperienceDateTime from "./WorkExperienceDateTime";
-import Button from "@/components/atoms/Button";
+import Button from "@/components/ui/atoms/Button";
 
 export default function WorkExperienceList() {
   return (
