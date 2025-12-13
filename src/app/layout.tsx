@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Onest } from "next/font/google";
 
 import "@/styles/global.scss";
-import styles from "@/styles/components/main-layout/main-layout.module.scss";
+import styles from "@/styles/components/layout/main-layout/main-layout.module.scss";
 import { ThemeStoreProvider } from "@/providers/theme-store-provider";
 import UpdateThemeUtil from "@/utils/UpdateThemeUtil";
 
