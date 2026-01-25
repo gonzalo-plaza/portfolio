@@ -33,6 +33,8 @@ const WorkExperienceDateTime = ({
       hideDays: true,
     });
   };
+
+  const experienceTimeString = experienceTime() ?? null;
   return (
     <p className={styles.workExperienceDateTime}>
       <time dateTime={startTimeAttribute}>
@@ -45,10 +47,12 @@ const WorkExperienceDateTime = ({
       ) : (
         <Badge variant="primary">Actualmente</Badge>
       )}
-      <span className={styles.workExperienceDateTime__experienceTime}>
-        {" | "}
-        {experienceTime()}
-      </span>
+      {experienceTimeString && (
+        <span className={styles.workExperienceDateTime__experienceTime}>
+          {" | "}
+          {experienceTimeString}
+        </span>
+      )}
     </p>
   );
 };

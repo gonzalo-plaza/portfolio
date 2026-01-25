@@ -1,5 +1,6 @@
 import {
   ConfluenceIcon,
+  DatadogIcon,
   GitIcon,
   GrafanaIcon,
   HTMLIcon,
@@ -12,13 +13,33 @@ import {
 } from "@/components/ui/atoms/icons";
 import { WorkExperience } from "@/models/workExperience/workExperience";
 
+const leoVegasWorkExperience: WorkExperience = {
+  title: "LeoVegas",
+  subtitle: "JavaScript Engineer",
+  logoUrl: "/images/leovegas-logo.webp",
+  startTime: new Date("2026-01-12"),
+  description: "Desarrollo de la parte de frontend de la web de LeoVegas y las distintas marcas del grupo. Enfocado en la parte de Gaming",
+  technologyList: [
+    { text: "HTML", Component: HTMLIcon },
+    { text: "Sass", Component: SassIcon },
+    { text: "JavaScript", Component: JavaScriptIcon },
+    { text: "TypeScript", Component: TypeScriptIcon },
+    { text: "React", Component: ReactIcon },
+    { text: "Git", Component: GitIcon },
+    { text: "Jira", Component: JiraIcon },
+    { text: "Confluence", Component: ConfluenceIcon },
+    { text: "Datadog", Component: DatadogIcon}
+  ]
+}
+
 const iskaypetWorkExperience: WorkExperience = {
   title: "Iskaypet",
   subtitle: "Software Engineer",
   logoUrl: "/images/iskaypet-logo.webp",
   startTime: new Date("2022-05-23"),
+  endTime: new Date("2026-01-11"),
   description:
-    "Software Engineer especializado en desarrollo frontend (con algo de backend 🤭). En Iskaypet participo en proyectos de aplicaciones web y ecommerce, orientados a mejorar los KPI del negocio, optimizando la experiencia digital y contribuyendo en iniciativas clave para las marcas del grupo",
+    "Software Engineer especializado en desarrollo frontend (con algo de backend 🤭). Desarrollo en proyectos de aplicaciones web y ecommerce, orientados a mejorar los KPI del negocio, optimizando la experiencia digital y contribuyendo en iniciativas clave para las marcas del grupo",
   technologyList: [
     { text: "HTML", Component: HTMLIcon },
     { text: "Sass", Component: SassIcon },
@@ -69,6 +90,7 @@ const todoOcioWorkExperience: WorkExperience = {
 };
 
 export const workExperiences: Array<WorkExperience> = [
+  leoVegasWorkExperience,
   iskaypetWorkExperience,
   lolaDiazBebesWorkExperience,
   hermanosBravoWorkExperience,

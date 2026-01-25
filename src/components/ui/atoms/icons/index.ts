@@ -16,3 +16,4 @@ export { default as TailwindIcon } from "./TailwindIcon";
 export { default as AnchorIcon } from "./AnchorIcon";
 export { default as GithubIcon } from "./GithubIcon";
 export { default as LinkedinIcon } from "./LinkedinIcon";
+export { default as DatadogIcon} from "./DatadogIcon";
