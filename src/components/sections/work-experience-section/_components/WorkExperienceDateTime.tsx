@@ -1,3 +1,5 @@
+"use client";
+
 import { WorkExperience } from "@/models/workExperience/workExperience";
 import { getDifferenceTimeString } from "@/utils/dateUtils/dateUtils";
 
@@ -14,12 +16,12 @@ const WorkExperienceDateTime = ({
   endTime,
 }: WorkExperienceDateTimeProps) => {
   const [startTimeMonth, startTimeYear] = [
-    String(startTime.getMonth() + 1).padStart(2, '0'),
+    String(startTime.getMonth() + 1).padStart(2, "0"),
     startTime.getFullYear(),
   ];
 
   const [endTimeMonth, endTimeYear] = [
-    endTime ? String(endTime?.getMonth() + 1).padStart(2, '0') : null,
+    endTime ? String(endTime?.getMonth() + 1).padStart(2, "0") : null,
     endTime?.getFullYear(),
   ];
 
