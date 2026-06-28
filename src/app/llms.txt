@@ -22,6 +22,5 @@ React, Next.js, TypeScript, JavaScript, Sass, HTML, Git, Jira, Confluence, Grafa
 - Website: https://gonzaloplazarueda.com
 - LinkedIn: https://www.linkedin.com/in/gonzalo-p-r
 - GitHub: https://github.com/gonzalo-plaza
-- Email: plazaruedag@gmail.com
 - Location: Málaga, España
 - Language: Spanish (es_ES)
