@@ -2,6 +2,10 @@
 
 > Personal portfolio website of Gonzalo Plaza Rueda, a Software Engineer specialized in frontend development based in Málaga, Spain. Showcasing professional experience, personal projects, and technical skills.
 
+## About
+
+Software Engineer with 4+ years of experience in frontend development. Currently working at LeoVegas (Gaming Experience squad). Languages: Spanish (native), English (B1).
+
 ## Main Sections
 
 - [Main Section](/) - Hero section with introduction and animated title
@@ -9,8 +13,14 @@
 - [Projects](/#projects) - Personal projects showcase
 - [About Me](/#about-me) - Personal background and story
 
+## Tech Stack
+
+React, Next.js, TypeScript, JavaScript, Sass, HTML, Git, Jira, Confluence, Grafana, Datadog
+
 ## Contact & Links
 
 - Website: https://gonzaloplazarueda.com
+- LinkedIn: https://www.linkedin.com/in/gonzalo-p-r
+- GitHub: https://github.com/gonzalo-plaza
+- Location: Málaga, España
 - Language: Spanish (es_ES)
-

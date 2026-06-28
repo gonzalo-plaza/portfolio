@@ -1,5 +1,3 @@
-"use client";
-
 import { WorkExperience } from "@/models/workExperience/workExperience";
 import { getDifferenceTimeString } from "@/utils/dateUtils/dateUtils";
 

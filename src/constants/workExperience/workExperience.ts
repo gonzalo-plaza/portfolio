@@ -18,7 +18,7 @@ const leoVegasWorkExperience: WorkExperience = {
   subtitle: "JavaScript Engineer",
   logoUrl: "/images/leovegas-logo.webp",
   startTime: new Date("2026-01-12"),
-  description: "Desarrollo de la parte de frontend de la web de LeoVegas y las distintas marcas del grupo. Enfocado en la parte de Gaming",
+  description: "Desarrollo frontend para LeoVegas y las distintas marcas del grupo, dentro del squad Gaming Experience. Foco en mejorar la experiencia de usuario de la Gaming Experience, con atención al rendimiento y la observabilidad.",
   technologyList: [
     { text: "HTML", Component: HTMLIcon },
     { text: "Sass", Component: SassIcon },
@@ -39,7 +39,7 @@ const iskaypetWorkExperience: WorkExperience = {
   startTime: new Date("2022-05-23"),
   endTime: new Date("2026-01-11"),
   description:
-    "Software Engineer especializado en desarrollo frontend (con algo de backend 🤭). Desarrollo en proyectos de aplicaciones web y ecommerce, orientados a mejorar los KPI del negocio, optimizando la experiencia digital y contribuyendo en iniciativas clave para las marcas del grupo",
+    "Desarrollo frontend (con algo de backend 🤭) en aplicaciones web y ecommerce para las marcas del grupo. Lideré la definición de un nuevo producto digital y participé en iniciativas de omnicanalidad orientadas a mejorar la rentabilidad de las ventas. Impulsé la observabilidad del frontend y compartí ese conocimiento mediante workshops internos, además de contribuir a la definición de buenas prácticas del equipo.",
   technologyList: [
     { text: "HTML", Component: HTMLIcon },
     { text: "Sass", Component: SassIcon },
@@ -61,7 +61,7 @@ const lolaDiazBebesWorkExperience: WorkExperience = {
   startTime: new Date("2021-11-03"),
   endTime: new Date("2022-05-23"),
   description:
-    "Desarrollo del ecommerce de la marca con foco en rendimiento y usabilidad. Despliegue a producción de la primera versión y definición de pautas de buenas prácticas para el mantenimiento y evolución del proyecto.",
+    "Salida a producción del primer ecommerce de la empresa, participando desde la idea hasta el despliegue. Definición de pautas de trabajo en SEO, rendimiento y buenas prácticas para el mantenimiento y la evolución del proyecto.",
   technologyList: [   
     { text: "HTML", Component: HTMLIcon },
     { text: "Sass", Component: SassIcon },

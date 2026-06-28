@@ -1,7 +1,7 @@
 import styles from "@/styles/components/layout/footer/footer.module.scss";
 import clsx from "clsx";
 import { Mail } from "lucide-react";
-import { LinkedinIcon } from "@/components/ui/atoms/icons";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/atoms/icons";
 
 const Footer = () => {
   return (
@@ -17,9 +17,22 @@ const Footer = () => {
           <a
             className={styles.footerSocialList__link}
             href="https://www.linkedin.com/in/gonzalo-p-r"
-            aria-label="Ver el perfil de Likedin de Gonzalo Plaza Rueda"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver el perfil de LinkedIn de Gonzalo Plaza Rueda"
           >
             <LinkedinIcon width={24} height={24} />
+          </a>
+        </li>
+        <li className={styles.footerSocialList__item}>
+          <a
+            className={styles.footerSocialList__link}
+            href="https://github.com/gonzalo-plaza"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Ver el perfil de GitHub de Gonzalo Plaza Rueda"
+          >
+            <GithubIcon width={24} height={24} />
           </a>
         </li>
         <li className={styles.footerSocialList__item}>
