@@ -1,3 +1,22 @@
+/**
+ * Start dates for career milestones — used to calculate dynamic experience years.
+ * Update these if the starting role ever changes.
+ */
+export const DEV_CAREER_START = new Date("2021-11-03"); // Lola Díaz Bebés — first Developer role
+export const TECH_CAREER_START = new Date("2016-08-01"); // Todo Ocio — first tech role
+
+/**
+ * Returns the number of full years elapsed between `startDate` and `end` (defaults to today).
+ * Uses the same timestamp arithmetic as `getDifferenceTimeString` to stay consistent.
+ */
+export const getYearsOfExperience = (
+  startDate: Date,
+  end: Date = new Date()
+): number => {
+  const diff = new Date(end.getTime() - startDate.getTime());
+  return Math.abs(diff.getFullYear()) - 1970;
+};
+
 interface getDifferenceTimeStringOptions {
   hideDays?: boolean;
   hideMonths?: boolean;

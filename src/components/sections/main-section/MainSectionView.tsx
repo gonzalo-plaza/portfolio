@@ -1,6 +1,8 @@
 import Image from "next/image";
 
 import TitleAnimation from "@/components/sections/main-section/_components/TitleAnimation";
+import ExperienceYears from "@/components/ui/atoms/ExperienceYears";
+import { DEV_CAREER_START } from "@/utils/dateUtils/dateUtils";
 
 import styles from "@/styles/components/sections/main-section/main-section-view.module.scss";
 
@@ -36,10 +38,11 @@ export default function MainSectionView() {
           </span>
         </h1>
         <p className={styles.mainSectionDescription__text}>
-          Soy Software Engineer con más de 3 años de experiencia especializado
-          en desarrollo frontend en Málaga, España. He trabajado en proyectos de
-          Ecommerce y aplicaciones web, enfocándome en crear interfaces rápidas,
-          accesibles y escalables.
+          Soy Software Engineer con{" "}
+          <ExperienceYears startDate={DEV_CAREER_START} /> de experiencia
+          especializado en desarrollo frontend en Málaga, España. He trabajado
+          en proyectos de Ecommerce y aplicaciones web, enfocándome en crear
+          interfaces rápidas, accesibles y escalables.
         </p>
       </div>
     </section>
