@@ -1,6 +1,6 @@
 # Portfolio - Gonzalo Plaza Rueda
 
-> Personal portfolio website of Gonzalo Plaza Rueda, a Software Engineer specialized in frontend development based in Málaga, Spain. Showcasing professional experience, personal projects, and technical skills.
+> Personal portfolio website of Gonzalo Plaza Rueda, a Software Engineer specialized in frontend development based in Málaga, Spain. Showcasing professional experience, personal projects, and technical skills. Available in Spanish and English.
 
 ## Main Sections
 
@@ -9,8 +9,11 @@
 - [Projects](/#projects) - Personal projects showcase
 - [About Me](/#about-me) - Personal background and story
 
+## Languages
+
+- Spanish (es_ES): https://gonzaloplazarueda.com
+- English (en_US): https://gonzaloplazarueda.com/en
+
 ## Contact & Links
 
 - Website: https://gonzaloplazarueda.com
-- Language: Spanish (es_ES)
-

@@ -7,24 +7,39 @@ import { Project, ProjectTechonology } from "@/models/project/project";
 import Button from "../atoms/Button";
 import Link from "next/link";
 import { AnchorIcon, GithubIcon } from "@/components/ui/atoms/icons";
+import type { ProjectItemDictionary } from "@/i18n/types";
+
+interface ProjectCardLabels {
+  visit: string;
+  repository: string;
+  visitAria: string;
+  repositoryAria: string;
+}
 
 interface ProjectCardProps {
   project: Project;
+  content: ProjectItemDictionary;
+  labels: ProjectCardLabels;
   extraClass?: string;
 }
 
-const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
+const ProjectCard = ({
+  project,
+  content,
+  labels,
+  extraClass,
+}: ProjectCardProps) => {
   return (
     <article className={clsx(styles.projectCard, extraClass)}>
       <Image
         src={project.imageUrl}
-        alt={project.imageAlt}
+        alt={content.imageAlt}
         width={330}
         height={292}
         className={styles.projectCard__image}
       />
       <header className={styles.projectCard__header}>
-        <h3 className={styles.projectCard__title}>{project.title}</h3>
+        <h3 className={styles.projectCard__title}>{content.title}</h3>
       </header>
       <ul className={styles.projectCard__technologyList}>
         {project.projectTechnologyBadgeList.map(
@@ -54,7 +69,7 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
           }
         )}
       </ul>
-      <p className={styles.projectCard__content}>{project.description}</p>
+      <p className={styles.projectCard__content}>{content.description}</p>
       <footer className={styles.projectCardFooter}>
         {project.previewLink && (
           <Button
@@ -64,15 +79,15 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
             buttonDisabledWrapperClassName={
               styles.projectCardFooter__buttonDisabledWrapper
             }
-            aria-label={`Visitar ${project.title}`}
+            aria-label={labels.visitAria.replace("{project}", content.title)}
           >
             <Link
               href={project.previewLink.url}
-              title={project.previewLink.title}
+              title={content.previewTitle}
               rel="noopener noreferrer"
               target="_blank"
             >
-              <AnchorIcon width={16} height={16} /> Visitar
+              <AnchorIcon width={16} height={16} /> {labels.visit}
             </Link>
           </Button>
         )}
@@ -84,15 +99,18 @@ const ProjectCard = ({ project, extraClass }: ProjectCardProps) => {
             buttonDisabledWrapperClassName={
               styles.projectCardFooter__buttonDisabledWrapper
             }
-            aria-label={`Ver repositorio de ${project.title}`}
+            aria-label={labels.repositoryAria.replace(
+              "{project}",
+              content.title
+            )}
           >
             <Link
               href={project.gitHubLink.url}
-              title={project.gitHubLink.title}
+              title={content.gitHubTitle}
               rel="noopener noreferrer"
               target="_blank"
             >
-              <GithubIcon width={20} height={20} /> Repositorio
+              <GithubIcon width={20} height={20} /> {labels.repository}
             </Link>
           </Button>
         )}

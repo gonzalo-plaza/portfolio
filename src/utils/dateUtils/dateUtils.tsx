@@ -4,6 +4,16 @@ interface getDifferenceTimeStringOptions {
   hideYears?: boolean;
 }
 
+export interface DurationLabels {
+  day: string;
+  days: string;
+  month: string;
+  months: string;
+  year: string;
+  years: string;
+  and: string;
+}
+
 /**
  * The function `getDifferenceTimeString` calculates the time difference between two dates and returns
  * a human-readable string representation of the difference.
@@ -24,6 +34,7 @@ interface getDifferenceTimeStringOptions {
 export const getDifferenceTimeString = (
   latestDate: Date,
   earlierDate: Date,
+  labels: DurationLabels,
   options: getDifferenceTimeStringOptions = {
     hideDays: false,
     hideMonths: false,
@@ -52,25 +63,31 @@ export const getDifferenceTimeString = (
 
   if (hasDays && !options.hideDays) {
     const daysResult =
-      daysPassed > 1 ? `${daysPassed} días` : `${daysPassed} día`;
+      daysPassed > 1
+        ? `${daysPassed} ${labels.days}`
+        : `${daysPassed} ${labels.day}`;
     experienceTimeArray.push(daysResult);
   }
   if (hasMonths && !options.hideMonths) {
     const monthsResult =
-      monthsPassed > 1 ? `${monthsPassed} meses` : `${monthsPassed} mes`;
+      monthsPassed > 1
+        ? `${monthsPassed} ${labels.months}`
+        : `${monthsPassed} ${labels.month}`;
     experienceTimeArray.push(monthsResult);
   }
   if (hasYears && !options.hideYears) {
     const yearsResult =
-      yearsPassed > 1 ? `${yearsPassed} años` : `${yearsPassed} año`;
+      yearsPassed > 1
+        ? `${yearsPassed} ${labels.years}`
+        : `${yearsPassed} ${labels.year}`;
     experienceTimeArray.push(yearsResult);
   }
 
   if (experienceTimeArray.length === 3) {
-    return `${experienceTimeArray[2]}, ${experienceTimeArray[1]} y ${experienceTimeArray[0]}`;
+    return `${experienceTimeArray[2]}, ${experienceTimeArray[1]} ${labels.and} ${experienceTimeArray[0]}`;
   }
   if (experienceTimeArray.length === 2) {
-    return `${experienceTimeArray[1]} y ${experienceTimeArray[0]}`;
+    return `${experienceTimeArray[1]} ${labels.and} ${experienceTimeArray[0]}`;
   }
   if (experienceTimeArray.length === 1) {
     return experienceTimeArray[0];
