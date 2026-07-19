@@ -15,7 +15,6 @@
     "aboutMe": "About me",
     "aboutMeAria": "Go to the 'About me' section",
     "switchLanguageAria": "View the site in Spanish",
-    "switchLanguageLabel": "ES",
     "menuOpen": "Open navigation menu",
     "menuClose": "Close navigation menu",
     "navLabel": "Main navigation"
@@ -24,7 +23,17 @@
     "imageAlt": "Portrait of Gonzalo Plaza Rueda, Software Engineer in Málaga, Spain",
     "greeting": "👋 Hey, I'm",
     "role": "| Software Engineer",
-    "description": "I'm a Software Engineer with over {devYears} years of experience specialized in frontend development in Málaga, Spain. I've worked on Ecommerce projects and web applications, focused on building fast, accessible and scalable interfaces."
+    "description": "I'm a Software Engineer with over {devYears} years of experience specialized in frontend development in Málaga, Spain. I've worked on Ecommerce projects and web applications, focused on building fast, accessible and scalable interfaces.",
+    "social": {
+      "linkedin": {
+        "label": "LinkedIn",
+        "aria": "View Gonzalo Plaza Rueda's LinkedIn profile"
+      },
+      "github": {
+        "label": "GitHub",
+        "aria": "View Gonzalo Plaza Rueda's GitHub profile"
+      }
+    }
   },
   "workExperience": {
     "title": "🚀Work experience",
@@ -130,7 +139,6 @@
     "copyright": "© {year} Gonzalo Plaza Rueda.",
     "rights": "Almost all rights reserved",
     "linkedinAria": "View Gonzalo Plaza Rueda's LinkedIn profile",
-    "githubAria": "View Gonzalo Plaza Rueda's GitHub profile",
-    "mailAria": "Send an email to Gonzalo Plaza Rueda"
+    "githubAria": "View Gonzalo Plaza Rueda's GitHub profile"
   }
 }

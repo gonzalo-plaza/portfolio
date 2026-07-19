@@ -15,7 +15,6 @@
     "aboutMe": "Sobre mí",
     "aboutMeAria": "Ir a la sección 'Sobre mí'",
     "switchLanguageAria": "Ver el sitio en inglés",
-    "switchLanguageLabel": "EN",
     "menuOpen": "Abrir menú de navegación",
     "menuClose": "Cerrar menú de navegación",
     "navLabel": "Navegación principal"
@@ -24,7 +23,17 @@
     "imageAlt": "Retrato de Gonzalo Plaza Rueda, Software Engineer en Málaga, España",
     "greeting": "👋 Hey, soy",
     "role": "| Software Engineer",
-    "description": "Soy Software Engineer con más de {devYears} años de experiencia especializado en desarrollo frontend en Málaga, España. He trabajado en proyectos de Ecommerce y aplicaciones web, enfocándome en crear interfaces rápidas, accesibles y escalables."
+    "description": "Soy Software Engineer con más de {devYears} años de experiencia especializado en desarrollo frontend en Málaga, España. He trabajado en proyectos de Ecommerce y aplicaciones web, enfocándome en crear interfaces rápidas, accesibles y escalables.",
+    "social": {
+      "linkedin": {
+        "label": "LinkedIn",
+        "aria": "Ver el perfil de LinkedIn de Gonzalo Plaza Rueda"
+      },
+      "github": {
+        "label": "GitHub",
+        "aria": "Ver el perfil de GitHub de Gonzalo Plaza Rueda"
+      }
+    }
   },
   "workExperience": {
     "title": "🚀Experiencia laboral",
@@ -130,7 +139,6 @@
     "copyright": "© {year} Gonzalo Plaza Rueda.",
     "rights": "Casi todos los derechos reservados",
     "linkedinAria": "Ver el perfil de LinkedIn de Gonzalo Plaza Rueda",
-    "githubAria": "Ver el perfil de GitHub de Gonzalo Plaza Rueda",
-    "mailAria": "Enviar un mail a Gonzalo Plaza Rueda"
+    "githubAria": "Ver el perfil de GitHub de Gonzalo Plaza Rueda"
   }
 }

@@ -3,6 +3,8 @@
  * contract, so a missing key in one language becomes a compile-time error.
  */
 
+import type { SocialId } from "@/constants/social/social";
+
 export interface AboutMeSegment {
   text: string;
   highlight?: boolean;
@@ -38,7 +40,6 @@ export interface Dictionary {
     aboutMe: string;
     aboutMeAria: string;
     switchLanguageAria: string;
-    switchLanguageLabel: string;
     menuOpen: string;
     menuClose: string;
     navLabel: string;
@@ -48,6 +49,7 @@ export interface Dictionary {
     greeting: string;
     role: string;
     description: string;
+    social: Record<SocialId, { label: string; aria: string }>;
   };
   workExperience: {
     title: string;
@@ -89,6 +91,5 @@ export interface Dictionary {
     rights: string;
     linkedinAria: string;
     githubAria: string;
-    mailAria: string;
   };
 }

@@ -111,12 +111,15 @@
     border-radius: 8px;
 
     color: var(--text-primary);
-    font-weight: 600;
-    font-size: 0.8125rem;
-    letter-spacing: 0.02em;
 
-    @include breakpoint-up("xs") {
-      font-size: 0.875rem;
+    svg {
+      width: 1.125rem;
+      height: 1.125rem;
+
+      @include breakpoint-up("xs") {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
     }
 
     &::after {

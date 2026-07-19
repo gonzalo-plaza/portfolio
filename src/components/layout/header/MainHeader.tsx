@@ -1,6 +1,8 @@
 import styles from "@/styles/components/layout/header/main-header.module.scss";
 
 import Link from "next/link";
+import { Languages } from "lucide-react";
+
 import ThemeButton from "@/components/ui/molecules/ThemeButton";
 import HeaderNav from "./HeaderNav";
 import type { Dictionary } from "@/i18n/types";
@@ -26,7 +28,7 @@ const MainHeader = ({ dict, locale }: MainHeaderProps) => {
           hrefLang={targetLocale}
           aria-label={dict.switchLanguageAria}
         >
-          {dict.switchLanguageLabel}
+          <Languages aria-hidden />
         </Link>
         <ThemeButton className={styles.mainNav__button} />
       </nav>
