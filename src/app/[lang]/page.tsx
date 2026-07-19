@@ -7,6 +7,9 @@ import Footer from "@/components/layout/footer/Footer";
 import { getDictionary } from "@/i18n/dictionaries";
 import { i18n, isLocale, type Locale } from "@/i18n/config";
 
+// Daily ISR so the dynamic "years of experience" figures stay current.
+export const revalidate = 86400;
+
 interface HomeProps {
   params: Promise<{ lang: string }>;
 }

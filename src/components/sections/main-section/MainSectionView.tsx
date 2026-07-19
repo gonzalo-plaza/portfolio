@@ -2,6 +2,11 @@ import Image from "next/image";
 
 import TitleAnimation from "@/components/sections/main-section/_components/TitleAnimation";
 import type { Dictionary } from "@/i18n/types";
+import { interpolate } from "@/i18n/interpolate";
+import {
+  DEV_CAREER_START,
+  getYearsOfExperience,
+} from "@/utils/dateUtils/dateUtils";
 
 import styles from "@/styles/components/sections/main-section/main-section-view.module.scss";
 
@@ -10,6 +15,10 @@ interface MainSectionViewProps {
 }
 
 export default function MainSectionView({ dict }: MainSectionViewProps) {
+  const description = interpolate(dict.description, {
+    devYears: getYearsOfExperience(DEV_CAREER_START),
+  });
+
   return (
     <section className={`${styles.mainSection} container`}>
       <div>
@@ -40,7 +49,7 @@ export default function MainSectionView({ dict }: MainSectionViewProps) {
             {dict.role}
           </span>
         </h1>
-        <p className={styles.mainSectionDescription__text}>{dict.description}</p>
+        <p className={styles.mainSectionDescription__text}>{description}</p>
       </div>
     </section>
   );

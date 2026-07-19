@@ -1,7 +1,7 @@
 import styles from "@/styles/components/layout/footer/footer.module.scss";
 import clsx from "clsx";
 import { Mail } from "lucide-react";
-import { LinkedinIcon } from "@/components/ui/atoms/icons";
+import { GithubIcon, LinkedinIcon } from "@/components/ui/atoms/icons";
 import type { Dictionary } from "@/i18n/types";
 
 interface FooterProps {
@@ -25,9 +25,22 @@ const Footer = ({ dict }: FooterProps) => {
           <a
             className={styles.footerSocialList__link}
             href="https://www.linkedin.com/in/gonzalo-p-r"
+            target="_blank"
+            rel="noopener noreferrer"
             aria-label={dict.linkedinAria}
           >
             <LinkedinIcon width={24} height={24} />
+          </a>
+        </li>
+        <li className={styles.footerSocialList__item}>
+          <a
+            className={styles.footerSocialList__link}
+            href="https://github.com/gonzalo-plaza"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={dict.githubAria}
+          >
+            <GithubIcon width={24} height={24} />
           </a>
         </li>
         <li className={styles.footerSocialList__item}>

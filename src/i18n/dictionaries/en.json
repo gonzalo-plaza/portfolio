@@ -1,10 +1,10 @@
 {
   "metadata": {
     "title": "Gonzalo Plaza Rueda | Software Engineer",
-    "description": "Portfolio of Gonzalo Plaza Rueda, a Software Engineer specialized in frontend development based in Málaga, Spain. Professional experience, personal projects and technical skills.",
+    "description": "Software Engineer specialized in frontend development (React, Next.js, TypeScript) in Málaga, Spain. I build fast, accessible and scalable web and ecommerce applications.",
     "ogTitle": "Gonzalo Plaza Rueda - Software Engineer",
-    "ogDescription": "Portfolio of Gonzalo Plaza Rueda, a Software Engineer specialized in frontend development based in Málaga, Spain.",
-    "ogImageAlt": "Gonzalo Plaza Rueda - Frontend Developer",
+    "ogDescription": "Software Engineer specialized in frontend development (React, Next.js, TypeScript) in Málaga, Spain. I build fast, accessible and scalable web and ecommerce applications.",
+    "ogImageAlt": "Gonzalo Plaza Rueda - Software Engineer",
     "ogLocale": "en_US"
   },
   "header": {
@@ -24,7 +24,7 @@
     "imageAlt": "Portrait of Gonzalo Plaza Rueda, Software Engineer in Málaga, Spain",
     "greeting": "👋 Hey, I'm",
     "role": "| Software Engineer",
-    "description": "I'm a Software Engineer with over 3 years of experience specialized in frontend development in Málaga, Spain. I've worked on Ecommerce projects and web applications, focused on building fast, accessible and scalable interfaces."
+    "description": "I'm a Software Engineer with over {devYears} years of experience specialized in frontend development in Málaga, Spain. I've worked on Ecommerce projects and web applications, focused on building fast, accessible and scalable interfaces."
   },
   "workExperience": {
     "title": "🚀Work experience",
@@ -47,15 +47,15 @@
     "items": {
       "leovegas": {
         "subtitle": "JavaScript Engineer",
-        "description": "Frontend development of the LeoVegas website and the different brands within the group. Focused on the Gaming area."
+        "description": "Frontend development for LeoVegas and the group's different brands, within the Gaming Experience squad. Focused on improving the user experience of the Gaming Experience, with attention to performance and observability."
       },
       "iskaypet": {
         "subtitle": "Software Engineer",
-        "description": "Software Engineer specialized in frontend development (with a bit of backend 🤭). Working on web applications and ecommerce projects aimed at improving business KPIs, optimizing the digital experience and contributing to key initiatives for the group's brands."
+        "description": "Frontend development (with a bit of backend 🤭) on web and ecommerce applications for the group's brands. I led the definition of a new digital product and took part in omnichannel initiatives aimed at improving sales profitability. I drove frontend observability and shared that knowledge through internal workshops, as well as contributing to the team's best-practice guidelines."
       },
       "lolaDiazBebes": {
         "subtitle": "Web Developer",
-        "description": "Development of the brand's ecommerce with a focus on performance and usability. Production release of the first version and definition of best-practice guidelines for the maintenance and evolution of the project."
+        "description": "Production launch of the company's first ecommerce, taking part from the initial idea through to deployment. Definition of guidelines for SEO, performance and best practices for the maintenance and evolution of the project."
       },
       "hermanosBravo": {
         "subtitle": "IT Technician and Sales Associate",
@@ -114,13 +114,14 @@
         { "text": "I'm " },
         { "text": "Gonzalo Plaza", "highlight": true },
         { "text": ", a Software Engineer passionate about building web applications and exploring new technologies. " },
-        { "text": "I focus on delivering value through my projects, with a curious mindset and constant learning.", "highlight": true }
+        { "text": "I focus on delivering value through my projects, with a curious mindset and constant learning.", "highlight": true },
+        { "text": " I speak native Spanish and English at a B1 level." }
       ],
       [
         { "text": "Although " },
-        { "text": "my professional career as a developer started 3 years ago", "highlight": true },
+        { "text": "my professional career as a developer started over {devYears} years ago", "highlight": true },
         { "text": ", my bond with technology goes back much further. " },
-        { "text": "Over 9 years ago I started repairing devices", "highlight": true },
+        { "text": "Over {techYears} years ago I started repairing devices", "highlight": true },
         { "text": " at both the software and hardware level, as well as advising customers on choosing their devices." }
       ]
     ]
@@ -129,6 +130,7 @@
     "copyright": "© {year} Gonzalo Plaza Rueda.",
     "rights": "Almost all rights reserved",
     "linkedinAria": "View Gonzalo Plaza Rueda's LinkedIn profile",
+    "githubAria": "View Gonzalo Plaza Rueda's GitHub profile",
     "mailAria": "Send an email to Gonzalo Plaza Rueda"
   }
 }

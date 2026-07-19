@@ -88,6 +88,7 @@ export interface Dictionary {
     copyright: string;
     rights: string;
     linkedinAria: string;
+    githubAria: string;
     mailAria: string;
   };
 }

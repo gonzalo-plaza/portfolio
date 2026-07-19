@@ -30,6 +30,39 @@ interface LangLayoutProps {
 const resolveLocale = (lang: string): Locale =>
   isLocale(lang) ? lang : i18n.defaultLocale;
 
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Gonzalo Plaza Rueda",
+  url: SITE_URL,
+  image: `${SITE_URL}/images/gonzalo_plaza_rueda_software_engineer.webp`,
+  jobTitle: "Software Engineer",
+  worksFor: {
+    "@type": "Organization",
+    name: "LeoVegas",
+  },
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Málaga",
+    addressCountry: "ES",
+  },
+  knowsLanguage: ["es", "en"],
+  knowsAbout: [
+    "Frontend Development",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "JavaScript",
+    "Sass",
+    "Web Performance",
+    "Ecommerce",
+  ],
+  sameAs: [
+    "https://www.linkedin.com/in/gonzalo-p-r",
+    "https://github.com/gonzalo-plaza",
+  ],
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -41,8 +74,25 @@ export async function generateMetadata({
 
   return {
     metadataBase: new URL(SITE_URL),
-    title: dict.metadata.title,
+    title: {
+      default: dict.metadata.title,
+      template: "%s | Gonzalo Plaza Rueda",
+    },
     description: dict.metadata.description,
+    keywords: [
+      "Software Engineer",
+      "Frontend Developer",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Sass",
+      "Málaga",
+      "ecommerce",
+      "Gonzalo Plaza Rueda",
+    ],
+    authors: [{ name: "Gonzalo Plaza Rueda", url: SITE_URL }],
+    creator: "Gonzalo Plaza Rueda",
     alternates: {
       canonical: getLocalePath(locale),
       languages: {
@@ -64,13 +114,13 @@ export async function generateMetadata({
       siteName: "Gonzalo Plaza Rueda",
       images: [
         {
-          url: "https://www.gonzaloplazarueda.com/og-image.jpg",
+          url: "/og-image.jpg",
           width: 1200,
           height: 630,
           alt: dict.metadata.ogImageAlt,
         },
         {
-          url: "https://www.gonzaloplazarueda.com/og-image-whatsapp.jpg",
+          url: "/og-image-whatsapp.jpg",
           width: 1200,
           height: 1200,
           alt: dict.metadata.ogImageAlt,
@@ -78,6 +128,12 @@ export async function generateMetadata({
       ],
       locale: dict.metadata.ogLocale,
       type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: dict.metadata.ogTitle,
+      description: dict.metadata.ogDescription,
+      images: ["/og-image.jpg"],
     },
   };
 }
@@ -88,6 +144,12 @@ export default async function RootLayout({ children, params }: LangLayoutProps) 
 
   return (
     <html lang={locale} className="custom-scrollbar">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+      </head>
       <ThemeStoreProvider>
         <UpdateThemeUtil>
           <body className={`${onest.className} ${styles["main-layout"]}`}>
