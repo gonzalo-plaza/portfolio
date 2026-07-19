@@ -8,11 +8,17 @@ import Button from "@/components/ui/atoms/Button";
 
 interface CardCarouselProps {
   children: ReactNode;
-  carouselName: string;
+  skipLabel: string;
+  skipEndLabel: string;
   carouselId: string;
 }
 
-const CardCarousel = ({ children, carouselName, carouselId }: CardCarouselProps) => {
+const CardCarousel = ({
+  children,
+  skipLabel,
+  skipEndLabel,
+  carouselId,
+}: CardCarouselProps) => {
   const {
     containerRef,
     firstElementRef,
@@ -26,7 +32,7 @@ const CardCarousel = ({ children, carouselName, carouselId }: CardCarouselProps)
   return (
     <div className={styles.cardCarouselWrapper}>
       <Button asChild screenReader>
-        <a href={`#skip-${carouselId}-section`}>Saltar {carouselName || "sección"}</a>
+        <a href={`#skip-${carouselId}-section`}>{skipLabel}</a>
       </Button>
       <CardCarouselNavButton
         position="left"
@@ -72,7 +78,7 @@ const CardCarousel = ({ children, carouselName, carouselId }: CardCarouselProps)
         onClick={handleContainerRightScroll}
         showArrow={carouselNavButtonRightActive}
       />
-      <span id={`skip-${carouselId}-section`} className="visibly-hidden" tabIndex={-1}>Fin de {carouselName || 'sección'}</span>
+      <span id={`skip-${carouselId}-section`} className="visibly-hidden" tabIndex={-1}>{skipEndLabel}</span>
     </div>
   );
 };

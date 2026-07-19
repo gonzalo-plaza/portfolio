@@ -1,19 +1,20 @@
+/**
+ * Locale-independent structure of a project. Translatable text (title,
+ * description, image alt and link titles) is resolved from the dictionary
+ * via `key`.
+ */
 export interface Project {
+  key: string;
   id: number;
   imageUrl: string;
-  imageAlt: string;
-  title: string;
-  description: string;
   projectTechnologyBadgeList: Array<ProjectTechonology>;
   previewLink?: {
     disabled?: boolean;
     url: string;
-    title: string;
   };
   gitHubLink?: {
     disabled?: boolean;
     url: string;
-    title: string;
   };
 }
 

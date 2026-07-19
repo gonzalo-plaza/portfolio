@@ -1,5 +1,8 @@
 import { WorkExperience } from "@/models/workExperience/workExperience";
-import { getDifferenceTimeString } from "@/utils/dateUtils/dateUtils";
+import {
+  getDifferenceTimeString,
+  type DurationLabels,
+} from "@/utils/dateUtils/dateUtils";
 
 import styles from "@/styles/components/sections/work-experience-section/_components/work-experience-date-time.module.scss";
 import Badge from "@/components/ui/atoms/Badge";
@@ -7,11 +10,15 @@ import Badge from "@/components/ui/atoms/Badge";
 interface WorkExperienceDateTimeProps {
   startTime: WorkExperience["startTime"];
   endTime: WorkExperience["endTime"];
+  currentLabel: string;
+  durationLabels: DurationLabels;
 }
 
 const WorkExperienceDateTime = ({
   startTime,
   endTime,
+  currentLabel,
+  durationLabels,
 }: WorkExperienceDateTimeProps) => {
   const [startTimeMonth, startTimeYear] = [
     String(startTime.getMonth() + 1).padStart(2, "0"),
@@ -29,7 +36,7 @@ const WorkExperienceDateTime = ({
   const endTimeAttribute = endTime ? `${endTimeYear}-${endTimeMonth}` : null;
   const experienceTime = () => {
     const endTimeToCheck = endTime ?? new Date();
-    return getDifferenceTimeString(endTimeToCheck, startTime, {
+    return getDifferenceTimeString(endTimeToCheck, startTime, durationLabels, {
       hideDays: true,
     });
   };
@@ -45,7 +52,7 @@ const WorkExperienceDateTime = ({
       {endTimeString ? (
         <time dateTime={endTimeAttribute ?? undefined}>{endTimeString}</time>
       ) : (
-        <Badge variant="primary">Actualmente</Badge>
+        <Badge variant="primary">{currentLabel}</Badge>
       )}
       {experienceTimeString && (
         <span className={styles.workExperienceDateTime__experienceTime}>

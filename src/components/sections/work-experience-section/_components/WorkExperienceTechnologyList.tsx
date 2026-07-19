@@ -4,13 +4,15 @@ import styles from "@/styles/components/sections/work-experience-section/_compon
 
 interface WorkExperienceTechnologyListProps {
   technologyList: WorkExperience["technologyList"];
+  ariaLabel: string;
 }
 
 const WorkExperienceTechnologyList = ({
   technologyList,
+  ariaLabel,
 }: WorkExperienceTechnologyListProps) => {
   return (
-    <ul className={styles.workExperienceTechnologyList} aria-label="Tecnologías utilizadas">
+    <ul className={styles.workExperienceTechnologyList} aria-label={ariaLabel}>
       {technologyList?.map((Technology, index) => {
         return (
           <li key={index}>

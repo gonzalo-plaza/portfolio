@@ -1,0 +1,136 @@
+{
+  "metadata": {
+    "title": "Gonzalo Plaza Rueda | Software Engineer",
+    "description": "Software Engineer especializado en desarrollo frontend (React, Next.js, TypeScript) en Málaga, España. Creo aplicaciones web y ecommerce rápidas, accesibles y escalables.",
+    "ogTitle": "Gonzalo Plaza Rueda - Software Engineer",
+    "ogDescription": "Software Engineer especializado en desarrollo frontend (React, Next.js, TypeScript) en Málaga, España. Creo aplicaciones web y ecommerce rápidas, accesibles y escalables.",
+    "ogImageAlt": "Gonzalo Plaza Rueda - Software Engineer",
+    "ogLocale": "es_ES"
+  },
+  "header": {
+    "experience": "Experiencia",
+    "experienceAria": "Ir a la sección 'Experiencia'",
+    "projects": "Proyectos",
+    "projectsAria": "Ir a la sección 'Proyectos'",
+    "aboutMe": "Sobre mí",
+    "aboutMeAria": "Ir a la sección 'Sobre mí'",
+    "switchLanguageAria": "Ver el sitio en inglés",
+    "switchLanguageLabel": "EN",
+    "menuOpen": "Abrir menú de navegación",
+    "menuClose": "Cerrar menú de navegación",
+    "navLabel": "Navegación principal"
+  },
+  "main": {
+    "imageAlt": "Retrato de Gonzalo Plaza Rueda, Software Engineer en Málaga, España",
+    "greeting": "👋 Hey, soy",
+    "role": "| Software Engineer",
+    "description": "Soy Software Engineer con más de {devYears} años de experiencia especializado en desarrollo frontend en Málaga, España. He trabajado en proyectos de Ecommerce y aplicaciones web, enfocándome en crear interfaces rápidas, accesibles y escalables."
+  },
+  "workExperience": {
+    "title": "🚀Experiencia laboral",
+    "sectionAria": "Sección experiencia laboral",
+    "listAria": "Experiencia laboral",
+    "technologiesAria": "Tecnologías utilizadas",
+    "skip": "Saltar experiencia laboral",
+    "skipEnd": "Fin de la experiencia laboral",
+    "logoAlt": "Logo de {company}",
+    "current": "Actualmente",
+    "duration": {
+      "day": "día",
+      "days": "días",
+      "month": "mes",
+      "months": "meses",
+      "year": "año",
+      "years": "años",
+      "and": "y"
+    },
+    "items": {
+      "leovegas": {
+        "subtitle": "JavaScript Engineer",
+        "description": "Desarrollo frontend para LeoVegas y las distintas marcas del grupo, dentro del squad Gaming Experience. Foco en mejorar la experiencia de usuario de la Gaming Experience, con atención al rendimiento y la observabilidad."
+      },
+      "iskaypet": {
+        "subtitle": "Software Engineer",
+        "description": "Desarrollo frontend (con algo de backend 🤭) en aplicaciones web y ecommerce para las marcas del grupo. Lideré la definición de un nuevo producto digital y participé en iniciativas de omnicanalidad orientadas a mejorar la rentabilidad de las ventas. Impulsé la observabilidad del frontend y compartí ese conocimiento mediante workshops internos, además de contribuir a la definición de buenas prácticas del equipo."
+      },
+      "lolaDiazBebes": {
+        "subtitle": "Web Developer",
+        "description": "Salida a producción del primer ecommerce de la empresa, participando desde la idea hasta el despliegue. Definición de pautas de trabajo en SEO, rendimiento y buenas prácticas para el mantenimiento y la evolución del proyecto."
+      },
+      "hermanosBravo": {
+        "subtitle": "Técnico informático y empleado de ventas",
+        "description": "Reparaciones y soporte técnico de dispositivos electrónicos y ordenadores. Aumento de ventas mediante asesoramiento especializado y optimización de los procesos de atención al cliente para ofrecer un servicio profesional y personalizado."
+      },
+      "todoOcio": {
+        "subtitle": "Técnico informático y empleado de ventas",
+        "description": "Gestión de reparaciones y soporte técnico de ordenadores y dispositivos móviles. Mejora de la satisfacción de clientes y optimización de los procesos de atención y venta para un servicio eficiente y profesional"
+      }
+    }
+  },
+  "projects": {
+    "title": "💻 Proyectos Personales",
+    "skip": "Saltar proyectos personales",
+    "skipEnd": "Fin de proyectos personales",
+    "visit": "Visitar",
+    "repository": "Repositorio",
+    "visitAria": "Visitar {project}",
+    "repositoryAria": "Ver repositorio de {project}",
+    "items": {
+      "garajePlus": {
+        "title": "GarajePlus",
+        "description": "Proyecto orientado a facilitar el registro de mantenimiento de vehículos. El objetivo es poder tener registrado todo el historial de mantenimientos, reparaciones y revisiones de cualquier vehiculo.",
+        "imageAlt": "Interfaz de GarajePlus, registro de mantenimiento de vehículos",
+        "previewTitle": "Ir a la web de GarajePlus",
+        "gitHubTitle": ""
+      },
+      "colorQuery": {
+        "title": "ColorQuery",
+        "description": "Herramienta web para identificar el nombre de un color a partir de su valor hexadecimal. Ofrece también el color más cercano si no existe un nombre definido, facilitando la selección y referencia de colores en diseño web y gráfico.",
+        "imageAlt": "Interfaz de ColorQuery mostrando selección y nombres de colores a partir de valores hexadecimales",
+        "previewTitle": "Ir a la herramienta ColorQuery",
+        "gitHubTitle": "Ir al repositorio de ColorQuery"
+      },
+      "medacDent": {
+        "title": "MedacDent",
+        "description": "Aplicación web para la gestión de citas en una clínica dental. Proyecto de práctica enfocado en el desarrollo con JavaScript puro y SASS, optimizando la experiencia de usuario y la organización de datos.",
+        "imageAlt": "Interfaz de MedacDent mostrando un formulario de gestión de citas en clínica dental",
+        "previewTitle": "Ir a la herramienta MedacDent",
+        "gitHubTitle": "Ir al repositorio de Dental Clinic Practise"
+      },
+      "workInProgress": {
+        "title": "Work in Progress",
+        "description": "Work In Progress 🚀. Más proyectos e ideas están por venir, con el objetivo de seguir aprendiendo nuevas tecnologías, afianzando conocimientos y creando soluciones que realmente ayuden a las personas.",
+        "imageAlt": "Ilustración de trabajo en progreso",
+        "previewTitle": "Destino por definir",
+        "gitHubTitle": "Repositorio por definir"
+      }
+    }
+  },
+  "aboutMe": {
+    "title": "🧑🏽‍💻 Sobre mí",
+    "imageAlt": "Imagen de Gonzalo Plaza Rueda, Software Engineer en Málaga, España",
+    "paragraphs": [
+      [
+        { "text": "Soy " },
+        { "text": "Gonzalo Plaza", "highlight": true },
+        { "text": ", Software Engineer con pasión por crear aplicaciones web y explorar nuevas tecnologías. " },
+        { "text": "Me enfoco en aportar valor a través de mis proyectos, con mentalidad curiosa y aprendizaje constante.", "highlight": true },
+        { "text": " Hablo español de forma nativa e inglés con nivel B1." }
+      ],
+      [
+        { "text": "Aunque " },
+        { "text": "mi carrera profesional como desarrollador comenzó hace más de {devYears} años", "highlight": true },
+        { "text": ", mi vínculo con la tecnología viene de mucho antes. " },
+        { "text": "Hace más de {techYears} años empecé reparando equipos", "highlight": true },
+        { "text": " tanto a nivel software como hardware, además de asesorar a clientes en la elección de sus dispositivos." }
+      ]
+    ]
+  },
+  "footer": {
+    "copyright": "© {year} Gonzalo Plaza Rueda.",
+    "rights": "Casi todos los derechos reservados",
+    "linkedinAria": "Ver el perfil de LinkedIn de Gonzalo Plaza Rueda",
+    "githubAria": "Ver el perfil de GitHub de Gonzalo Plaza Rueda",
+    "mailAria": "Enviar un mail a Gonzalo Plaza Rueda"
+  }
+}

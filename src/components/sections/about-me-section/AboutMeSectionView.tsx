@@ -1,17 +1,31 @@
 import styles from "@/styles/components/sections/about-me-section/about-me-section.module.scss";
 import clsx from "clsx";
 import Image from "next/image";
-import ExperienceYears from "@/components/ui/atoms/ExperienceYears";
-import { DEV_CAREER_START, TECH_CAREER_START } from "@/utils/dateUtils/dateUtils";
+import type { Dictionary } from "@/i18n/types";
+import { interpolate } from "@/i18n/interpolate";
+import {
+  DEV_CAREER_START,
+  TECH_CAREER_START,
+  getYearsOfExperience,
+} from "@/utils/dateUtils/dateUtils";
 
-const AboutMeSectionView = () => {
+interface AboutMeSectionViewProps {
+  dict: Dictionary["aboutMe"];
+}
+
+const AboutMeSectionView = ({ dict }: AboutMeSectionViewProps) => {
+  const years = {
+    devYears: getYearsOfExperience(DEV_CAREER_START),
+    techYears: getYearsOfExperience(TECH_CAREER_START),
+  };
+
   return (
     <section
       id="about-me"
       className={clsx(styles.aboutMeSectionView, "container")}
     >
       <header>
-        <h2 className={styles.aboutMeSectionView__title}>🧑🏽‍💻 Sobre mí</h2>
+        <h2 className={styles.aboutMeSectionView__title}>{dict.title}</h2>
       </header>
       <div className={styles.aboutMeArticle}>
         <Image
@@ -19,35 +33,26 @@ const AboutMeSectionView = () => {
           className={styles.aboutMeArticle__image}
           height={300}
           width={300}
-          alt="Imagen de Gonzalo Plaza Rueda, Software Engineer en Málaga, España"
+          alt={dict.imageAlt}
         />
         <div>
-          <p className={styles.aboutMeArticleDescription}>
-            Soy{" "}
-            <strong className={styles.aboutMeArticleDescription__highlight}>
-              Gonzalo Plaza
-            </strong>
-            , Software Engineer con pasión por crear aplicaciones web y explorar
-            nuevas tecnologías.{" "}
-            <strong className={styles.aboutMeArticleDescription__highlight}>
-              Me enfoco en aportar valor a través de mis proyectos, con
-              mentalidad curiosa y aprendizaje constante.
-            </strong>{" "}
-            Hablo español de forma nativa e inglés con nivel B1.
-          </p>
-          <p className={styles.aboutMeArticleDescription}>
-            Aunque{" "}
-            <strong className={styles.aboutMeArticleDescription__highlight}>
-              mi carrera profesional como desarrollador comenzó hace{" "}
-              <ExperienceYears startDate={DEV_CAREER_START} suffix="años" />
-            </strong>
-            , mi vínculo con la tecnología viene de mucho antes.{" "}
-            <strong className={styles.aboutMeArticleDescription__highlight}>
-              Hace <ExperienceYears startDate={TECH_CAREER_START} /> empecé reparando equipos{" "}
-            </strong>{" "}
-            tanto a nivel software como hardware, además de asesorar a clientes
-            en la elección de sus dispositivos.
-          </p>
+          {dict.paragraphs.map((paragraph, paragraphIndex) => (
+            <p key={paragraphIndex} className={styles.aboutMeArticleDescription}>
+              {paragraph.map((segment, segmentIndex) => {
+                const text = interpolate(segment.text, years);
+                return segment.highlight ? (
+                  <strong
+                    key={segmentIndex}
+                    className={styles.aboutMeArticleDescription__highlight}
+                  >
+                    {text}
+                  </strong>
+                ) : (
+                  <span key={segmentIndex}>{text}</span>
+                );
+              })}
+            </p>
+          ))}
         </div>
       </div>
     </section>
