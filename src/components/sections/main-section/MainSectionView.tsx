@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import TitleAnimation from "@/components/sections/main-section/_components/TitleAnimation";
+import MainSectionContact from "@/components/sections/main-section/_components/MainSectionContact";
 import type { Dictionary } from "@/i18n/types";
 import { interpolate } from "@/i18n/interpolate";
 import {
@@ -50,6 +51,7 @@ export default function MainSectionView({ dict }: MainSectionViewProps) {
           </span>
         </h1>
         <p className={styles.mainSectionDescription__text}>{description}</p>
+        <MainSectionContact dict={dict.social} />
       </div>
     </section>
   );

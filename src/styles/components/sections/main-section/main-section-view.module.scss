@@ -66,6 +66,17 @@
   &__text {
     margin-top: 1rem;
   }
+
+  &__contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+
+    margin-top: 1.5rem;
+
+    list-style: none;
+    padding: 0;
+  }
 }
 
 .mainSectionImage {
