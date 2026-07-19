@@ -1,32 +1,23 @@
 "use client";
 
 import { useThemeStore } from "@/providers/theme-store-provider";
-import React, { ReactElement, ReactNode, useEffect, useRef } from "react";
+import { ReactNode, useEffect } from "react";
 
 interface UpdateThemeUtilProps {
   children: ReactNode;
 }
 
 const UpdateThemeUtil = ({ children }: UpdateThemeUtilProps) => {
-  const themeContainerRef = useRef<HTMLElement | null>(null);
   const { theme } = useThemeStore((state) => state);
 
   useEffect(() => {
-    const themeContainer = themeContainerRef.current;
-
-    themeContainer?.setAttribute("data-theme", theme);
+    // The theme attribute must live on <html> (not <body>): the main viewport
+    // scrollbar is styled on <html>, and CSS custom properties only inherit
+    // downward. Setting it on a descendant would never reach the scrollbar.
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
-  return (
-    <>
-      {
-        // TODO - Fix correct type for refs
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        React.cloneElement(children as ReactElement<any>, {
-          ref: themeContainerRef,
-        })
-      }
-    </>
-  );
+
+  return <>{children}</>;
 };
 
 export default UpdateThemeUtil;
