@@ -8,6 +8,7 @@ import Button from "../atoms/Button";
 import Link from "next/link";
 import { AnchorIcon, GithubIcon } from "@/components/ui/atoms/icons";
 import type { ProjectItemDictionary } from "@/i18n/types";
+import { interpolate } from "@/i18n/interpolate";
 
 interface ProjectCardLabels {
   visit: string;
@@ -79,7 +80,7 @@ const ProjectCard = ({
             buttonDisabledWrapperClassName={
               styles.projectCardFooter__buttonDisabledWrapper
             }
-            aria-label={labels.visitAria.replace("{project}", content.title)}
+            aria-label={interpolate(labels.visitAria, { project: content.title })}
           >
             <Link
               href={project.previewLink.url}
@@ -99,10 +100,9 @@ const ProjectCard = ({
             buttonDisabledWrapperClassName={
               styles.projectCardFooter__buttonDisabledWrapper
             }
-            aria-label={labels.repositoryAria.replace(
-              "{project}",
-              content.title
-            )}
+            aria-label={interpolate(labels.repositoryAria, {
+              project: content.title,
+            })}
           >
             <Link
               href={project.gitHubLink.url}

@@ -7,7 +7,7 @@ import { i18n } from "@/i18n/config";
  * prefix, while every other locale is served under its own prefix (e.g. /en).
  *
  * - `/en`, `/en/...`      → served as-is (resolves the [lang] segment).
- * - `/es`, `/es/...`      → 301 to the un-prefixed path (avoid duplicate URLs).
+ * - `/es`, `/es/...`      → 308 to the un-prefixed path (avoid duplicate URLs).
  * - anything else         → rewritten internally to `/es/...` so it resolves
  *                           the [lang] segment while the public URL stays clean.
  */
@@ -18,7 +18,7 @@ export function middleware(request: NextRequest) {
   if (pathname === `/${i18n.defaultLocale}` || pathname.startsWith(`/${i18n.defaultLocale}/`)) {
     const url = request.nextUrl.clone();
     url.pathname = pathname.slice(`/${i18n.defaultLocale}`.length) || "/";
-    return NextResponse.redirect(url);
+    return NextResponse.redirect(url, 308);
   }
 
   // Non-default locales keep their prefix.

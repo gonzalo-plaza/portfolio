@@ -6,6 +6,7 @@ import WorkExperienceTechnologyList from "./WorkExperienceTechnologyList";
 import WorkExperienceDateTime from "./WorkExperienceDateTime";
 import Button from "@/components/ui/atoms/Button";
 import type { Dictionary } from "@/i18n/types";
+import { interpolate } from "@/i18n/interpolate";
 
 interface WorkExperienceListProps {
   dict: Dictionary["workExperience"];
@@ -32,7 +33,7 @@ export default function WorkExperienceList({ dict }: WorkExperienceListProps) {
               <article className={`${styles.workExperienceArticle}`}>
                 <Image
                   src={experience.logoUrl}
-                  alt={dict.logoAlt.replace("{company}", experience.title)}
+                  alt={interpolate(dict.logoAlt, { company: experience.title })}
                   className={styles.workExperienceArticle__headerImage}
                   width={150}
                   height={150}

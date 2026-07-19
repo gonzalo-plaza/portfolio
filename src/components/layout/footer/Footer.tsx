@@ -3,16 +3,16 @@ import clsx from "clsx";
 import { Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/ui/atoms/icons";
 import type { Dictionary } from "@/i18n/types";
+import { interpolate } from "@/i18n/interpolate";
 
 interface FooterProps {
   dict: Dictionary["footer"];
 }
 
 const Footer = ({ dict }: FooterProps) => {
-  const copyright = dict.copyright.replace(
-    "{year}",
-    String(new Date().getFullYear())
-  );
+  const copyright = interpolate(dict.copyright, {
+    year: new Date().getFullYear(),
+  });
 
   return (
     <footer className={clsx(styles.footer, "container")}>
