@@ -1,0 +1,93 @@
+@use "@/styles/utils/breakpoints" as *;
+
+.postCard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background-color: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft-md);
+
+  @include breakpoint-up("sm") {
+    padding: 20px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  &__tag {
+    color: var(--highlight-primary);
+    background-color: var(--background-elevated);
+  }
+
+  &__title {
+    font-size: 1.25rem;
+    line-height: 1.3;
+    color: var(--text-primary);
+  }
+
+  &__description {
+    color: var(--text-secondary);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    flex-grow: 1;
+
+    // Keep cards short and uniform: clamp long descriptions.
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  // Action-only footer: the meta lives with the content above, so the CTA
+  // gets clear air instead of competing with text on its row. Mirrors the
+  // ProjectCard footer: full-width button on mobile, natural width on md+.
+  &__footer {
+    display: flex;
+
+    margin-top: 4px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+
+    // Compact CTA: the card is a preview, the button shouldn't dominate it.
+    .postCard__cta {
+      font-size: 0.875rem;
+      padding-block: 6px;
+      padding-inline: 12px;
+      flex-grow: 1;
+
+      @include breakpoint-up("md") {
+        flex-grow: inherit;
+      }
+    }
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+  }
+
+  &__metaItem {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    svg {
+      flex-shrink: 0;
+    }
+
+    dd {
+      margin: 0;
+    }
+  }
+}

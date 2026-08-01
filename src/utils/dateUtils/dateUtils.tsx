@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/config";
+
 /**
  * Start dates for career milestones — used to calculate dynamic experience years.
  * Update these if the starting role ever changes.
@@ -112,3 +114,19 @@ export const getDifferenceTimeString = (
     return experienceTimeArray[0];
   }
 };
+
+const BLOG_DATE_LOCALES: Record<Locale, string> = {
+  es: "es-ES",
+  en: "en-US",
+};
+
+/**
+ * Formats an ISO date (YYYY-MM-DD) into a localized human-readable date, e.g.
+ * "19 de julio de 2026" / "July 19, 2026". Used for blog post `<time>` labels.
+ */
+export const formatBlogDate = (isoDate: string, locale: Locale): string =>
+  new Intl.DateTimeFormat(BLOG_DATE_LOCALES[locale], {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  }).format(new Date(isoDate));

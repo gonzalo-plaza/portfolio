@@ -1,0 +1,33 @@
+@use "@/styles/tokens/layout" as *;
+
+// The blog header reuses the main header pill styles (main-header.module.scss)
+// for the actions; this module lays out the row: breadcrumb left, pill right.
+.blogHeader {
+  padding-block: 16px 8px;
+
+  &__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+
+    // On article pages the row narrows to the prose reading column, so the
+    // breadcrumb and the content share the exact same left/right edges.
+    &.isContentAligned {
+      max-width: $prose-max-width;
+      margin-inline: auto;
+    }
+  }
+
+  // Let the breadcrumb shrink (and its current item ellipsize) instead of
+  // pushing the action pill off-screen on narrow (320px) viewports.
+  &__breadcrumb {
+    min-width: 0;
+  }
+
+  // Restores the pill height: on the home header the nav links' padding-block
+  // provides it, here the icon actions do.
+  &__item {
+    padding-block: 8px;
+  }
+}

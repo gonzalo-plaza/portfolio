@@ -5,4 +5,13 @@
   padding-inline: 16px;
   min-width: 300px;
   scroll-behavior: smooth;
+
+  // Column flow so short pages (e.g. the blog index) can grow their <main>
+  // and keep the footer pinned to the bottom of the viewport.
+  display: flex;
+  flex-direction: column;
+
+  main {
+    flex-grow: 1;
+  }
 }

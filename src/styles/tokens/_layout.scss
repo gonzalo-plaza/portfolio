@@ -1,0 +1,6 @@
+// Shared layout tokens.
+
+// Reading-column width for long-form (blog) content. The blog header aligns
+// its breadcrumb row to this same width on article pages, so location trail
+// and content share the exact same left/right edges.
+$prose-max-width: 720px;
