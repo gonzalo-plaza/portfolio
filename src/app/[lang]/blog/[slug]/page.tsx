@@ -14,7 +14,11 @@ import Footer from "@/components/layout/footer/Footer";
 import Badge from "@/components/ui/atoms/Badge";
 import Button from "@/components/ui/atoms/Button";
 import { mdxComponents } from "@/blog/mdxComponents";
-import { getAllSlugs, getPostBySlug } from "@/blog/blogPosts";
+import {
+  getPostBySlug,
+  getPostSlugMap,
+  getSlugsForLocale,
+} from "@/blog/blogPosts";
 import { blogIndexPath, blogPostPath } from "@/blog/blogPaths";
 import { getDictionary } from "@/i18n/dictionaries";
 import { interpolate } from "@/i18n/interpolate";
@@ -38,10 +42,14 @@ const resolveLocale = (lang: string): Locale =>
 const otherLocale = (locale: Locale): Locale =>
   i18n.locales.find((candidate) => candidate !== locale) ?? i18n.defaultLocale;
 
-// Pre-render every post slug; combined with the parent [lang] params this
-// statically generates es + en variants of each post at build time.
-export async function generateStaticParams() {
-  const slugs = await getAllSlugs();
+// Runs once per locale the parent produced, so each language contributes its
+// own slugs. Slugs differ per locale, hence the parent `params` are required.
+export async function generateStaticParams({
+  params,
+}: {
+  params: { lang: string };
+}) {
+  const slugs = await getSlugsForLocale(resolveLocale(params.lang));
   return slugs.map((slug) => ({ slug }));
 }
 
@@ -72,6 +80,7 @@ export async function generateMetadata({
 
   const path = blogPostPath(locale, slug);
   const image = post.coverImage ?? DEFAULT_OG_IMAGE;
+  const slugs = (await getPostSlugMap()).get(post.translationKey);
 
   return {
     title: post.title,
@@ -81,9 +90,16 @@ export async function generateMetadata({
     alternates: {
       canonical: path,
       languages: {
-        es: blogPostPath("es", slug),
-        en: blogPostPath("en", slug),
-        "x-default": blogPostPath(i18n.defaultLocale, slug),
+        ...Object.fromEntries(
+          i18n.locales.map((other) => [
+            other,
+            blogPostPath(other, slugs?.[other] ?? slug),
+          ])
+        ),
+        "x-default": blogPostPath(
+          i18n.defaultLocale,
+          slugs?.[i18n.defaultLocale] ?? slug
+        ),
       },
     },
     openGraph: {
@@ -118,6 +134,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
   const dict = await getDictionary(locale);
   const switchLocale = otherLocale(locale);
+  const switchSlug =
+    (await getPostSlugMap()).get(post.translationKey)?.[switchLocale] ?? slug;
   const path = blogPostPath(locale, slug);
   const author = post.author ?? DEFAULT_AUTHOR;
 
@@ -177,7 +195,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           { label: post.title },
         ]}
         homeHref={getLocalePath(locale)}
-        switchHref={blogPostPath(switchLocale, slug)}
+        switchHref={blogPostPath(switchLocale, switchSlug)}
         switchLocale={switchLocale}
         contentAligned
       />

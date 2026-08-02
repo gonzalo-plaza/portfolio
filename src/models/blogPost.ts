@@ -15,6 +15,8 @@ export interface BlogPostFrontmatter {
   author?: string;
   coverImage?: string;
   coverImageAlt?: string;
+  /** Public URL segment for this translation. Defaults to the filename. */
+  slug?: string;
 }
 
 /**
@@ -22,7 +24,10 @@ export interface BlogPostFrontmatter {
  * the index listing, cards and the sitemap.
  */
 export interface BlogPostMeta extends BlogPostFrontmatter {
+  /** URL segment for this locale. */
   slug: string;
+  /** Filename, shared by every translation — what links them together. */
+  translationKey: string;
   locale: Locale;
   readingTimeMinutes: number;
 }

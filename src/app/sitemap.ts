@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL, getLocalePath, i18n, type Locale } from "@/i18n/config";
-import { getAllPostsMeta, getAllSlugs } from "@/blog/blogPosts";
+import { getAllPostsMeta, getPostSlugMap } from "@/blog/blogPosts";
 import { blogIndexPath, blogPostPath } from "@/blog/blogPaths";
 import type { BlogPostMeta } from "@/models/blogPost";
 
@@ -23,8 +23,8 @@ const languagesFor = (toPath: LocalePath): Record<string, string> => ({
 const contentDate = (post: BlogPostMeta): string => post.updated ?? post.date;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // Also where the "every post is translated" invariant is enforced.
-  const slugs = await getAllSlugs();
+  // Also where the blog content invariants are enforced.
+  const slugMap = await getPostSlugMap();
 
   const postsByLocale = new Map<Locale, Map<string, BlogPostMeta>>(
     await Promise.all(
@@ -65,12 +65,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     alternates: { languages: blogIndexLanguages },
   }));
 
-  const posts: MetadataRoute.Sitemap = slugs.flatMap((slug) => {
-    const languages = languagesFor((locale) => blogPostPath(locale, slug));
+  // Each translation has its own slug, so the `hreflang` group is built from
+  // the map rather than by reusing one slug across locales.
+  const posts: MetadataRoute.Sitemap = [...slugMap.values()].flatMap((slugs) => {
+    const languages = languagesFor((locale) =>
+      blogPostPath(locale, slugs[locale])
+    );
 
     return i18n.locales.map((locale) => ({
-      url: absoluteUrl(blogPostPath(locale, slug)),
-      lastModified: postDate(locale, slug),
+      url: absoluteUrl(blogPostPath(locale, slugs[locale])),
+      lastModified: postDate(locale, slugs[locale]),
       changeFrequency: "monthly" as const,
       priority: 0.7,
       alternates: { languages },

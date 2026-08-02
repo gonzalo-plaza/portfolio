@@ -16,7 +16,11 @@ import type {
 /**
  * Blog content lives OUTSIDE `src/` as plain `.mdx` files so content stays
  * decoupled from code. Posts are read from disk at build time only (SSG), one
- * folder per locale: `content/blog/<locale>/<slug>.mdx`.
+ * folder per locale: `content/blog/<locale>/<translationKey>.mdx`.
+ *
+ * The filename is the translation key, never the URL: it is what pairs the
+ * Spanish and English versions of a post. The public slug comes from the
+ * frontmatter so each language can have a URL in its own language.
  */
 const BLOG_CONTENT_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -30,18 +34,16 @@ const toReadingMinutes = (content: string): number =>
   Math.max(1, Math.round(readingTime(content).minutes));
 
 /**
- * Reads and parses a single post from disk. Returns metadata and body split
- * apart. Returns `null` when the file does not exist for the given locale (so a
- * missing translation degrades gracefully instead of throwing during static
- * generation).
+ * Reads and parses a single post from disk by its translation key. Returns
+ * `null` when the file does not exist for the given locale.
  */
 const readPost = async (
   locale: Locale,
-  slug: string
+  translationKey: string
 ): Promise<{ meta: BlogPostMeta; content: string } | null> => {
   try {
     const raw = await readFile(
-      path.join(localeDir(locale), `${slug}${MDX_EXTENSION}`),
+      path.join(localeDir(locale), `${translationKey}${MDX_EXTENSION}`),
       "utf8"
     );
     const { data, content } = matter(raw);
@@ -50,7 +52,8 @@ const readPost = async (
     return {
       meta: {
         ...frontmatter,
-        slug,
+        slug: frontmatter.slug ?? translationKey,
+        translationKey,
         locale,
         readingTimeMinutes: toReadingMinutes(content),
       },
@@ -61,17 +64,8 @@ const readPost = async (
   }
 };
 
-/** Full post (metadata + MDX body) for a locale, or `null` if missing. */
-export const getPostBySlug = async (
-  locale: Locale,
-  slug: string
-): Promise<BlogPost | null> => {
-  const post = await readPost(locale, slug);
-  return post ? { ...post.meta, content: post.content } : null;
-};
-
-/** Slugs available for a locale (filenames without the `.mdx` extension). */
-const getSlugsForLocale = async (locale: Locale): Promise<string[]> => {
+/** Translation keys available for a locale (filenames without the extension). */
+const getKeysForLocale = async (locale: Locale): Promise<string[]> => {
   try {
     const entries = await readdir(localeDir(locale));
     return entries
@@ -89,8 +83,8 @@ const getSlugsForLocale = async (locale: Locale): Promise<string[]> => {
 export const getAllPostsMeta = async (
   locale: Locale
 ): Promise<BlogPostMeta[]> => {
-  const slugs = await getSlugsForLocale(locale);
-  const posts = await Promise.all(slugs.map((slug) => readPost(locale, slug)));
+  const keys = await getKeysForLocale(locale);
+  const posts = await Promise.all(keys.map((key) => readPost(locale, key)));
 
   return posts
     .filter((post): post is { meta: BlogPostMeta; content: string } =>
@@ -100,57 +94,97 @@ export const getAllPostsMeta = async (
     .sort((a, b) => b.date.localeCompare(a.date));
 };
 
+/** Full post (metadata + MDX body) for a locale's public slug, or `null`. */
+export const getPostBySlug = async (
+  locale: Locale,
+  slug: string
+): Promise<BlogPost | null> => {
+  const meta = (await getAllPostsMeta(locale)).find(
+    (candidate) => candidate.slug === slug
+  );
+  if (!meta) return null;
+
+  const post = await readPost(locale, meta.translationKey);
+  return post ? { ...post.meta, content: post.content } : null;
+};
+
+/** Public slugs for a locale — the `params` for its article routes. */
+export const getSlugsForLocale = async (locale: Locale): Promise<string[]> =>
+  (await getAllPostsMeta(locale)).map((post) => post.slug);
+
 /**
- * The blog treats "every post exists in every locale" as an invariant, and this
- * is where it is enforced. Holding the invariant is what keeps the sitemap, the
- * `hreflang` alternates and the language switch correct *by construction*:
- * because `generateStaticParams` combines the locales from the parent segment
- * with the union of slugs, an untranslated post would otherwise pre-render a
- * 404 page for the missing locale and still be advertised to crawlers.
+ * The blog treats "every post exists in every locale, at a slug unique within
+ * that locale" as an invariant, and this is where it is enforced. Holding it is
+ * what keeps the sitemap, the `hreflang` alternates and the language switch
+ * correct *by construction*: an untranslated post would otherwise pre-render a
+ * 404 for the missing locale and still be advertised to crawlers, and a
+ * duplicate slug would silently make one of the two posts unreachable.
  *
  * Production builds only, so a post can still be previewed in `next dev` while
  * its translation is being written.
  */
-const assertEveryPostIsTranslated = (
-  perLocale: { locale: Locale; slugs: string[] }[],
-  slugs: string[]
+const assertPostsAreValid = (
+  perLocale: { locale: Locale; posts: BlogPostMeta[] }[],
+  keys: string[]
 ): void => {
-  const missing = perLocale.flatMap(({ locale, slugs: translated }) => {
-    const available = new Set(translated);
-    return slugs
-      .filter((slug) => !available.has(slug))
-      .map((slug) => `  content/blog/${locale}/${slug}${MDX_EXTENSION}`);
+  const problems = perLocale.flatMap(({ locale, posts }) => {
+    const available = new Set(posts.map((post) => post.translationKey));
+    const missing = keys
+      .filter((key) => !available.has(key))
+      .map((key) => `  missing: content/blog/${locale}/${key}${MDX_EXTENSION}`);
+
+    const counts = new Map<string, number>();
+    for (const post of posts) {
+      counts.set(post.slug, (counts.get(post.slug) ?? 0) + 1);
+    }
+    const duplicates = [...counts]
+      .filter(([, count]) => count > 1)
+      .map(([slug]) => `  duplicate slug "${slug}" in ${locale}`);
+
+    return [...missing, ...duplicates];
   });
 
-  if (missing.length === 0) return;
+  if (problems.length === 0) return;
 
   throw new Error(
-    `Untranslated blog posts. Every post must exist in all locales ` +
-      `(${i18n.locales.join(", ")}); ${missing.length} file(s) missing:\n` +
-      missing.join("\n")
+    `Invalid blog content. Every post must exist in all locales ` +
+      `(${i18n.locales.join(", ")}) with a slug unique per locale; ` +
+      `${problems.length} problem(s):\n${problems.join("\n")}`
   );
 };
 
 /**
- * Unique slugs across every locale — used by `generateStaticParams` and the
- * sitemap. Thanks to the translation invariant above, this union is also the
- * intersection: every slug returned here is renderable in every locale.
+ * Every post's slug in every locale, keyed by translation key. Feeds the
+ * sitemap, the `hreflang` groups and the language switch, so all three read the
+ * same source and cannot disagree.
  */
-export const getAllSlugs = async (): Promise<string[]> => {
+export const getPostSlugMap = async (): Promise<
+  Map<string, Record<Locale, string>>
+> => {
   const perLocale = await Promise.all(
     i18n.locales.map(async (locale) => ({
       locale,
-      slugs: await getSlugsForLocale(locale),
+      posts: await getAllPostsMeta(locale),
     }))
   );
 
-  const slugs = Array.from(
-    new Set(perLocale.flatMap((entry) => entry.slugs))
+  const keys = Array.from(
+    new Set(perLocale.flatMap(({ posts }) => posts.map((p) => p.translationKey)))
   );
 
   if (process.env.NODE_ENV === "production") {
-    assertEveryPostIsTranslated(perLocale, slugs);
+    assertPostsAreValid(perLocale, keys);
   }
 
-  return slugs;
+  return new Map(
+    keys.map((key) => [
+      key,
+      Object.fromEntries(
+        perLocale.flatMap(({ locale, posts }) => {
+          const post = posts.find((p) => p.translationKey === key);
+          return post ? [[locale, post.slug] as const] : [];
+        })
+      ) as Record<Locale, string>,
+    ])
+  );
 };
