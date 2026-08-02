@@ -1,6 +1,6 @@
-// Shared layout tokens.
-
-// Reading-column width for long-form (blog) content. The blog header aligns
-// its breadcrumb row to this same width on article pages, so location trail
-// and content share the exact same left/right edges.
+// Reading column for blog content. The header aligns its breadcrumb to it too.
 $prose-max-width: 720px;
+
+// Clears the sticky blog header (113px) so deep-linked headings aren't hidden.
+// The avatar drives that height: move this when `&__avatar` changes.
+$blog-header-offset: 128px;

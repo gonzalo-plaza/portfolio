@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import clsx from "clsx";
 import { Languages } from "lucide-react";
@@ -11,59 +12,85 @@ import Breadcrumb, {
 import type { Dictionary } from "@/i18n/types";
 import type { Locale } from "@/i18n/config";
 
+const SITE_AUTHOR = "Gonzalo Plaza Rueda";
+const SITE_AUTHOR_ROLE = "Software Engineer";
+const SITE_AUTHOR_PHOTO = "/images/gonzalo-plaza-rueda-avatar.webp";
+
 interface BlogHeaderProps {
   dict: Dictionary["blog"];
-  /** Location trail; the same strategy on every blog page. */
   breadcrumbItems: BreadcrumbItem[];
-  /** Path to the equivalent page in the other locale (for the language switch). */
+  homeHref: string;
   switchHref: string;
-  /** Locale the switch points to. */
   switchLocale: Locale;
-  /**
-   * Align the header row with the article reading column (prose width)
-   * instead of the full container, so breadcrumb and content share edges.
-   */
+  /** Narrows the header to the prose column so it shares edges with the article. */
   contentAligned?: boolean;
 }
 
-/**
- * Blog page header: breadcrumb (location) on the left, the home-style action
- * pill (language + theme) on the right — one row, no dead space. The pill is
- * a plain div, not a `<nav>`: it holds preferences, not site navigation; the
- * only nav landmark here is the breadcrumb itself.
- */
+/** The breadcrumb sits outside the sticky band on purpose: it only matters on
+ *  arrival, so it scrolls away instead of spending viewport for the whole read. */
 const BlogHeader = ({
   dict,
   breadcrumbItems,
+  homeHref,
   switchHref,
   switchLocale,
   contentAligned,
 }: BlogHeaderProps) => (
-  <header className={clsx(blogStyles.blogHeader, "container")}>
-    <div
-      className={clsx(blogStyles.blogHeader__row, {
-        [blogStyles.isContentAligned]: contentAligned,
-      })}
-    >
-      <Breadcrumb
-        className={blogStyles.blogHeader__breadcrumb}
-        items={breadcrumbItems}
-      />
-      <div className={styles.mainNav}>
-        <Link
-          className={clsx(styles.mainNav__lang, blogStyles.blogHeader__item)}
-          href={switchHref}
-          hrefLang={switchLocale}
-          aria-label={dict.switchLanguageAria}
-        >
-          <Languages aria-hidden />
+  <>
+    <header className={clsx(blogStyles.blogHeader, "container")}>
+      <div
+        className={clsx(blogStyles.blogHeader__inner, {
+          [blogStyles.isContentAligned]: contentAligned,
+        })}
+      >
+        <Link className={blogStyles.blogHeader__brand} href={homeHref}>
+          {/* Empty alt on purpose: the adjacent name already labels the link.
+              76 is the ceiling for the CSS in blog-header.module.scss. */}
+          <Image
+            className={blogStyles.blogHeader__avatar}
+            src={SITE_AUTHOR_PHOTO}
+            width={76}
+            height={76}
+            alt=""
+            priority
+            quality={100}
+          />
+          <span className={blogStyles.blogHeader__identity}>
+            <span className={blogStyles.blogHeader__name}>{SITE_AUTHOR}</span>
+            <span className={blogStyles.blogHeader__role}>
+              {SITE_AUTHOR_ROLE}
+            </span>
+          </span>
         </Link>
-        <ThemeButton
-          className={clsx(styles.mainNav__button, blogStyles.blogHeader__item)}
-        />
+        <div className={styles.mainNav}>
+          <Link
+            className={clsx(styles.mainNav__lang, blogStyles.blogHeader__item)}
+            href={switchHref}
+            hrefLang={switchLocale}
+            aria-label={dict.switchLanguageAria}
+          >
+            <Languages aria-hidden />
+          </Link>
+          <ThemeButton
+            className={clsx(
+              styles.mainNav__button,
+              blogStyles.blogHeader__item,
+            )}
+          />
+        </div>
+      </div>
+    </header>
+
+    <div className={clsx(blogStyles.blogLocation, "container")}>
+      <div
+        className={clsx(blogStyles.blogLocation__inner, {
+          [blogStyles.isContentAligned]: contentAligned,
+        })}
+      >
+        <Breadcrumb items={breadcrumbItems} />
       </div>
     </div>
-  </header>
+  </>
 );
 
 BlogHeader.displayName = "BlogHeader";

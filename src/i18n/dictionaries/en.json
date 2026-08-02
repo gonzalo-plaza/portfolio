@@ -140,5 +140,22 @@
     "rights": "Almost all rights reserved",
     "linkedinAria": "View Gonzalo Plaza Rueda's LinkedIn profile",
     "githubAria": "View Gonzalo Plaza Rueda's GitHub profile"
+  },
+  "blog": {
+    "metaTitle": "Blog",
+    "metaDescription": "Articles on frontend development, Next.js, React, TypeScript, web performance and technical SEO, written by Gonzalo Plaza Rueda.",
+    "indexTitle": "Blog",
+    "indexIntro": "Notes on frontend, architecture, Next.js and web performance — things I learn as I build, written down.",
+    "emptyState": "No articles published yet. Check back soon.",
+    "readMore": "Read article",
+    "readMoreAria": "Read the article {title}",
+    "backToBlog": "Back to blog",
+    "publishedOn": "Published on",
+    "updatedOn": "Updated on",
+    "readingTime": "{minutes} min read",
+    "tagsLabel": "Tags",
+    "breadcrumbHome": "Home",
+    "breadcrumbBlog": "Blog",
+    "switchLanguageAria": "Switch language"
   }
 }

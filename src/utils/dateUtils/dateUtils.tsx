@@ -130,3 +130,24 @@ export const formatBlogDate = (isoDate: string, locale: Locale): string =>
     month: "long",
     day: "numeric",
   }).format(new Date(isoDate));
+
+const SITE_TIMEZONE = "Europe/Madrid";
+
+/** Resolved per date so daylight saving is handled, not assumed. */
+const siteUtcOffset = (isoDate: string): string =>
+  new Intl.DateTimeFormat("en", {
+    timeZone: SITE_TIMEZONE,
+    timeZoneName: "longOffset",
+  })
+    .formatToParts(new Date(`${isoDate}T12:00:00Z`))
+    .find((part) => part.type === "timeZoneName")
+    ?.value.replace("GMT", "") || "Z";
+
+/**
+ * `YYYY-MM-DD` to a full ISO 8601 timestamp, e.g. `2026-07-19T12:00:00+02:00`.
+ * Google reports structured-data dates without an offset as invalid. Posts only
+ * declare a day, so midday is the choice that reads as the same date in every
+ * timezone and stays clear of the small hours where DST switches.
+ */
+export const toIsoTimestamp = (isoDate: string): string =>
+  `${isoDate}T12:00:00${siteUtcOffset(isoDate)}`;

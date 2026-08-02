@@ -62,6 +62,7 @@ export default async function BlogIndex({ params }: BlogIndexProps) {
           { label: dict.blog.breadcrumbHome, href: getLocalePath(locale) },
           { label: dict.blog.breadcrumbBlog },
         ]}
+        homeHref={getLocalePath(locale)}
         switchHref={blogIndexPath(switchLocale)}
         switchLocale={switchLocale}
       />

@@ -1,56 +1,76 @@
 import type { MetadataRoute } from "next";
-import { SITE_URL, i18n } from "@/i18n/config";
-import { getAllSlugs } from "@/blog/blogPosts";
+import { SITE_URL, getLocalePath, i18n, type Locale } from "@/i18n/config";
+import { getAllPostsMeta, getAllSlugs } from "@/blog/blogPosts";
 import { blogIndexPath, blogPostPath } from "@/blog/blogPaths";
+import type { BlogPostMeta } from "@/models/blogPost";
+
+type LocalePath = (locale: Locale) => string;
+
+/** The root collapses to a bare `SITE_URL` to match the canonical exactly. */
+const absoluteUrl = (path: string): string =>
+  path === "/" ? SITE_URL : `${SITE_URL}${path}`;
+
+/** Derived from `i18n.locales`: `hreflang` breaks unless the group is complete,
+ *  and a hand-written map would type-check while silently dropping a locale. */
+const languagesFor = (toPath: LocalePath): Record<string, string> => ({
+  ...Object.fromEntries(
+    i18n.locales.map((locale) => [locale, absoluteUrl(toPath(locale))])
+  ),
+  "x-default": absoluteUrl(toPath(i18n.defaultLocale)),
+});
+
+/** Never a build-time `new Date()`: Google drops `lastmod` once it stops matching. */
+const contentDate = (post: BlogPostMeta): string => post.updated ?? post.date;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const lastModified = new Date();
+  // Also where the "every post is translated" invariant is enforced.
+  const slugs = await getAllSlugs();
 
-  const homeLanguages = {
-    es: SITE_URL,
-    en: `${SITE_URL}/en`,
+  const postsByLocale = new Map<Locale, Map<string, BlogPostMeta>>(
+    await Promise.all(
+      i18n.locales.map(async (locale) => {
+        const posts = await getAllPostsMeta(locale);
+        return [locale, new Map(posts.map((post) => [post.slug, post]))] as const;
+      })
+    )
+  );
+
+  const postDate = (locale: Locale, slug: string): string | undefined => {
+    const post = postsByLocale.get(locale)?.get(slug);
+    return post && contentDate(post);
   };
 
-  const home: MetadataRoute.Sitemap = [
-    {
-      url: SITE_URL,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 1,
-      alternates: { languages: homeLanguages },
-    },
-    {
-      url: `${SITE_URL}/en`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.9,
-      alternates: { languages: homeLanguages },
-    },
-  ];
+  const latestPostDate = (locale: Locale): string | undefined =>
+    [...(postsByLocale.get(locale)?.values() ?? [])]
+      .map(contentDate)
+      .sort((a, b) => b.localeCompare(a))[0];
 
-  const blogIndexLanguages = {
-    es: `${SITE_URL}${blogIndexPath("es")}`,
-    en: `${SITE_URL}${blogIndexPath("en")}`,
-  };
+  const homeLanguages = languagesFor(getLocalePath);
+
+  // No `lastModified`: the home has no content date to point at.
+  const home: MetadataRoute.Sitemap = i18n.locales.map((locale) => ({
+    url: absoluteUrl(getLocalePath(locale)),
+    changeFrequency: "monthly",
+    priority: locale === i18n.defaultLocale ? 1 : 0.9,
+    alternates: { languages: homeLanguages },
+  }));
+
+  const blogIndexLanguages = languagesFor(blogIndexPath);
 
   const blogIndex: MetadataRoute.Sitemap = i18n.locales.map((locale) => ({
-    url: `${SITE_URL}${blogIndexPath(locale)}`,
-    lastModified,
-    changeFrequency: "weekly",
+    url: absoluteUrl(blogIndexPath(locale)),
+    lastModified: latestPostDate(locale),
+    changeFrequency: "monthly",
     priority: locale === i18n.defaultLocale ? 0.8 : 0.7,
     alternates: { languages: blogIndexLanguages },
   }));
 
-  const slugs = await getAllSlugs();
   const posts: MetadataRoute.Sitemap = slugs.flatMap((slug) => {
-    const languages = {
-      es: `${SITE_URL}${blogPostPath("es", slug)}`,
-      en: `${SITE_URL}${blogPostPath("en", slug)}`,
-    };
+    const languages = languagesFor((locale) => blogPostPath(locale, slug));
 
     return i18n.locales.map((locale) => ({
-      url: `${SITE_URL}${blogPostPath(locale, slug)}`,
-      lastModified,
+      url: absoluteUrl(blogPostPath(locale, slug)),
+      lastModified: postDate(locale, slug),
       changeFrequency: "monthly" as const,
       priority: 0.7,
       alternates: { languages },

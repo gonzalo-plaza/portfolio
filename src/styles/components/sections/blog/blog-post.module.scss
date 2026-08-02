@@ -30,7 +30,6 @@
     background-color: var(--background-elevated);
   }
 
-  // Mobile-first (320px): keep the h1 modest and scale it up.
   &__title {
     font-size: 1.75rem;
     line-height: 1.2;
@@ -74,7 +73,6 @@
   }
 }
 
-// Highlighted aside available inside MDX via <Callout>.
 .callout {
   margin-block: 24px;
   padding: 16px 20px;
@@ -96,8 +94,6 @@
   }
 }
 
-// Long-form article body rendered from MDX. Mobile-first: comfortable at
-// 320px (no horizontal scroll except inside code blocks) and scales up.
 .prose {
   color: var(--text-secondary);
   font-size: 1rem;
@@ -113,7 +109,7 @@
   h4 {
     color: var(--text-primary);
     line-height: 1.3;
-    scroll-margin-top: 80px;
+    scroll-margin-top: $blog-header-offset;
     overflow-wrap: break-word;
   }
 
@@ -167,22 +163,22 @@
     margin-block: 8px;
   }
 
-  // GFM task lists: hide the greyed-out native checkboxes and draw our own
-  // themed check, laid out with flex so text never wraps awkwardly.
+  // Not flex: it would blockify the inline `<code>` children into a single
+  // non-wrapping row and overflow narrow screens.
   ul:global(.contains-task-list) {
     list-style: none;
     padding-left: 4px;
 
     li:global(.task-list-item) {
-      display: flex;
-      align-items: baseline;
-      gap: 10px;
+      position: relative;
+      padding-left: 22px;
 
       &::before {
         content: "✓";
+        position: absolute;
+        left: 0;
         color: var(--highlight-primary);
         font-weight: 700;
-        flex-shrink: 0;
       }
 
       input[type="checkbox"] {
@@ -212,7 +208,6 @@
     border-top: 1px solid var(--border-subtle);
   }
 
-  // Inline code (code not wrapped in a pre by rehype-pretty-code).
   :not(pre) > code {
     padding: 2px 6px;
     border-radius: 6px;
@@ -222,7 +217,6 @@
     overflow-wrap: break-word;
   }
 
-  // Fenced code blocks (Shiki via rehype-pretty-code keeps its own background).
   pre {
     margin-block: 24px;
     padding: 14px 16px;
@@ -238,7 +232,7 @@
     }
 
     code {
-      display: grid; // one row per line, enables per-line styling
+      display: grid;
       background: transparent;
       padding: 0;
     }
@@ -248,8 +242,7 @@
     margin: 0;
   }
 
-  // Tables scroll horizontally on narrow screens instead of breaking the
-  // layout (tradeoff: display:block relaxes table semantics, acceptable here).
+  // display:block so wide tables scroll instead of breaking the layout.
   table {
     display: block;
     width: 100%;

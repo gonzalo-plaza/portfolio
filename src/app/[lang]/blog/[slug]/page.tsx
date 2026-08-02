@@ -18,7 +18,7 @@ import { getAllSlugs, getPostBySlug } from "@/blog/blogPosts";
 import { blogIndexPath, blogPostPath } from "@/blog/blogPaths";
 import { getDictionary } from "@/i18n/dictionaries";
 import { interpolate } from "@/i18n/interpolate";
-import { formatBlogDate } from "@/utils/dateUtils/dateUtils";
+import { formatBlogDate, toIsoTimestamp } from "@/utils/dateUtils/dateUtils";
 import {
   SITE_URL,
   getLocalePath,
@@ -91,8 +91,8 @@ export async function generateMetadata({
       description: post.description,
       url: path,
       type: "article",
-      publishedTime: post.date,
-      modifiedTime: post.updated ?? post.date,
+      publishedTime: toIsoTimestamp(post.date),
+      modifiedTime: toIsoTimestamp(post.updated ?? post.date),
       authors: [post.author ?? DEFAULT_AUTHOR],
       tags: post.tags,
       images: [
@@ -104,12 +104,8 @@ export async function generateMetadata({
         },
       ],
     },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-      images: [image],
-    },
+    // Title, description and image fall back to the Open Graph tags above.
+    twitter: { card: "summary_large_image" },
   };
 }
 
@@ -130,8 +126,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     "@type": "BlogPosting",
     headline: post.title,
     description: post.description,
-    datePublished: post.date,
-    dateModified: post.updated ?? post.date,
+    datePublished: toIsoTimestamp(post.date),
+    dateModified: toIsoTimestamp(post.updated ?? post.date),
     inLanguage: locale,
     keywords: post.tags.join(", "),
     image: `${SITE_URL}${post.coverImage ?? DEFAULT_OG_IMAGE}`,
@@ -180,6 +176,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           { label: dict.blog.breadcrumbBlog, href: blogIndexPath(locale) },
           { label: post.title },
         ]}
+        homeHref={getLocalePath(locale)}
         switchHref={blogPostPath(switchLocale, slug)}
         switchLocale={switchLocale}
         contentAligned
