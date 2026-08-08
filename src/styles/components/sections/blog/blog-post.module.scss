@@ -1,6 +1,10 @@
 @use "@/styles/utils/breakpoints" as *;
 @use "@/styles/tokens/layout" as *;
 
+$font-mono:
+  ui-monospace, "SF Mono", sfmono-regular, menlo, consolas, "Liberation Mono",
+  monospace;
+
 .blogPost {
   max-width: $prose-max-width;
   margin-inline: auto;
@@ -213,6 +217,7 @@
     border-radius: 6px;
     background-color: var(--background-elevated);
     color: var(--highlight-primary);
+    font-family: $font-mono;
     font-size: 0.875em;
     overflow-wrap: break-word;
   }
@@ -223,6 +228,7 @@
     border-radius: 12px;
     overflow-x: auto;
     border: 1px solid var(--border-subtle);
+    font-family: $font-mono;
     font-size: 0.875rem;
     line-height: 1.6;
 
@@ -235,6 +241,10 @@
       display: grid;
       background: transparent;
       padding: 0;
+
+      // The grid box would otherwise stop at the visible width, so a scrolled
+      // line ran under the right padding and any line background was cut short.
+      min-width: max-content;
     }
   }
 
