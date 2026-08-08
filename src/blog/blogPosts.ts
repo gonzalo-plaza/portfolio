@@ -3,6 +3,8 @@ import "server-only";
 import { readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
+import { cache } from "react";
+
 import matter from "gray-matter";
 import readingTime from "reading-time";
 
@@ -33,36 +35,123 @@ const localeDir = (locale: Locale): string =>
 const toReadingMinutes = (content: string): number =>
   Math.max(1, Math.round(readingTime(content).minutes));
 
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+
+const relativeToRoot = (filePath: string): string =>
+  path.relative(process.cwd(), filePath);
+
+/**
+ * `gray-matter` returns whatever YAML produced, so the frontmatter is unknown
+ * until checked. Validating here rather than casting is what turns a malformed
+ * post into a message naming the file, instead of a `localeCompare is not a
+ * function` thrown from a sort three calls away.
+ */
+const toFrontmatter = (
+  data: Record<string, unknown>,
+  filePath: string
+): BlogPostFrontmatter => {
+  const problems: string[] = [];
+
+  const stringField = (field: string, required: boolean): void => {
+    const value = data[field];
+
+    if (value === undefined) {
+      if (required) problems.push(`missing "${field}"`);
+      return;
+    }
+
+    // `date: 2026-07-19` without quotes is parsed by YAML as a Date, and every
+    // consumer downstream expects the ISO string it was written as.
+    if (value instanceof Date) {
+      const asIso = value.toISOString().slice(0, 10);
+      problems.push(`"${field}" is an unquoted date — write it as "${asIso}"`);
+      return;
+    }
+
+    if (typeof value !== "string" || value.trim() === "") {
+      problems.push(`"${field}" must be a non-empty string`);
+      return;
+    }
+
+    if ((field === "date" || field === "updated") && !ISO_DATE.test(value)) {
+      problems.push(`"${field}" must be YYYY-MM-DD, got "${value}"`);
+    }
+  };
+
+  stringField("title", true);
+  stringField("description", true);
+  stringField("date", true);
+  stringField("updated", false);
+  stringField("author", false);
+  stringField("coverImage", false);
+  stringField("coverImageAlt", false);
+  stringField("slug", false);
+
+  const { tags } = data;
+  if (!Array.isArray(tags) || tags.some((tag) => typeof tag !== "string")) {
+    problems.push(`"tags" must be an array of strings`);
+  }
+
+  if (problems.length > 0) {
+    throw new Error(
+      `Invalid frontmatter in ${relativeToRoot(filePath)}:\n` +
+        problems.map((problem) => `  ${problem}`).join("\n")
+    );
+  }
+
+  return data as unknown as BlogPostFrontmatter;
+};
+
 /**
  * Reads and parses a single post from disk by its translation key. Returns
  * `null` when the file does not exist for the given locale.
+ *
+ * `cache()` deduplicates within a render pass, which is what keeps a page from
+ * paying for the same file twice: `generateMetadata` and the page body each
+ * walk the whole locale, and `getPostBySlug` re-reads the file it just found.
  */
-const readPost = async (
+const readPost = cache(async (
   locale: Locale,
   translationKey: string
 ): Promise<{ meta: BlogPostMeta; content: string } | null> => {
-  try {
-    const raw = await readFile(
-      path.join(localeDir(locale), `${translationKey}${MDX_EXTENSION}`),
-      "utf8"
-    );
-    const { data, content } = matter(raw);
-    const frontmatter = data as BlogPostFrontmatter;
+  const filePath = path.join(
+    localeDir(locale),
+    `${translationKey}${MDX_EXTENSION}`
+  );
 
-    return {
-      meta: {
-        ...frontmatter,
-        slug: frontmatter.slug ?? translationKey,
-        translationKey,
-        locale,
-        readingTimeMinutes: toReadingMinutes(content),
-      },
-      content,
-    };
+  // Scoped to the read alone: a post absent for this locale is a legitimate
+  // `null`, but a post that exists and is malformed must not be swallowed into
+  // one — that is how a broken file silently disappears from the listing.
+  let raw: string;
+  try {
+    raw = await readFile(filePath, "utf8");
   } catch {
     return null;
   }
-};
+
+  let parsed: matter.GrayMatterFile<string>;
+  try {
+    parsed = matter(raw);
+  } catch (error) {
+    const detail = error instanceof Error ? error.message : String(error);
+    throw new Error(
+      `Unparseable frontmatter in ${relativeToRoot(filePath)}: ${detail}`
+    );
+  }
+
+  const frontmatter = toFrontmatter(parsed.data, filePath);
+
+  return {
+    meta: {
+      ...frontmatter,
+      slug: frontmatter.slug ?? translationKey,
+      translationKey,
+      locale,
+      readingTimeMinutes: toReadingMinutes(parsed.content),
+    },
+    content: parsed.content,
+  };
+});
 
 /** Translation keys available for a locale (filenames without the extension). */
 const getKeysForLocale = async (locale: Locale): Promise<string[]> => {
@@ -77,10 +166,10 @@ const getKeysForLocale = async (locale: Locale): Promise<string[]> => {
 };
 
 /**
- * All post metadata for a locale, newest first. Skips files that fail to parse
- * rather than breaking the whole listing.
+ * All post metadata for a locale, newest first. Only the locale's own files are
+ * skipped when absent; a malformed one throws, naming itself.
  */
-export const getAllPostsMeta = async (
+export const getAllPostsMeta = cache(async (
   locale: Locale
 ): Promise<BlogPostMeta[]> => {
   const keys = await getKeysForLocale(locale);
@@ -92,7 +181,7 @@ export const getAllPostsMeta = async (
     )
     .map((post) => post.meta)
     .sort((a, b) => b.date.localeCompare(a.date));
-};
+});
 
 /** Full post (metadata + MDX body) for a locale's public slug, or `null`. */
 export const getPostBySlug = async (
@@ -158,7 +247,7 @@ const assertPostsAreValid = (
  * sitemap, the `hreflang` groups and the language switch, so all three read the
  * same source and cannot disagree.
  */
-export const getPostSlugMap = async (): Promise<
+export const getPostSlugMap = cache(async (): Promise<
   Map<string, Record<Locale, string>>
 > => {
   const perLocale = await Promise.all(
@@ -187,4 +276,4 @@ export const getPostSlugMap = async (): Promise<
       ) as Record<Locale, string>,
     ])
   );
-};
+});
