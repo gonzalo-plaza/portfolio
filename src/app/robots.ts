@@ -1,11 +1,13 @@
-import type { MetadataRoute } from 'next'
- 
+import type { MetadataRoute } from "next";
+
+import { SITE_URL } from "@/i18n/config";
+
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
+      userAgent: "*",
+      allow: "/",
     },
-    sitemap: 'https://gonzaloplazarueda.com/sitemap.xml',
-  }
+    sitemap: `${SITE_URL}/sitemap.xml`,
+  };
 }

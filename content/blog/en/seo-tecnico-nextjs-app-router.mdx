@@ -1,0 +1,270 @@
+---
+title: "Technical SEO with Next.js App Router"
+slug: "technical-seo-nextjs-app-router"
+description: "What I learned building this portfolio: SSG and ISR, the Metadata API, dynamic sitemap and robots, JSON-LD and hreflang, with real examples from the site."
+date: "2026-07-19"
+tags: ["Next.js", "SEO", "App Router", "TypeScript"]
+author: "Gonzalo Plaza Rueda"
+---
+
+When I built this portfolio, one of my goals was getting Google to index it properly and, along the way, to learn those first configurations that are already in place on other projects — the kind of thing I always enjoy learning, because it's the groundwork and it gives you a view of the whole. What I found is that Next.js ships with almost everything you need for technical SEO out of the box, but also that some details aren't obvious until you have to wrestle with them.
+
+This article is a collection of those notes. It doesn't aim to be the definitive guide to anything: it's what has worked for me, explained with real examples from the site you're reading this on.
+
+## 1. Rendering matters
+
+An image that always helped me understand SEO: Google's crawler is like an inspector turning up at a building site. If the house is already built when they arrive (HTML generated on the server or at build time), they walk through the whole thing and register it. If what they find is an empty plot with a sign saying "hold on, JavaScript is building the house right now" (the classic empty SPA), the inspector notes that they'll have to come back — but that second visit isn't guaranteed and it isn't quick: it can take days, and on small sites it sometimes never happens at all. And there's a new breed of inspector (the AI bots) that simply doesn't come back: if they don't see the house built on the first visit, they write it off as non-existent.
+
+The App Router gives you three strategies, and for public content the first two are usually enough:
+
+- **SSG (Static Site Generation):** the HTML is generated at *build* time. The crawler gets the complete page. It's what this blog's articles use.
+- **ISR (Incremental Static Regeneration):** SSG with revalidation every N seconds. Static, but it refreshes without redeploying. It's what the home page uses, since it shows "years of experience" computed from today's date.
+- **SSR (Server-Side Rendering):** rendered on every request. It makes sense for highly dynamic content, though it's more expensive. I don't use it on a single page in this portfolio.
+
+The home page's ISR fits in one line:
+
+```tsx
+// src/app/[lang]/page.tsx
+export const revalidate = 86400; // 24h: refresh the experience figure
+```
+
+<Callout type="info">
+The rule of thumb I go by: if a logged-out user can see the content, SSG or ISR almost always fits. I save SSR for what genuinely changes on every request.
+</Callout>
+
+## 2. How this blog's articles get generated
+
+The first thing I had to unlearn: in the App Router there is **no such thing as "turning on SSG"**. Every route is static by default; what you do is *break* it the moment you use something dynamic. `generateStaticParams` doesn't switch SSG on — it hands Next the **list of values** a dynamic segment can take. And an article's route, `src/app/[lang]/blog/[slug]/page.tsx`, has two of them: language and article.
+
+Here's the detail that wasn't remotely obvious to me: **there are two `generateStaticParams`, at different levels of the tree**, and the article's one doesn't return the language.
+
+```tsx
+// src/app/[lang]/layout.tsx
+export function generateStaticParams() {
+  return i18n.locales.map((lang) => ({ lang })); // [{ lang: 'es' }, { lang: 'en' }]
+}
+
+// src/app/[lang]/blog/[slug]/page.tsx
+export async function generateStaticParams() {
+  const slugs = await getAllSlugs();
+  return slugs.map((slug) => ({ slug })); // just the slug, no lang
+}
+```
+
+It works because Next runs the child's `generateStaticParams` **once for every combination the parent produced**, and merges the two: `es` × `my-article` and `en` × `my-article`. Two pages per article. I write a new post and that's two more; the day I add a language, every one of them multiplies.
+
+The content is `.mdx` files living in `content/blog/<language>/<slug>.mdx`, outside `src/`, read from disk with `node:fs` during the build. That's what *physically* guarantees it's SSG: that code cannot run in the browser. The piece that closes the loop is `export const dynamicParams = false`: if a URL didn't come out of `generateStaticParams`, it's a 404. No on-demand rendering, no ISR. The blog's set of URLs is frozen at build time, and publishing an article means deploying.
+
+<Callout type="warning">
+A side effect that nearly slipped an SEO bug past me: because the slugs are collected from *every* language, an article that only existed in Spanish would still generate its English URL, which would end up being a 404 advertised in the sitemap and pointed at by `hreflang`. I could have handled it with conditionals scattered across the sitemap, the metadata and the language switcher; I went the other way: **the build fails** if a post isn't translated into every language. If the invalid state can't exist, there's nothing to handle anywhere.
+</Callout>
+
+If you fancy seeing the whole thing, the portfolio is open source: [github.com/gonzalo-plaza/portfolio](https://github.com/gonzalo-plaza/portfolio). The files that tell this story are:
+
+- `src/app/[lang]/blog/[slug]/page.tsx` — the article page: `generateStaticParams`, `generateMetadata` and the JSON-LD.
+- `src/app/[lang]/layout.tsx` — the `generateStaticParams` for the languages.
+- `src/blog/blogPosts.ts` — reading the `.mdx` files from disk, and the translation check that fails the build.
+- `src/blog/blogPaths.ts` — building URLs (`/blog/…` versus `/en/blog/…`).
+- `src/middleware.ts` — the default language served with no prefix, with a 308 redirect from `/es/…` so URLs aren't duplicated.
+- `src/app/sitemap.ts` — the sitemap with `hreflang`, fed by the same slugs as `generateStaticParams`.
+
+## 3. The Metadata API
+
+I come from handling technical SEO without libraries, editing the metadata by hand and self-taught (the `<head>` tags): the `title`, the `canonical` when it was needed, `keywords` and not much else.
+
+Seeing everything Next.js offers for SEO out of the box — and how many tags you can manage in the `<head>` — genuinely floored me. Practising on this portfolio and studying how Next solves it, I found there was far more room for improvement than I thought.
+
+In Next we can generate the metadata dynamically with `generateMetadata`:
+
+```tsx
+export async function generateMetadata({ params }): Promise<Metadata> {
+  const { lang } = await params;
+  const dict = await getDictionary(lang);
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title: {
+      default: dict.metadata.title,
+      template: "%s | Gonzalo Plaza Rueda",
+    },
+    description: dict.metadata.description,
+    alternates: {
+      canonical: getLocalePath(lang),
+      languages: { es: "/", en: "/en", "x-default": "/" },
+    },
+    openGraph: { /* … */ },
+    twitter: { card: "summary_large_image" },
+  };
+}
+```
+
+The `title`, the `description` and the `canonical` I already brought with me. What I didn't have anywhere near as clear is everything around them, and building it here made it click why it exists:
+
+- **`metadataBase`**: the URLs other platforms consume have to be **absolute**, because whoever reads them does so from their own servers — a `/og-image.jpg` is no use to WhatsApp, it has no idea which domain it hangs off. Declare the site's origin here once and Next turns any relative path you write in the metadata into an absolute one. And it's inherited across the whole route tree, so you set it once and forget about it.
+
+- **`title.template`**: instead of repeating the brand suffix on every page, you define it once as `"%s | Gonzalo Plaza Rueda"` and each page contributes only its own part. With one subtlety that took me a while to get: the template applies to **child** pages, never to the segment declaring it. That one has `default`, and that's why they're two separate keys.
+
+- **`alternates.languages`**: this is where `hreflang` lives, and it's what stops your own translations from **competing with each other** in the results. I knew what it was for, but not that the golden rule is that it has to be **reciprocal**: if the Spanish version points at the English one, the English one has to point back at the Spanish one. If one side is missing, Google discards the whole group and it does nothing for you. That's why every page emits the full language map rather than just the link to the other one — `x-default` included, which is the fallback for the languages you don't cover.
+
+- **`openGraph`**: this is what controls the card that shows up when someone pastes your link into WhatsApp, LinkedIn or Slack. Without it, every platform improvises: it grabs the first image it can find and a random chunk of text. It was born at Facebook, but nearly everything reads it today. That said, it's worth being clear that **it is not a ranking factor**: it doesn't move you up in Google, it makes people click when they see your link shared. It's indirect SEO, and the two get confused easily.
+
+Of the `twitter` block I ended up keeping a single line. And not out of laziness: X falls back to the Open Graph tags when it can't find its own, so repeating the title, description and image there was duplication for duplication's sake. The only one with no Open Graph equivalent is `card`, which is what decides whether your link shows up with the big image or with a postage-stamp thumbnail.
+
+## 4. Dynamic sitemap and robots (no hand-written XML)
+
+I come from generating the sitemap and the robots with bespoke scripts, so when I saw how they're solved in Next I was impressed by how little you have to write.
+
+In the App Router you just create two files at the root of `app/` and Next generates `/sitemap.xml` and `/robots.txt` for you. `robots` is the simpler of the two:
+
+```ts
+// src/app/robots.ts
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: { userAgent: "*", allow: "/" },
+    sitemap: `${SITE_URL}/sitemap.xml`,
+  };
+}
+```
+
+That `sitemap` field becomes the `Sitemap:` line in `robots.txt`, which is the standard way for any crawler to locate your sitemap without you having to register it in any dashboard.
+
+`sitemap` is longer, though no more complicated. This is the articles block, exactly as it stands in the repository:
+
+```ts
+// src/app/sitemap.ts
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const slugs = await getAllSlugs();
+
+  const posts: MetadataRoute.Sitemap = slugs.flatMap((slug) => {
+    // The same map for both entries: hreflang has to be reciprocal,
+    // so every language declares the complete group.
+    const languages = {
+      es: `${SITE_URL}${blogPostPath("es", slug)}`,
+      en: `${SITE_URL}${blogPostPath("en", slug)}`,
+    };
+
+    // One entry per language: es × slug and en × slug, just like in
+    // generateStaticParams. The same slugs feed both.
+    return i18n.locales.map((locale) => ({
+      url: `${SITE_URL}${blogPostPath(locale, slug)}`,
+      lastModified: postDate(locale, slug), // updated ?? date from the frontmatter
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: { languages },
+    }));
+  });
+
+  return [...home, ...blogIndex, ...posts];
+}
+```
+
+The contract with Next is minimal: a `sitemap.ts` file at the root of `app/` with an `export default`. The function's name is irrelevant, what Next looks for is the default export; it runs it during the build and serialises whatever you return into XML, so you never end up touching the format's syntax.
+
+What you return is an array of objects, and each object describes one URL in the sitemap. The fields I use here:
+
+- **`url`** — required, and it has to be absolute. The `metadataBase` from the previous section doesn't reach this far: that resolves relative paths inside a page's metadata, and the sitemap is a separate document. That's why every URL hangs off `SITE_URL`.
+- **`lastModified`** — when that page last changed.
+- **`changeFrequency`** and **`priority`** — how often the URL is expected to change, and its relative importance within *your* site (never against anyone else's).
+- **`alternates.languages`** — the `hreflang` from section 3, declared here for a second time. They're two channels Google accepts equally, so one is enough; what they can't do is contradict each other.
+
+<Callout type="warning">
+Of the three fields describing the URL, **Google ignores `changeFrequency` and `priority`**, and says as much in its own documentation. I keep them because other search engines do read them and declaring them costs nothing, but they aren't a ranking lever. The only one Google uses is `lastModified`, and only while it's verifiably true: it checks the date against what it finds when crawling, and once it stops adding up, it stops trusting the field across the whole domain.
+</Callout>
+
+That rules out the comfortable solution, which would be stamping every entry with a `new Date()` during the build: shipping a CSS change would be enough to announce that the articles were modified today. Repeat that a few times and what you lose is the signal for the day an article really does change. So every date comes from the content, and the home page, which has no content date to point at, declares none: the field is optional, so in this case it's better to leave it empty than to announce updates that aren't actually happening.
+
+Nor is the sitemap the only way Google **discovers** URLs; links are still the main route. Its value is in covering whatever ends up poorly linked: new pages, sites with no inbound links, or sections that don't hang off the menu yet.
+
+<Callout type="success">
+An experiment from this very blog: it isn't linked from the main menu (it's a trial for now), but it **is** in the sitemap. The theory says Google should discover and index it anyway — I'll report back on how it goes.
+</Callout>
+
+## 5. Structured data (JSON-LD)
+
+I don't have much experience with structured data. I knew it existed, but I'd never had the chance to dig into it. I asked Claude Code to review the project's technical SEO and it added it for me: it was something that had **gone completely over my head**. So before signing off on what had turned up in my code, **I wanted to understand it**.
+
+Conceptually, structured data is **the deeds to the house**, the ones Google goes through when it comes round for the inspection (the one from the start of this article). The deeds spell out who owns it, when it was built, whether it's been renovated… Well, that's exactly it. **Google stops having to guess** any of that, because we hand it over.
+
+And what do you get out of it? Your result stops being three lines of text. That's what **rich snippets** are: the date and the author on an article, the stars and the price on a product, the `Home › Blog › Article` trail instead of the raw URL. You take up more room on the results page and you say more before anyone clicks.
+
+That said, same caveat as Open Graph in section 3: **it is not a ranking factor**. It doesn't move you up, it changes how your result looks.
+
+Writing those deeds takes two pieces: **schema.org is the "language"** we define the data in, and **JSON-LD is the format** we write it in. There are other formats, like [Microdata or RDFa](https://developers.google.com/search/docs/appearance/structured-data/intro-structured-data), but both of them mean adding attributes to your HTML tags, and that — the way I see it — is hard to maintain, scale and structure. JSON-LD is **completely decoupled from the HTML**: a JSON blob inside a `script` tag and you're done.
+
+All you need to know about [schema.org](https://schema.org) is that it's a **catalogue of types** — `Person`, `Product`, `Recipe`, `Event`… hundreds of them — and that each one brings **its own properties**: a `Person` has `name` and `jobTitle`; a `Recipe`, `cookTime` and `ingredients`. It was defined in 2011 by **Google, Microsoft and Yahoo together**, direct competitors agreeing on a shared vocabulary so nobody would have to describe the same page three times over.
+
+For an article, the right type is [`BlogPosting`](https://schema.org/BlogPosting):
+
+```tsx
+const blogPostingSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.title,
+  description: post.description,
+  datePublished: toIsoTimestamp(post.date),
+  dateModified: toIsoTimestamp(post.updated ?? post.date),
+  author: { "@type": "Person", name: post.author },
+  inLanguage: locale,
+};
+```
+
+And a second type, `BreadcrumbList`, for that `Home › Blog › Article` trail I mentioned above. The "types and properties" idea comes across better here than in any explanation:
+
+```tsx
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: dict.blog.breadcrumbHome,
+      item: `${SITE_URL}${getLocalePath(locale)}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: dict.blog.breadcrumbBlog,
+      item: `${SITE_URL}${blogIndexPath(locale)}`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: post.title,
+      item: `${SITE_URL}${path}`,
+    },
+  ],
+};
+```
+
+A list of `ListItem`, each with its **position**, its **name** and its **URL**. Nothing more. And both schemas travel **in the same tag**, as an array — you don't need a `<script>` for each one:
+
+```tsx
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify([blogPostingSchema, breadcrumbSchema]),
+  }}
+/>
+```
+
+And it's worth not trusting your eyes. I ran this very article through Google's [**Rich Results Test**](https://search.google.com/test/rich-results) and it came back with two warnings I hadn't spotted: `datePublished` and `dateModified` were going out as `2026-07-19`, **with no timezone**. Without that, Google assumes Googlebot's own, which can shift the article to the neighbouring day.
+
+The frontmatter still stores only the day, because writing timezones by hand adds nothing. What changed is that the schema now expands it to `2026-07-19T12:00:00+02:00`, resolving the offset per date so the daylight saving switch doesn't throw it off.
+
+## My current checklist
+
+This is the order I go through things in before publishing any page. High level, without getting into detail. I'm sure it will keep growing:
+
+- [x] **Rendering:** that the HTML arrives ready, with SSG or ISR
+- [x] **Its own metadata** on every page: `title`, `description`, `canonical`…
+- [x] **Reciprocal `hreflang`**, if there's more than one language
+- [x] **Open Graph:** for when the link gets shared
+- [x] **Sitemap and robots**, consistent with the actual content
+- [x] **Structured data** of the right type, and validated
+
+## Wrapping up
+
+If there's one idea I take away from all this, it's that technical SEO is less about tricks and more about fundamentals: render on the server, give Google clear metadata and structured data, and describe your URLs well. The framework does most of the heavy lifting; what's left is understanding what you're declaring and why.
+
+I hope these notes save you some of the trial and error they cost me.

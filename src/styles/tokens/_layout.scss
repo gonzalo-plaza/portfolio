@@ -1,0 +1,6 @@
+// Reading column for blog content. The header aligns its breadcrumb to it too.
+$prose-max-width: 720px;
+
+// Clears the sticky blog header (113px) so deep-linked headings aren't hidden.
+// The avatar drives that height: move this when `&__avatar` changes.
+$blog-header-offset: 128px;

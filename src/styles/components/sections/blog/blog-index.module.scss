@@ -1,0 +1,56 @@
+@use "@/styles/utils/breakpoints" as *;
+
+.blogIndex {
+  padding-block: 24px 64px;
+
+  @include breakpoint-up("md") {
+    padding-block: 24px 80px;
+  }
+
+  &__header {
+    max-width: 640px;
+    margin-bottom: 32px;
+
+    @include breakpoint-up("md") {
+      margin-bottom: 40px;
+    }
+  }
+
+  // Mobile-first (320px): modest h1, scaled up on wider screens.
+  &__title {
+    font-size: 2rem;
+    color: var(--text-primary);
+
+    @include breakpoint-up("md") {
+      font-size: 2.75rem;
+    }
+  }
+
+  &__intro {
+    margin-top: 12px;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    line-height: 1.6;
+
+    @include breakpoint-up("md") {
+      font-size: 1.125rem;
+    }
+  }
+
+  &__empty {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+  }
+
+  &__list {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+
+    // Cards keep a comfortable reading width instead of stretching to fill
+    // half (or all) of the container when there are few posts.
+    @include breakpoint-up("md") {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 360px));
+    }
+  }
+}

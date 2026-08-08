@@ -6,7 +6,14 @@ import styles from "@/styles/components/layout/main-layout/main-layout.module.sc
 import { ThemeStoreProvider } from "@/providers/theme-store-provider";
 import UpdateThemeUtil from "@/utils/UpdateThemeUtil";
 import { getDictionary } from "@/i18n/dictionaries";
-import { SITE_URL, getLocalePath, i18n, isLocale, type Locale } from "@/i18n/config";
+import { sharedOpenGraph, whatsappOgImage } from "@/i18n/openGraph";
+import {
+  SITE_URL,
+  getLocalePath,
+  i18n,
+  isLocale,
+  type Locale,
+} from "@/i18n/config";
 
 const onest = Onest({
   variable: "--font-onest",
@@ -108,37 +115,20 @@ export async function generateMetadata({
       ],
     },
     openGraph: {
+      ...sharedOpenGraph(dict, [whatsappOgImage(dict)]),
       title: dict.metadata.ogTitle,
       description: dict.metadata.ogDescription,
       url: getLocalePath(locale),
-      siteName: "Gonzalo Plaza Rueda",
-      images: [
-        {
-          url: "/og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: dict.metadata.ogImageAlt,
-        },
-        {
-          url: "/og-image-whatsapp.jpg",
-          width: 1200,
-          height: 1200,
-          alt: dict.metadata.ogImageAlt,
-        },
-      ],
-      locale: dict.metadata.ogLocale,
       type: "website",
     },
-    twitter: {
-      card: "summary_large_image",
-      title: dict.metadata.ogTitle,
-      description: dict.metadata.ogDescription,
-      images: ["/og-image.jpg"],
-    },
+    twitter: { card: "summary_large_image" },
   };
 }
 
-export default async function RootLayout({ children, params }: LangLayoutProps) {
+export default async function RootLayout({
+  children,
+  params,
+}: LangLayoutProps) {
   const { lang } = await params;
   const locale = resolveLocale(lang);
 

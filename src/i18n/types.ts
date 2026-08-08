@@ -92,4 +92,22 @@ export interface Dictionary {
     linkedinAria: string;
     githubAria: string;
   };
+  blog: {
+    metaTitle: string;
+    metaDescription: string;
+    indexTitle: string;
+    indexIntro: string;
+    emptyState: string;
+    readMore: string;
+    readMoreAria: string;
+    backToBlog: string;
+    publishedOn: string;
+    updatedOn: string;
+    readingTime: string;
+    readingTimeLabel: string;
+    tagsLabel: string;
+    breadcrumbHome: string;
+    breadcrumbBlog: string;
+    switchLanguageAria: string;
+  };
 }

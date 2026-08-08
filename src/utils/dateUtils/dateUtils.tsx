@@ -1,3 +1,5 @@
+import type { Locale } from "@/i18n/config";
+
 /**
  * Start dates for career milestones — used to calculate dynamic experience years.
  * Update these if the starting role ever changes.
@@ -33,23 +35,7 @@ export interface DurationLabels {
   and: string;
 }
 
-/**
- * The function `getDifferenceTimeString` calculates the time difference between two dates and returns
- * a human-readable string representation of the difference.
- *
- * @param {Date} latestDate - The `latestDate` parameter is the most recent date for which you want to
- * calculate the time difference.
- * @param {Date} earlierDate - The `earlierDate` parameter is the Date object representing the earlier
- * date for which you want to calculate the time difference.
- * @param {getDifferenceTimeStringOptions} options - The `options` parameter in the
- * `getDifferenceTimeString` function allows you to customize the output by hiding specific time units.
- * By default, all time units (days, months, years) are shown in the output. However, you can set the
- * following options to `true` to hide specific units
- *
- * @returns Returns a formatted string representing the time difference between two dates, considering the options provided.
- * The returned string includes the number of years, months, and days passed between the two dates, with the ability to hide specific
- * units of time based on the options provided.
- */
+/** Human-readable span between two dates, localised through `labels`. */
 export const getDifferenceTimeString = (
   latestDate: Date,
   earlierDate: Date,
@@ -112,3 +98,44 @@ export const getDifferenceTimeString = (
     return experienceTimeArray[0];
   }
 };
+
+const BLOG_DATE_LOCALES: Record<Locale, string> = {
+  es: "es-ES",
+  en: "en-US",
+};
+
+/**
+ * Formats an ISO date (YYYY-MM-DD) into a localized human-readable date, e.g.
+ * "19 de julio de 2026" / "July 19, 2026". Used for blog post `<time>` labels.
+ */
+export const formatBlogDate = (isoDate: string, locale: Locale): string =>
+  new Intl.DateTimeFormat(BLOG_DATE_LOCALES[locale], {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    // `YYYY-MM-DD` parses as UTC midnight, so formatting in the runtime's zone
+    // would render the previous day west of Greenwich — and disagree with the
+    // `datetime` attribute and the JSON-LD next to it.
+    timeZone: "UTC",
+  }).format(new Date(isoDate));
+
+const SITE_TIMEZONE = "Europe/Madrid";
+
+/** Resolved per date so daylight saving is handled, not assumed. */
+const siteUtcOffset = (isoDate: string): string =>
+  new Intl.DateTimeFormat("en", {
+    timeZone: SITE_TIMEZONE,
+    timeZoneName: "longOffset",
+  })
+    .formatToParts(new Date(`${isoDate}T12:00:00Z`))
+    .find((part) => part.type === "timeZoneName")
+    ?.value.replace("GMT", "") || "Z";
+
+/**
+ * `YYYY-MM-DD` to a full ISO 8601 timestamp, e.g. `2026-07-19T12:00:00+02:00`.
+ * Google reports structured-data dates without an offset as invalid. Posts only
+ * declare a day, so midday is the choice that reads as the same date in every
+ * timezone and stays clear of the small hours where DST switches.
+ */
+export const toIsoTimestamp = (isoDate: string): string =>
+  `${isoDate}T12:00:00${siteUtcOffset(isoDate)}`;
