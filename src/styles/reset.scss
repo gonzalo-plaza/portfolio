@@ -39,6 +39,8 @@ li {
 /* Smooth scroll */
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* Reset default styles of principal text labels */
@@ -52,7 +54,6 @@ h6 {
   font-weight: inherit;
   font-style: inherit;
 }
-
 
 p,
 span,
