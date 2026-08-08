@@ -6,6 +6,7 @@ import styles from "@/styles/components/layout/main-layout/main-layout.module.sc
 import { ThemeStoreProvider } from "@/providers/theme-store-provider";
 import UpdateThemeUtil from "@/utils/UpdateThemeUtil";
 import { getDictionary } from "@/i18n/dictionaries";
+import { sharedOpenGraph, whatsappOgImage } from "@/i18n/openGraph";
 import {
   SITE_URL,
   getLocalePath,
@@ -114,25 +115,10 @@ export async function generateMetadata({
       ],
     },
     openGraph: {
+      ...sharedOpenGraph(dict, [whatsappOgImage(dict)]),
       title: dict.metadata.ogTitle,
       description: dict.metadata.ogDescription,
       url: getLocalePath(locale),
-      siteName: "Gonzalo Plaza Rueda",
-      images: [
-        {
-          url: "/og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: dict.metadata.ogImageAlt,
-        },
-        {
-          url: "/og-image-whatsapp.jpg",
-          width: 450,
-          height: 450,
-          alt: dict.metadata.ogImageAlt,
-        },
-      ],
-      locale: dict.metadata.ogLocale,
       type: "website",
     },
     twitter: { card: "summary_large_image" },
