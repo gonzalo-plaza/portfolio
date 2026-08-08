@@ -5,6 +5,7 @@ import BlogHeader from "@/components/layout/header/BlogHeader";
 import Footer from "@/components/layout/footer/Footer";
 import PostCard from "@/components/ui/organism/PostCard";
 import { getAllPostsMeta } from "@/blog/blogPosts";
+import { sharedOpenGraph } from "@/i18n/openGraph";
 import { blogIndexPath } from "@/blog/blogPaths";
 import { getDictionary } from "@/i18n/dictionaries";
 import { getLocalePath, i18n, isLocale, type Locale } from "@/i18n/config";
@@ -39,6 +40,7 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      ...sharedOpenGraph(dict),
       title: dict.blog.metaTitle,
       description: dict.blog.metaDescription,
       url: path,

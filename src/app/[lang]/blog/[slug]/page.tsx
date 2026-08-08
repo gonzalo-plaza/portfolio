@@ -21,6 +21,7 @@ import {
 } from "@/blog/blogPosts";
 import { blogIndexPath, blogPostPath } from "@/blog/blogPaths";
 import { getDictionary } from "@/i18n/dictionaries";
+import { sharedOpenGraph } from "@/i18n/openGraph";
 import { interpolate } from "@/i18n/interpolate";
 import { formatBlogDate, toIsoTimestamp } from "@/utils/dateUtils/dateUtils";
 import {
@@ -78,6 +79,7 @@ export async function generateMetadata({
 
   if (!post) return {};
 
+  const dict = await getDictionary(locale);
   const path = blogPostPath(locale, slug);
   const image = post.coverImage ?? DEFAULT_OG_IMAGE;
   const slugs = (await getPostSlugMap()).get(post.translationKey);
@@ -103,6 +105,7 @@ export async function generateMetadata({
       },
     },
     openGraph: {
+      ...sharedOpenGraph(dict),
       title: post.title,
       description: post.description,
       url: path,

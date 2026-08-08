@@ -129,6 +129,10 @@ export const formatBlogDate = (isoDate: string, locale: Locale): string =>
     year: "numeric",
     month: "long",
     day: "numeric",
+    // `YYYY-MM-DD` parses as UTC midnight, so formatting in the runtime's zone
+    // would render the previous day west of Greenwich — and disagree with the
+    // `datetime` attribute and the JSON-LD next to it.
+    timeZone: "UTC",
   }).format(new Date(isoDate));
 
 const SITE_TIMEZONE = "Europe/Madrid";
