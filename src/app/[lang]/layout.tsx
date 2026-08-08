@@ -127,8 +127,8 @@ export async function generateMetadata({
         },
         {
           url: "/og-image-whatsapp.jpg",
-          width: 1200,
-          height: 1200,
+          width: 450,
+          height: 450,
           alt: dict.metadata.ogImageAlt,
         },
       ],

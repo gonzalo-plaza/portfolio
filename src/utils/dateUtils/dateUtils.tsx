@@ -35,23 +35,7 @@ export interface DurationLabels {
   and: string;
 }
 
-/**
- * The function `getDifferenceTimeString` calculates the time difference between two dates and returns
- * a human-readable string representation of the difference.
- *
- * @param {Date} latestDate - The `latestDate` parameter is the most recent date for which you want to
- * calculate the time difference.
- * @param {Date} earlierDate - The `earlierDate` parameter is the Date object representing the earlier
- * date for which you want to calculate the time difference.
- * @param {getDifferenceTimeStringOptions} options - The `options` parameter in the
- * `getDifferenceTimeString` function allows you to customize the output by hiding specific time units.
- * By default, all time units (days, months, years) are shown in the output. However, you can set the
- * following options to `true` to hide specific units
- *
- * @returns Returns a formatted string representing the time difference between two dates, considering the options provided.
- * The returned string includes the number of years, months, and days passed between the two dates, with the ability to hide specific
- * units of time based on the options provided.
- */
+/** Human-readable span between two dates, localised through `labels`. */
 export const getDifferenceTimeString = (
   latestDate: Date,
   earlierDate: Date,

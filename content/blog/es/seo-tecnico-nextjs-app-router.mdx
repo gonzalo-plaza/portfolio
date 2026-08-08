@@ -6,13 +6,13 @@ tags: ["Next.js", "SEO", "App Router", "TypeScript"]
 author: "Gonzalo Plaza Rueda"
 ---
 
-Cuando monté este portfolio, uno de mis objetivos era que Google lo indexase bien y de paso aprender esas primeras configuraciones que en otro proyectos ya están aplicadas, cosa que siempre me gusta aprender porque son las bases de los proyectos y te ayuda a tener una visión global de todo. Por el camino descubrí que Next.js trae de serie casi todo lo necesario para el SEO técnico, pero también que hay detalles que no son evidentes hasta que te toca pelearte con ellos.
+Cuando monté este portfolio, uno de mis objetivos era que Google lo indexase bien y de paso aprender esas primeras configuraciones que en otros proyectos ya están aplicadas, cosa que siempre me gusta aprender porque son las bases de los proyectos y te ayuda a tener una visión global de todo. Por el camino descubrí que Next.js trae de serie casi todo lo necesario para el SEO técnico, pero también que hay detalles que no son evidentes hasta que te toca pelearte con ellos.
 
 Este artículo es la recopilación de esas notas. No pretende ser la guía definitiva de nada: es lo que a mí me ha funcionado, explicado con ejemplos reales de la web donde estás leyendo esto.
 
 ## 1. El renderizado importa
 
-Una imagen que siempre me ayudó a entender el SEO: el crawler de Google es como un inspector que visita una obra. Si la casa ya está construida cuando llega (HTML generado en el servidor o en el build), la revisa entera y la registra.Si lo que se encuentra es un solar con un cartel de "espera, que JavaScript construye la casa ahora" (el clásico SPA vacío), el inspector apunta que tiene que volver — pero esa segunda visita no está garantizada ni es rápida: puede tardar días, y en sitios pequeños a veces no llega nunca. Y hay inspectores nuevos (los bots de IA) que directamente no vuelven: si no ven la casa construida en la primera visita, la dan por inexistente.
+Una imagen que siempre me ayudó a entender el SEO: el crawler de Google es como un inspector que visita una obra. Si la casa ya está construida cuando llega (HTML generado en el servidor o en el build), la revisa entera y la registra. Si lo que se encuentra es un solar con un cartel de "espera, que JavaScript construye la casa ahora" (el clásico SPA vacío), el inspector apunta que tiene que volver — pero esa segunda visita no está garantizada ni es rápida: puede tardar días, y en sitios pequeños a veces no llega nunca. Y hay inspectores nuevos (los bots de IA) que directamente no vuelven: si no ven la casa construida en la primera visita, la dan por inexistente.
 
 Con el App Router hay tres estrategias, y para contenido público las dos primeras suelen ser suficientes:
 

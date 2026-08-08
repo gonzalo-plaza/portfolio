@@ -2,6 +2,10 @@
 
 # dependencies
 /node_modules
+# pnpm is the package manager (see `packageManager` in package.json); a second
+# lockfile would resolve a different tree than the one used to build.
+package-lock.json
+yarn.lock
 /.pnp
 .pnp.*
 .yarn/*

@@ -35,6 +35,15 @@ import {
 const DEFAULT_AUTHOR = "Gonzalo Plaza Rueda";
 const DEFAULT_OG_IMAGE = "/og-image.jpg";
 
+/**
+ * JSON-LD needs an absolute URL and gets no `metadataBase` to resolve it, so a
+ * `coverImage` already pointing at a CDN must not be prefixed with the origin.
+ */
+const absoluteImageUrl = (image: string | undefined): string => {
+  const src = image ?? DEFAULT_OG_IMAGE;
+  return src.startsWith("http") ? src : `${SITE_URL}${src}`;
+};
+
 export const dynamicParams = false;
 
 const resolveLocale = (lang: string): Locale =>
@@ -151,7 +160,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     dateModified: toIsoTimestamp(post.updated ?? post.date),
     inLanguage: locale,
     keywords: post.tags.join(", "),
-    image: `${SITE_URL}${post.coverImage ?? DEFAULT_OG_IMAGE}`,
+    image: absoluteImageUrl(post.coverImage),
     author: { "@type": "Person", name: author, url: SITE_URL },
     publisher: { "@type": "Person", name: DEFAULT_AUTHOR, url: SITE_URL },
     mainEntityOfPage: { "@type": "WebPage", "@id": `${SITE_URL}${path}` },

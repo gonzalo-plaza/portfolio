@@ -104,6 +104,7 @@ export interface Dictionary {
     publishedOn: string;
     updatedOn: string;
     readingTime: string;
+    readingTimeLabel: string;
     tagsLabel: string;
     breadcrumbHome: string;
     breadcrumbBlog: string;

@@ -51,6 +51,7 @@ const PostCard = ({ post, dict }: PostCardProps) => {
         </div>
         <div className={styles.postCard__metaItem}>
           <Clock aria-hidden size={16} />
+          <dt className="visibly-hidden">{dict.readingTimeLabel}</dt>
           <dd>
             {interpolate(dict.readingTime, {
               minutes: post.readingTimeMinutes,

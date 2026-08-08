@@ -153,6 +153,7 @@
     "publishedOn": "Published on",
     "updatedOn": "Updated on",
     "readingTime": "{minutes} min read",
+    "readingTimeLabel": "Reading time",
     "tagsLabel": "Tags",
     "breadcrumbHome": "Home",
     "breadcrumbBlog": "Blog",

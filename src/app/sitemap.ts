@@ -11,12 +11,18 @@ const absoluteUrl = (path: string): string =>
   path === "/" ? SITE_URL : `${SITE_URL}${path}`;
 
 /** Derived from `i18n.locales`: `hreflang` breaks unless the group is complete,
- *  and a hand-written map would type-check while silently dropping a locale. */
-const languagesFor = (toPath: LocalePath): Record<string, string> => ({
+ *  and a hand-written map would type-check while silently dropping a locale.
+ *  `locales` narrows the group to the languages a given post actually has. */
+const languagesFor = (
+  toPath: LocalePath,
+  locales: readonly Locale[] = i18n.locales
+): Record<string, string> => ({
   ...Object.fromEntries(
-    i18n.locales.map((locale) => [locale, absoluteUrl(toPath(locale))])
+    locales.map((locale) => [locale, absoluteUrl(toPath(locale))])
   ),
-  "x-default": absoluteUrl(toPath(i18n.defaultLocale)),
+  ...(locales.includes(i18n.defaultLocale)
+    ? { "x-default": absoluteUrl(toPath(i18n.defaultLocale)) }
+    : {}),
 });
 
 /** Never a build-time `new Date()`: Google drops `lastmod` once it stops matching. */
@@ -68,11 +74,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Each translation has its own slug, so the `hreflang` group is built from
   // the map rather than by reusing one slug across locales.
   const posts: MetadataRoute.Sitemap = [...slugMap.values()].flatMap((slugs) => {
-    const languages = languagesFor((locale) =>
-      blogPostPath(locale, slugs[locale])
+    // `assertPostsAreValid` guarantees every locale outside production only, so
+    // a half-translated post previewed in `next dev` would otherwise advertise
+    // `/blog/undefined` instead of simply being absent from the group.
+    const translated = i18n.locales.filter((locale) => slugs[locale]);
+
+    const languages = languagesFor(
+      (locale) => blogPostPath(locale, slugs[locale]),
+      translated
     );
 
-    return i18n.locales.map((locale) => ({
+    return translated.map((locale) => ({
       url: absoluteUrl(blogPostPath(locale, slugs[locale])),
       lastModified: postDate(locale, slugs[locale]),
       changeFrequency: "monthly" as const,
