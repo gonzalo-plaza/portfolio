@@ -3,6 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "packageManager": "pnpm@10.28.2",
+  "browserslist": [
+    "chrome 64",
+    "edge 79",
+    "firefox 67",
+    "opera 51",
+    "safari 12",
+    "ios_saf 12"
+  ],
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
